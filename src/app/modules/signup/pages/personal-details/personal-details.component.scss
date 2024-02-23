@@ -1,0 +1,28 @@
+.outer-layer{
+    background-color: #E6E7E8;
+    width: 100%;
+    margin: 0px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.inner-layer{
+    min-width: 90vw;
+    min-height: 100vh;
+    background-image: url('/assets/Group Bg final.svg');
+    background-size: 100% 100%;
+    min-height: 90vh;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.side-progress{
+    position: absolute;
+    left: 200px;
+    top: 130px;
+}
+
+
+.btn{
+    width: 150px;
+}

@@ -1,0 +1,118 @@
+<div class="loading-overlay" *ngIf="loader">
+    <div class="loading"></div>
+</div>
+<div class="outer-layer">
+    <div class="inner-layer d-flex ">
+        <!-- <img src="../../../../../assets/Group Bg final.svg" alt=""> -->
+        <div class="side-progress">
+            <ul class="timeline">
+                <li class="timeline-event" >
+                  <div class="timeline-event-icon bg-yellow" style="border-radius: 50%;">
+                    <i class="ti ti-user fs-2 text-white"></i>
+                  </div>
+                  <div class="card timeline-event-card" style="height: 50px; visibility: hidden;">
+                    
+                  </div>
+                 
+                </li>
+                <li class="timeline-event">
+                  <div class="timeline-event-icon bg-yellow" style="border-radius: 50%;">
+                    <i class="ti ti-calendar fs-2 text-white"></i>
+                  </div>
+                  <div class="card timeline-event-card" style="height: 50px; visibility: hidden;">
+                    
+                  </div>
+                
+                </li>
+                <li class="timeline-event">
+                    <div class="timeline-event-icon bg-yellow" style="border-radius: 50%;">
+                        <i class="ti ti-file fs-2 text-white"></i>
+                    </div>
+                    <div class="card timeline-event-card" style="height: 50px; visibility: hidden;">
+                      
+                    </div>
+                  
+                </li>
+                <li class="timeline-event">
+                    <div class="timeline-event-icon bg-yellow" style="border-radius: 50%;">
+                        <i class="ti ti-list fs-2 text-white"></i>
+                    </div>
+                    <div class="card timeline-event-card" style="height: 50px; visibility: hidden;">
+                      
+                    </div>
+                  
+                </li>
+                <li class="timeline-event">
+                    <div class="timeline-event-icon bg-yellow" style="border-radius: 50%;">
+                        <i class="ti ti-check fs-2 text-white"></i>
+                    </div>
+                    <div class="card timeline-event-card" style="height: 50px; visibility: hidden;">
+                      
+                    </div>
+                  
+                </li>
+
+              </ul>
+              
+        </div>
+        
+        <div class="d-flex align-items-start justify-content-center w-100">
+            <div class="mt-4 ms-5" style="width: 65%;">
+                <div class="text-center mb-3">
+                    <img src="./assets/Meklips-logo-final.png" width="100px" alt="logo">
+                </div>
+                
+                <div class="text-azure fs-3 fw-bold mb-3">
+                    Profile Summary
+                </div>
+                <div class="overflow-auto" style="height: 75vh;">
+                    <div class="d-flex gap-5 align-items-center mb-5">
+                        <div style="width: 200px; height: 100px;">
+                            <label class="form-label required">Upload Profile Picture</label>
+                            <ngx-dropzone (change)="imageSelect($event)" style="height: 100%;" accept="image/jpeg,image/jpg,image/png,image/gif">
+                                <ngx-dropzone-label>Upload Profile Picture Here</ngx-dropzone-label>
+                                <ngx-dropzone-preview *ngFor="let f of imageFile" [removable]="true" (removed)="onRemove(f)">
+                                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                                </ngx-dropzone-preview>
+                            </ngx-dropzone>
+                        </div>
+                        <div style="width: 200px; height: 100px;">
+                            <label class="form-label required">Upload a Profile Video</label>
+                            <ngx-dropzone (change)="videoSelect($event)" style="height: 100%;">
+                                <ngx-dropzone-label>Upload Profile Video Here</ngx-dropzone-label>
+                                <ngx-dropzone-preview *ngFor="let f of videoFile" [removable]="true" (removed)="onRemove(f)">
+                                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                                </ngx-dropzone-preview>
+                            </ngx-dropzone>
+                        </div>
+                    </div>
+                    
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="text-azure mb-1">
+                                Now Let's add your Summary
+                            </div>
+                            <div class="text fs-5 fw-bold mb-3">
+                                Will shown as your highlight Summary
+                            </div>
+                            <textarea class="form-control" name="example-textarea-input" rows="2" [(ngModel)]="candidate.experienceSummary" placeholder="'I design and develop unique digital experiances that enhance peoples lives and makes the world a better place'" spellcheck="false" data-ms-editor="true"></textarea>
+                        </div>
+                    </div>
+                  
+
+                    <div class="d-flex justify-content-end gap-3 mb-4">
+                        <button class="btn">Back</button>
+                        <button class="btn btn-azure" (click)="advancedView()">Finish</button>
+                        
+                    </div>
+                </div>
+                
+            
+                
+        
+               
+            </div>
+            
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="outer-layer">
+    <div class="inner-layer d-flex justify-content-between align-items-center flex-column">
+        <div>
+            <img src="./assets/Sign up.svg" alt="">
+            <div class="text-blue mt-3 text-center fs-2">
+                Sign up with Email Address
+            </div>
+            <div class="text-center fs-5 mt-1">
+                Sign up using your email address
+            </div>
+            <div class="mb-3 mt-3">
+                <input type="email" class="form-control" [(ngModel)]="signUpPayload.email" name="example-text-input" placeholder="Email Id" spellcheck="false" data-ms-editor="true">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input class="form-control" [(ngModel)]="signUpPayload.password" type="password">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Re-enterPassword</label>
+                <input class="form-control" [(ngModel)]="cpassword" type="password">
+            </div>
+            <button class="btn btn-primary w-100" (click)="signup()" >Continue</button>
+        </div>
+        <div class="mb-4">
+            <img src="./assets/Meklips-logo-final.png" alt="logo" width="100px">
+        </div>
+    </div>
+</div>

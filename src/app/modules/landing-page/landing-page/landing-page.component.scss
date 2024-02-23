@@ -1,0 +1,30 @@
+.outer-layer{
+    background-color: #E6E7E8;
+    width: 100%;
+    margin: 0px;
+    height: 100vh;
+}
+
+.inner-layer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-image: url('/assets/Bg\ 01\ web.svg');
+    // background-size: contain;
+    background-size: 100% 100%;
+    min-height: 90vh;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+// .main{
+ 
+// }
+
+.btn{
+    width: 200px;
+}
+img.img{
+    height: 160px;
+}
