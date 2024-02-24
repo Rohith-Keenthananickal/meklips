@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environment/environment';
 import { Candidate } from '../../signup/models/signup.models';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -25,4 +26,5 @@ export class ProfileService {
   getVideo(id: number){
     return this.http.get(`${environment.url}/api/Video/${id}/download`)
   }
+
 }

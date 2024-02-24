@@ -48,13 +48,15 @@ export class LoginComponent {
         
       },
       (error) => {
+        
         // Handle login error
         console.error('Login error:', error);
         if(error.status == 401){
-          this.toastr.error('Incorrect Email or Password', 'Error', {
-            positionClass: 'toast-top-right',
-          });
+          
         }
+        this.toastr.error('Incorrect Email or Password', 'Error', {
+          positionClass: 'toast-top-right',
+        });
       }
     );
   }

@@ -42,6 +42,7 @@ export class ProfileSummaryComponent implements OnInit {
     this.updateFormData();
     this.bulkSubmit();
     setInterval(()=>{
+      localStorage.clear();
       this.router.navigate(['profile']);
     },4000)
     

@@ -85,13 +85,14 @@
 
                             <div class="d-flex mb-4 align-items-end gap-3">
                                 <div class="w-100" id="container">
-                                    <div class="row row-cards w-100" *ngFor="let socialMedia of candidate.socialMediaLinks; let i = index">
+                                    <div class="row row-cards w-100 mb-2" *ngFor="let socialMedia of candidate.socialMediaLinks; let i = index">
                                         <div class="col-6">
                                             <label class="form-label required">Select Type</label>
                                             <ng-select placeholder="Select Type" [(ngModel)]="socialMedia.type">
-                                                <ng-option value="WEB">Website</ng-option>
-                                                <ng-option value="FB">Facebook</ng-option>
-                                                <ng-option value="IN">Instagram</ng-option>
+                                                <ng-option value="WESITE">Website</ng-option>
+                                                <ng-option value="FACEBOOK">Facebook</ng-option>
+                                                <ng-option value="INSTAGRAM">Instagram</ng-option>
+                                                <ng-option value="TWITTER">Twitter</ng-option>
                                              </ng-select>
                                         </div>
                                         <div class="col-6">
@@ -103,7 +104,7 @@
                                         
                                     </div>
                                 </div>
-                                <button class="btn btn-outline-info mt-3" id="button" style="width: 200px;" (click)="addsocialMediaLinks()">
+                                <button class="btn btn-outline-info mt-3 mb-2" id="button" style="width: 200px;" (click)="addsocialMediaLinks()">
                                     <i class="ti ti-plus fs-3"></i>
                                     <span class="ms-2 fs-5">
                                         Add More Social Media

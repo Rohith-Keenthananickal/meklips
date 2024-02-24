@@ -119,7 +119,7 @@
   height: 100%; /* 100% Full-height */
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
-  z-index: 99999; /* Stay on top */
+  z-index: 9999999; /* Stay on top */
   top: 0; /* Stay at the top */
   left: 0;
   background-color: #6CA2FE; /* Black*/
@@ -162,4 +162,11 @@
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
+}
+
+#menu-btn{
+  position: absolute;
+  z-index: 99999;
+  top: 100px;
+  left: 50px;
 }

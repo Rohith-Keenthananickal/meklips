@@ -59,4 +59,8 @@ export class SignupService {
   AddWorkExperiance(payload : any){
     return this.http.post(`${environment.url}/api/WorkExperience`, payload);
   }
+
+  getDegree(){
+    return this.http.get(`${environment.url}/api/University`);
+  }
 }

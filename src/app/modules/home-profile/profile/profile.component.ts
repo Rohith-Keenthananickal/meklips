@@ -6,6 +6,8 @@ import { NavigationExtras, Router } from '@angular/router';
 import { Candidate } from '../../signup/models/signup.models';
 import { Login } from '../../login/models/login.models';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { Observable } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-profile',
@@ -19,6 +21,7 @@ export class ProfileComponent implements OnInit {
   public image
   displayedFileURL: any;
   public loader : boolean;
+  imageSrc: string | ArrayBuffer;
 
   constructor(private authService: AuthService,
     private profileService : ProfileService,
@@ -49,8 +52,8 @@ export class ProfileComponent implements OnInit {
   document.getElementById("mySidenav").style.width = "0";
 }
   
-  getUser(){
-    // this.loader = true
+  getUser() {
+    this.loader = true
     this.profileService.getUserData().subscribe({
       next:(res : any)=>{
         console.log(res);
@@ -61,10 +64,10 @@ export class ProfileComponent implements OnInit {
         console.log(this.candidate.workExperiences);
         this.loader = false
         this.getImage();
-        this. getVideo();
+        this.getVideo();
         
       },
-      error:(err : any)=>{
+      error:(err : HttpErrorResponse)=>{
         console.log(err);
         this.loader = false
         if(err.status == 404){
@@ -78,8 +81,21 @@ export class ProfileComponent implements OnInit {
     })
   }
 
+  convertBlobToDataUrl(blob: Blob): void {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      this.imageSrc = reader.result;
+    };
+    reader.readAsDataURL(blob);
+    console.log(this.imageSrc);
+    
+  }
+
+
+
   logout(){
     this.authService.logout();
+    this.router.navigate(['login']);
   }
 
   getRandomClass(): string {
@@ -89,24 +105,29 @@ export class ProfileComponent implements OnInit {
   }
 
   getImage(){
-    this.profileService.getImage(this.candidate.dpId).subscribe({
-      next:(res :any)=>{
-        console.log(res);
-        this.image = res
-        
-      },
-      error:(err: any)=>{
-        console.log(err);
-        
-      }
-    })
+    if(this.candidate.dpId !==0){
+      this.profileService.getImage(this.candidate.dpId).subscribe({
+        next:(res :any)=>{
+          console.log(res);
+          this.convertBlobToDataUrl(res);
+          this.image = res
+          
+        },
+        error:(err: any)=>{
+          console.log(err);
+          
+        }
+      })
+    }
+
   }
 
   getVideo(){
     this.profileService.getVideo(this.candidate.videoId).subscribe({
       next:(res :any)=>{
+        
         console.log(res);
-        this.image = res
+        // this.image = res
         
       },
       error:(err: any)=>{

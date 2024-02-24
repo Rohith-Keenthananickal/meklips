@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
 })
 export class PersonalDetailsComponent implements OnInit{
   public candidate = new Candidate();
-  // public currentAddress = new CurrentAddress();
+  public currentAddress = new CurrentAddress();
   public formData = {}
   subscription:Subscription;
   public editable : boolean
@@ -37,7 +37,7 @@ export class PersonalDetailsComponent implements OnInit{
       });
 
     // this.getUserId();
-    // this.candidate.currentAddress=this.currentAddress
+    this.candidate.currentAddress=this.currentAddress
   }
   
   getLocalData(){
