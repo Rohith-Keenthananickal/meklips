@@ -110,30 +110,69 @@ export class EducationComponent implements OnInit {
     this.router.navigate(['signup/previous-employment']);
   }
 
-  updateEducation() {
-    this.updateFormData();
-    let payload = this.candidate.educationalDegrees;
-    let candidateId = localStorage.getItem('userId');
-    const filteredArray = payload.filter(
-      (obj) => Object.keys(obj).length !== 0
-    );
-    console.log(filteredArray);
+  // updateEducation() {
+  //   this.updateFormData();
+  //   let payload = this.candidate.educationalDegrees;
+  //   let candidateId = localStorage.getItem('userId');
+  //   const filteredArray = payload.filter(
+  //     (obj) => Object.keys(obj).length !== 0
+  //   );
+  //   console.log(filteredArray);
 
+  //   filteredArray.forEach((item) => {
+  //     if (item.id) {
+  //       let id = item.id;
+  //       let candidateId = item.candidateId;
+  //       this.signupService.updateEducation(item, id, candidateId).subscribe({
+  //         next: (res: any) => {
+  //           console.log(res);
+  //         },
+  //         error: (err: any) => {
+  //           console.log(err);
+  //         },
+  //       });
+  //     } else {
+  //       item.candidateId = Number(candidateId);
+  //       this.signupService.AddEducation(item).subscribe({
+  //         next: (res: any) => {
+  //           console.log(res);
+  //         },
+  //         error: (err: any) => {
+  //           console.log(err);
+  //         },
+  //       });
+  //     }
+  //   });
+  //   setTimeout(() => {
+  //     this.router.navigate(['profile']);
+  //   }, 1000);
+  // }
+
+  updateEducation(){
+    let payload = this.candidate.educationalDegrees;
+    let candidateId = localStorage.getItem('userId')
+    const filteredArray = payload.filter(obj => Object.keys(obj).length !== 0);
+    const storedFormData = JSON.parse(localStorage.getItem('formData'));
+    
     filteredArray.forEach((item) => {
       if (item.id) {
-        let id = item.id;
-        let candidateId = item.candidateId;
-        this.signupService.updateEducation(item, id, candidateId).subscribe({
-          next: (res: any) => {
-            console.log(res);
-          },
-          error: (err: any) => {
-            console.log(err);
-          },
-        });
+        const matchingData = storedFormData.educationalDegrees.find((data) => data.id === item.id);
+  
+        if (!matchingData || !this.isEqual(matchingData, item)) {
+          let id = item.id;
+          let candidateId = item.candidateId;
+          this.signupService.updateEducation(item, id, candidateId).subscribe({
+            next: (res: any) => {
+              console.log(res);
+            },
+            error: (err: any) => {
+              console.log(err);
+            },
+          });
+        }
       } else {
         item.candidateId = Number(candidateId);
-        this.signupService.newSkills(item).subscribe({
+        this.signupService.AddEducation(item).subscribe({
           next: (res: any) => {
             console.log(res);
           },
@@ -143,9 +182,15 @@ export class EducationComponent implements OnInit {
         });
       }
     });
-    setTimeout(() => {
+    setTimeout(()=>{
+      this.updateFormData();
       this.router.navigate(['profile']);
-    }, 1000);
+    },1000)
+    
+  }
+
+  isEqual(obj1: any, obj2: any): boolean {
+    return JSON.stringify(obj1) === JSON.stringify(obj2);
   }
 }
 

@@ -103,45 +103,47 @@ export class PreviousEmploymentComponent implements OnInit {
 
 
   updateWorkExperiance(){
-    this.updateFormData();
     let payload = this.candidate.workExperiences;
     let candidateId = localStorage.getItem('userId')
     const filteredArray = payload.filter(obj => Object.keys(obj).length !== 0);
-    console.log(filteredArray);
+    const storedFormData = JSON.parse(localStorage.getItem('formData'));
     
-    filteredArray.forEach((item)=>{
-      if(item.id){
-        let id = item.id;
-        let candidateId = item.candidateId;
-        this.signupService.updateWorkExperiance(item,id,candidateId).subscribe({
-          next:(res:any)=>{
-            console.log(res);
-            
-          },
-          error:(err : any)=>{
-            console.log(err);
-            
-          }
-        });
-      }
-      else{
-        item.candidateId = Number(candidateId)
+    filteredArray.forEach((item) => {
+      if (item.id) {
+        const matchingData = storedFormData.workExperiences.find((data) => data.id === item.id);
+  
+        if (!matchingData || !this.isEqual(matchingData, item)) {
+          let id = item.id;
+          let candidateId = item.candidateId;
+          this.signupService.updateWorkExperiance(item, id, candidateId).subscribe({
+            next: (res: any) => {
+              console.log(res);
+            },
+            error: (err: any) => {
+              console.log(err);
+            },
+          });
+        }
+      } else {
+        item.candidateId = Number(candidateId);
         this.signupService.AddWorkExperiance(item).subscribe({
-          next:(res:any)=>{
+          next: (res: any) => {
             console.log(res);
-            
           },
-          error:(err : any)=>{
+          error: (err: any) => {
             console.log(err);
-            
-          }
+          },
         });
       }
-      
     });
     setTimeout(()=>{
+      this.updateFormData();
       this.router.navigate(['profile']);
     },1000)
     
+  }
+
+  isEqual(obj1: any, obj2: any): boolean {
+    return JSON.stringify(obj1) === JSON.stringify(obj2);
   }
 }

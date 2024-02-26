@@ -17,6 +17,7 @@ export class ProfileSummaryComponent implements OnInit {
   public getImage
   public getVideo
   public loader : boolean;
+  public isDataSaved : boolean = false;
 
   constructor(private router: Router,
     private signupService : SignupService,
@@ -40,12 +41,11 @@ export class ProfileSummaryComponent implements OnInit {
 
   advancedView() {
     this.updateFormData();
-    this.bulkSubmit();
-    setTimeout(()=>{
-      localStorage.clear();
-      this.router.navigate(['profile']);
-    },4000)
-    
+    this.bulkSubmit(); 
+  }
+
+  profileView(){
+    this.router.navigate(['profile']);
   }
 
   imageSelect(event: any) {
@@ -149,6 +149,7 @@ export class ProfileSummaryComponent implements OnInit {
         this.uploadImage();
         this.uploadVideo();
         this.loader = false
+        this.isDataSaved = true;
       },
       error:(err:any)=>{
         console.log(err);

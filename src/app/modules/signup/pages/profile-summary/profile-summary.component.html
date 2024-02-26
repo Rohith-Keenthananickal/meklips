@@ -100,9 +100,15 @@
                     </div>
                   
 
-                    <div class="d-flex justify-content-end gap-3 mb-4">
+                    <div class="d-flex justify-content-end gap-3 mb-4" *ngIf="!isDataSaved">
                         <button class="btn">Back</button>
                         <button class="btn btn-azure" (click)="advancedView()">Finish</button>
+                        
+                    </div>
+
+                    <div class="d-flex justify-content-end gap-3 mb-4" *ngIf="isDataSaved">
+                        <button class="btn">Back</button>
+                        <button class="btn btn-azure" (click)="profileView()">Go to Profile</button>
                         
                     </div>
                 </div>
