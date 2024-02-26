@@ -6,22 +6,34 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
-.inner-layer{
-    min-width: 90vw;
-    min-height: 100vh;
-    background-image: url('/assets/Group Bg final.svg');
-    background-size: 100% 100%;
-    min-height: 90vh;
-    background-position: center;
-    background-repeat: no-repeat;
+.timeline{
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    margin-left: 40px;
 }
-.side-progress{
-    position: absolute;
-    left: 200px;
-    top: 130px;
+.card{
+    border-radius: 20px !important;
+    height: 90vh;
+    width: 90vw;
 }
 
+#sideNave {
+    width: 120px;
+    height: 90vh;
+    background-color: #6ca2fe;
+    display: flex;
+    align-items: center;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+#main{
+    padding-left: 30px;
+    padding-right: 30px;
+}
 
 .btn{
     width: 150px;

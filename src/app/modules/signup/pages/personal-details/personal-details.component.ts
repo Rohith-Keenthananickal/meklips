@@ -6,6 +6,7 @@ import { SignupService } from '../../service/signup.service';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { DatePipe } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-personal-details',
@@ -18,12 +19,14 @@ export class PersonalDetailsComponent implements OnInit{
   public formData = {}
   subscription:Subscription;
   public editable : boolean
+  public loader : boolean;
 
   constructor(private router:Router,
     private formDataService: FormDataService,
     private signupService : SignupService,
     private datePipe: DatePipe,
-    private activeRoute:ActivatedRoute){
+    private activeRoute:ActivatedRoute,
+    private toastr: ToastrService){
 
   }
   ngOnInit(): void {
@@ -97,6 +100,7 @@ export class PersonalDetailsComponent implements OnInit{
   }
 
   updateProfile(){
+    this.loader = true
     console.log(this.candidate);
     let id = localStorage.getItem('userId')
     let payload = this.candidate
@@ -116,11 +120,18 @@ export class PersonalDetailsComponent implements OnInit{
     this.signupService.updateCandidate(payload,id).subscribe({
       next:(res:any)=>{
         console.log(res);
+        this.loader = false
+        this.toastr.success('Personal Details Updated', 'Success', {
+          positionClass: 'toast-top-right',
+        });
         this.router.navigate(['profile']);
       },
       error:(err : any)=>{
         console.log(err);
-        
+        this.loader = false
+        this.toastr.error('Personal Details Update Error ', 'Error', {
+          positionClass: 'toast-top-right',
+        });
       }
     })
   }

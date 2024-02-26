@@ -1,6 +1,5 @@
-<div class="outer-layer">
+<!-- <div class="outer-layer">
     <div class="inner-layer d-flex ">
-        <!-- <img src="../../../../../assets/Group Bg final.svg" alt=""> -->
         <div class="side-progress">
             <ul class="timeline">
                 <li class="timeline-event" >
@@ -53,102 +52,178 @@
               
         </div>
         
-        <div class="d-flex align-items-start justify-content-center w-100">
-            <div class="mt-4 ms-5" style="width: 65%;">
-                <div class="text-center mb-3">
-                    <img src="./assets/Meklips-logo-final.png" width="100px" alt="logo">
-                </div>
+        
+    </div>
+</div>
+ -->
+ <div class="loading-overlay" *ngIf="loader">
+    <div class="loading"></div>
+</div>
+
+<div class="outer-layer">
+    <div class="inner-layer d-flex ">
+        <div class="card card-container">
+            <div class="card-body p-0">
+                <div class="d-flex">
+                    <div id="sideNave">
+                        <div class="side-progress" style="width: 120px;">
+                            <ul class="timeline">
+                                <li class="timeline-event" >
+                                  <div class="timeline-event-icon bg-yellow" style="border-radius: 50%;">
+                                    <i class="ti ti-user fs-2 text-white"></i>
+                                  </div>
+                                  <div class="card timeline-event-card" style="height: 50px; visibility: hidden;">
+                                    
+                                  </div>
+                                 
+                                </li>
+                                <li class="timeline-event">
+                                  <div class="timeline-event-icon bg-yellow" style="border-radius: 50%;">
+                                    <i class="ti ti-calendar fs-2 text-white"></i>
+                                  </div>
+                                  <div class="card timeline-event-card" style="height: 50px; visibility: hidden;">
+                                    
+                                  </div>
+                                
+                                </li>
+                                <li class="timeline-event">
+                                    <div class="timeline-event-icon" style="border-radius: 50%;">
+                                        <i class="ti ti-file fs-2"></i>
+                                    </div>
+                                    <div class="card timeline-event-card" style="height: 50px; visibility: hidden;">
+                                      
+                                    </div>
+                                  
+                                </li>
+                                <li class="timeline-event">
+                                    <div class="timeline-event-icon" style="border-radius: 50%;">
+                                        <i class="ti ti-list fs-2"></i>
+                                    </div>
+                                    <div class="card timeline-event-card" style="height: 50px; visibility: hidden;">
+                                      
+                                    </div>
+                                  
+                                </li>
+                                <li class="timeline-event">
+                                    <div class="timeline-event-icon" style="border-radius: 50%;">
+                                        <i class="ti ti-check fs-2"></i>
+                                    </div>
+                                    <div class="card timeline-event-card" style="height: 50px; visibility: hidden;">
+                                      
+                                    </div>
+                                  
+                                </li>
                 
-                <div class="text-azure fs-3 fw-bold mb-3">
-                    Previous Employment
-                </div>
-                <div class="overflow-auto" style="height: 75vh;">
-                    <div class="card mb-3" *ngFor="let employment of candidate.workExperiences; let i = index">
-                        <div class="card-body">
-                            <div class="text-azure mb-4">
-                                Current Employment
-                            </div>
-                            <div class="row row-cards mb-4">
-                                <div class="col-4">
-                                    <div class="mb-3">
-                                        <label class="form-label required">Job Title</label>
-                                        <input type="text" class="form-control" name="example-text-input" [(ngModel)]="employment.designation" placeholder="Enter Your Job Title" spellcheck="false" data-ms-editor="true">
-                                    </div>
+                              </ul>
+                              
+                        </div>
+                    </div>
+                    <div>
+                        <div id="main" class="d-flex align-items-start justify-content-center w-100">
+                            <div class="mt-4">
+                                <div class="text-center mb-3">
+                                    <img src="./assets/Meklips-logo-final.png" width="100px" alt="logo">
                                 </div>
-                                <div class="col-4">
-                                    <div class="mb-3">
-                                        <label class="form-label required">Employer</label>
-                                        <input type="text" class="form-control" name="example-text-input" [(ngModel)]="employment.companyName" placeholder="Enter Your Employer Name" spellcheck="false" data-ms-editor="true">
-                                    </div>
+                                
+                                <div class="text-azure fs-3 fw-bold mb-3">
+                                     Employment Details
                                 </div>
-                                <div class="col-4">
-                                    <div class="mb-3">
-                                        <label class="form-label required">Contact Number</label>
-                                        <input type="text" class="form-control" name="example-text-input" [(ngModel)]="employment.contactNumber" placeholder="Enter Contact Number" spellcheck="false" data-ms-editor="true">
+                                <div class="overflow-auto" style="height: 50vh;">
+                                    <div class="card mb-3" *ngFor="let employment of candidate.workExperiences; let i = index">
+                                        <div class="card-body">
+                                            <div class="text-azure mb-4" *ngIf="i == 0">
+                                                Current Employment
+                                            </div>
+                                            <div class="text-azure mb-4" *ngIf="i !== 0">
+                                                Previous Employment
+                                            </div>
+                                            <div class="row row-cards mb-4">
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label required">Job Title</label>
+                                                        <input type="text" class="form-control" name="example-text-input" [(ngModel)]="employment.designation" placeholder="Enter Your Job Title" spellcheck="false" data-ms-editor="true">
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label required">Employer</label>
+                                                        <input type="text" class="form-control" name="example-text-input" [(ngModel)]="employment.companyName" placeholder="Enter Your Employer Name" spellcheck="false" data-ms-editor="true">
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="mb-3">
+                                                        <label class="form-label required">Contact Number</label>
+                                                        <input type="text" class="form-control" name="example-text-input" [(ngModel)]="employment.contactNumber" placeholder="Enter Contact Number" spellcheck="false" data-ms-editor="true">
+                                                    </div>
+                                                </div>
+                                    
+                                                <div class="col-4">
+                                                    <label class="form-label required">Start Date</label>
+                                                    <div class="input-icon mb-2">
+                                                        <input matInput [matDatepicker]="picker" class="form-control" (dateInput)="startDate('input', $event, i)"  placeholder="Select Start Date">
+                                                        <span class="input-icon-addon">
+                                                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                                            <mat-datepicker #picker></mat-datepicker>
+                                                        </span>
+                                                      </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <label class="form-label required">End Date</label>
+                                                    <div class="input-icon mb-2">
+                                                        <input matInput [matDatepicker]="picker2" class="form-control" (dateInput)="endDate('input', $event, i)" [disabled]="employment.currentJob" placeholder="Select End Date">
+                                                        <span class="input-icon-addon">
+                                                            <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                                                            <mat-datepicker #picker2></mat-datepicker>
+                                                        </span>
+                                                      </div>
+                                                </div>
+                                                <div class="col-4 d-flex align-items-center" *ngIf="i == 0">
+                                                    <div>
+                                                        <label class="form-check m-0 mt-3">
+                                                            <input class="form-check-input" type="checkbox" [(ngModel)]="employment.currentJob">
+                                                            <span class="form-check-label">I Currently Work Here</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div>
+                                                        <label class="form-label required">Add Your Responsibilities</label>
+                                                        <textarea class="form-control" name="example-textarea-input" rows="3" [(ngModel)]="employment.responsibilities" placeholder="* Worked with the development team" spellcheck="false" data-ms-editor="true"></textarea>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                    
-                                <div class="col-4">
-                                    <label class="form-label required">Start Date</label>
-                                    <div class="input-icon mb-2">
-                                        <input matInput [matDatepicker]="picker" class="form-control" (dateInput)="startDate('input', $event, i)"  placeholder="Select Start Date">
-                                        <span class="input-icon-addon">
-                                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                                            <mat-datepicker #picker></mat-datepicker>
+                
+                                    <button class="btn btn-azure mt-3" style="width: 200px;" (click)="addWorkExperience()">
+                                        <i class="ti ti-plus fs-2"></i>
+                                        <span class="ms-2">
+                                            Add More Employment
                                         </span>
-                                      </div>
+                                    </button>
+                
+                                   
                                 </div>
-                                <div class="col-4">
-                                    <label class="form-label required">End Date</label>
-                                    <div class="input-icon mb-2">
-                                        <input matInput [matDatepicker]="picker2" class="form-control" (dateInput)="endDate('input', $event, i)" placeholder="Select End Date">
-                                        <span class="input-icon-addon">
-                                            <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
-                                            <mat-datepicker #picker2></mat-datepicker>
-                                        </span>
-                                      </div>
-                                </div>
-                                <div class="col-4 d-flex align-items-center">
-                                    <div>
-                                        <label class="form-check m-0 mt-3">
-                                            <input class="form-check-input" type="checkbox" [(ngModel)]="employment.currentJob">
-                                            <span class="form-check-label">I Currently Work Here</span>
-                                        </label>
+
+                                <div class="mt-2" style="margin-right: 70px;">
+                                    <div class="d-flex justify-content-end gap-3 mb-4" *ngIf="!editable">
+                                        <button class="btn" (click)="back()">Back</button>
+                                        <button class="btn btn-azure" (click)="advancedView()">Next</button>
+                                        
                                     </div>
-                                </div>
-                                <div class="col-12">
-                                    <div>
-                                        <label class="form-label required">Add Your Responsibilities</label>
-                                        <textarea class="form-control" name="example-textarea-input" rows="3" [(ngModel)]="employment.responsibilities" placeholder="* Worked with the development team" spellcheck="false" data-ms-editor="true"></textarea>
+                
+                                    <div class="d-flex justify-content-end gap-3 mb-4" *ngIf="editable">
+                                        <button class="btn btn-azure" (click)="updateWorkExperiance()">Save</button>
+                                        
                                     </div>
                                 </div>
                                 
                             </div>
+                            
                         </div>
                     </div>
-
-                    <button class="btn btn-azure mt-3" style="width: 200px;" (click)="addWorkExperience()">
-                        <i class="ti ti-plus fs-2"></i>
-                        <span class="ms-2">
-                            Add More Employment
-                        </span>
-                    </button>
-
-                    <div class="d-flex justify-content-end gap-3 mb-4" *ngIf="!editable">
-                        <button class="btn" (click)="back()">Back</button>
-                        <button class="btn btn-azure" (click)="advancedView()">Next</button>
-                        
-                    </div>
-
-                    <div class="d-flex justify-content-end gap-3 mb-4" *ngIf="editable">
-                        <button class="btn btn-azure" (click)="updateWorkExperiance()">Save</button>
-                        
-                    </div>
                 </div>
-            
-                
-        
-               
             </div>
             
         </div>

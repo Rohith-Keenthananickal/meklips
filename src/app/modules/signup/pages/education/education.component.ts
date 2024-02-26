@@ -6,6 +6,7 @@ import { Candidate, EducationalDegree, WorkExperience } from '../../models/signu
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { Subscription } from 'rxjs';
 import { SignupService } from '../../service/signup.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-education',
@@ -19,19 +20,21 @@ export class EducationComponent implements OnInit {
   subscription: Subscription;
   public editable: boolean;
   public university: [];
+  public loader : boolean;
   constructor(
     private router: Router,
     private formDataService: FormDataService,
     private datePipe: DatePipe,
     private activeRoute: ActivatedRoute,
-    private signupService: SignupService
+    private signupService: SignupService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
     this.getLocalData();
     console.log(this.candidate);
     this.candidate.educationalDegrees.push(this.educationalDegrees);
-    this.getDegree();
+    // this.getDegree();
     // this.candidate.workExperiences = this.workExperiences
 
     this.subscription = this.activeRoute.queryParams.subscribe(
@@ -57,17 +60,17 @@ export class EducationComponent implements OnInit {
     this.candidate.educationalDegrees = this.candidate.educationalDegrees || [];
   }
 
-  getDegree() {
-    this.signupService.getDegree().subscribe({
-      next: (res: any) => {
-        console.log(res);
-        this.university = res;
-      },
-      error: (err: any) => {
-        console.log(err);
-      },
-    });
-  }
+  // getDegree() {
+  //   this.signupService.getDegree().subscribe({
+  //     next: (res: any) => {
+  //       console.log(res);
+  //       this.university = res;
+  //     },
+  //     error: (err: any) => {
+  //       console.log(err);
+  //     },
+  //   });
+  // }
 
   addEducation(): void {
     this.candidate.educationalDegrees.push(new EducationalDegree());
@@ -149,6 +152,7 @@ export class EducationComponent implements OnInit {
   // }
 
   updateEducation(){
+    this.loader = true;
     let payload = this.candidate.educationalDegrees;
     let candidateId = localStorage.getItem('userId')
     const filteredArray = payload.filter(obj => Object.keys(obj).length !== 0);
@@ -164,9 +168,13 @@ export class EducationComponent implements OnInit {
           this.signupService.updateEducation(item, id, candidateId).subscribe({
             next: (res: any) => {
               console.log(res);
+             this.loader = false;
+
             },
             error: (err: any) => {
               console.log(err);
+              this.loader = false;
+
             },
           });
         }
@@ -175,9 +183,13 @@ export class EducationComponent implements OnInit {
         this.signupService.AddEducation(item).subscribe({
           next: (res: any) => {
             console.log(res);
+            this.loader = false;
+
           },
           error: (err: any) => {
             console.log(err);
+            this.loader = false;
+
           },
         });
       }

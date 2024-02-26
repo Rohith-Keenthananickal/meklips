@@ -1,6 +1,5 @@
-<div class="outer-layer">
+<!-- <div class="outer-layer">
     <div class="inner-layer d-flex ">
-        <!-- <img src="../../../../../assets/Group Bg final.svg" alt=""> -->
         <div class="side-progress">
             <ul class="timeline">
                 <li class="timeline-event" >
@@ -53,119 +52,192 @@
               
         </div>
         
-        <div class="d-flex align-items-start justify-content-center w-100">
-            <div class="mt-4 ms-5" style="width: 65%;">
-                <div class="text-center mb-3">
-                    <img src="./assets/Meklips-logo-final.png" width="100px" alt="logo">
-                </div>
-                
-                <div class="text-azure fs-3 fw-bold mb-3">
-                    My Experties & Social Media
-                </div>
-                <div class="overflow-auto" style="height: 75vh;">
-                    <div class="card mb-3" *ngIf="!editable">
-                        <div class="card-body">
-                            <div class="text-azure mb-4">
-                                Social Media
-                            </div>
-                            <!-- <div>
-                                <ol>
-                                    <li *ngFor="let link of candidate.socialMediaLinks">
-                                        <div class="d-flex gap-2 align-items-center">
-                                            <div class="text fw-bold">
-                                                {{link.type}}
-                                            </div>
-                                            <div class="text-blue cursor-pointer">
-                                                {{link.url}}
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ol>
-                            </div> -->
+       
+    </div>
+</div> -->
 
-                            <div class="d-flex mb-4 align-items-end gap-3">
-                                <div class="w-100" id="container">
-                                    <div class="row row-cards w-100 mb-2" *ngFor="let socialMedia of candidate.socialMediaLinks; let i = index">
-                                        <div class="col-6">
-                                            <label class="form-label required">Select Type</label>
-                                            <ng-select placeholder="Select Type" [(ngModel)]="socialMedia.type">
-                                                <ng-option value="WESITE">Website</ng-option>
-                                                <ng-option value="FACEBOOK">Facebook</ng-option>
-                                                <ng-option value="INSTAGRAM">Instagram</ng-option>
-                                                <ng-option value="TWITTER">Twitter</ng-option>
-                                             </ng-select>
+
+
+<div class="outer-layer">
+    <div class="inner-layer d-flex ">
+        <div class="card card-container">
+            <div class="card-body p-0">
+                <div class="d-flex">
+                    <div id="sideNave">
+                        <div class="side-progress" style="width: 120px;">
+                            <ul class="timeline">
+                                <li class="timeline-event" >
+                                  <div class="timeline-event-icon bg-yellow" style="border-radius: 50%;">
+                                    <i class="ti ti-user fs-2 text-white"></i>
+                                  </div>
+                                  <div class="card timeline-event-card" style="height: 50px; visibility: hidden;">
+                                    
+                                  </div>
+                                 
+                                </li>
+                                <li class="timeline-event">
+                                    <div class="timeline-event-icon bg-yellow" style="border-radius: 50%;">
+                                      <i class="ti ti-calendar fs-2 text-white"></i>
+                                    </div>
+                                    <div class="card timeline-event-card" style="height: 50px; visibility: hidden;">
+                                      
+                                    </div>
+                                  
+                                  </li>
+                                <li class="timeline-event">
+                                    <div class="timeline-event-icon bg-yellow" style="border-radius: 50%;">
+                                        <i class="ti ti-file fs-2 text-white"></i>
+                                    </div>
+                                    <div class="card timeline-event-card" style="height: 50px; visibility: hidden;">
+                                      
+                                    </div>
+                                  
+                                </li>
+                                <li class="timeline-event">
+                                    <div class="timeline-event-icon bg-yellow" style="border-radius: 50%;">
+                                        <i class="ti ti-list fs-2 text-white"></i>
+                                    </div>
+                                    <div class="card timeline-event-card" style="height: 50px; visibility: hidden;">
+                                      
+                                    </div>
+                                  
+                                </li>
+                                <li class="timeline-event">
+                                    <div class="timeline-event-icon" style="border-radius: 50%;">
+                                        <i class="ti ti-check fs-2"></i>
+                                    </div>
+                                    <div class="card timeline-event-card" style="height: 50px; visibility: hidden;">
+                                      
+                                    </div>
+                                  
+                                </li>
+                
+                              </ul>
+                              
+                        </div>
+                    </div>
+                    <div class="w-100">
+                        <div id="main" class="d-flex align-items-start justify-content-center w-100">
+                            <div class="mt-4 w-100" >
+                                <div class="text-center mb-3">
+                                    <img src="./assets/Meklips-logo-final.png" width="100px" alt="logo">
+                                </div>
+                                
+                                <div class="text-azure fs-3 fw-bold mb-3">
+                                    My Experties & Social Media
+                                </div>
+                                <div class="overflow-auto" style="height: 50vh;">
+                                    <div class="card mb-3" *ngIf="!editable">
+                                        <div class="card-body">
+                                            <div class="text-azure mb-4">
+                                                Social Media
+                                            </div>
+                                            <!-- <div>
+                                                <ol>
+                                                    <li *ngFor="let link of candidate.socialMediaLinks">
+                                                        <div class="d-flex gap-2 align-items-center">
+                                                            <div class="text fw-bold">
+                                                                {{link.type}}
+                                                            </div>
+                                                            <div class="text-blue cursor-pointer">
+                                                                {{link.url}}
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ol>
+                                            </div> -->
+                
+                                            <div class="d-flex mb-4 align-items-end gap-3">
+                                                <div class="w-100" id="container">
+                                                    <div class="row row-cards w-100 mb-2" *ngFor="let socialMedia of candidate.socialMediaLinks; let i = index">
+                                                        <div class="col-6">
+                                                            <label class="form-label required">Select Type</label>
+                                                            <ng-select placeholder="Select Type" [(ngModel)]="socialMedia.type">
+                                                                <ng-option value="WESITE">Website</ng-option>
+                                                                <ng-option value="FACEBOOK">Facebook</ng-option>
+                                                                <ng-option value="INSTAGRAM">Instagram</ng-option>
+                                                                <ng-option value="TWITTER">Twitter</ng-option>
+                                                             </ng-select>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div >
+                                                                <label class="form-label required">LINK / URL</label>
+                                                                <input type="text" class="form-control" name="example-text-input" placeholder="Enter Your Url" spellcheck="false" [(ngModel)]="socialMedia.url" data-ms-editor="true">
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                                <button class="btn btn-outline-info mt-3 mb-2" id="button" style="width: 200px;" (click)="addsocialMediaLinks()">
+                                                    <i class="ti ti-plus fs-3"></i>
+                                                    <span class="ms-2 fs-5">
+                                                        Add More Social Media
+                                                    </span>
+                                                </button>
+                                            </div>
+                                            
                                         </div>
-                                        <div class="col-6">
-                                            <div >
-                                                <label class="form-label required">LINK / URL</label>
-                                                <input type="text" class="form-control" name="example-text-input" placeholder="Enter Your Url" spellcheck="false" [(ngModel)]="socialMedia.url" data-ms-editor="true">
+                                    </div>
+                
+                                    <div class="card mb-3">
+                                        <div class="card-body">
+                                            <div class="text-azure mb-4">
+                                                My Experties
+                                            </div>
+                                            <div class="row row-cards d-flex align-items-end mb-2" *ngFor="let skill of candidate.candidateSkills">
+                                                
+                                                <div class="col-4">
+                                                    <div >
+                                                        <label class="form-label required">Skill</label>
+                                                        <input type="text" class="form-control" name="example-text-input" [(ngModel)]="skill.skillName" placeholder="Enter Your Skills" spellcheck="false" data-ms-editor="true">
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="w-100">
+                                                        <!-- <label class="form-label required">Skill</label> -->
+                                                        <mat-slider style="width: 100%;" min="0" max="10" step="1" discrete [displayWith]="formatLabel">
+                                                            <input  [(ngModel)]="+skill.skillLevel" matSliderThumb />
+                                                        </mat-slider> 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row row-cards mb-4">
+                                                <div class="col-4">
+                                                    <button class="btn btn-outline-info mt-3 w-100" style="width: 200px;" (click)="addSkills()">
+                                                        <i class="ti ti-plus fs-3"></i>
+                                                        <span class="ms-2 fs-5">
+                                                            Add More Skills
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                               
                                             </div>
                                         </div>
+                                    </div>
+                
+                                   
+                                   
+                                </div>
+                            
+                                <div class="mt-3" style="margin-right: 70px;">
+                                    <div class="d-flex justify-content-end gap-3 mb-4" *ngIf="!editable">
+                                        <button class="btn" (click)="back()">Back</button>
+                                        <button class="btn btn-azure" (click)="advancedView()">Next</button>
+                                        
+                                    </div>
+                
+                                    <div class="d-flex justify-content-end gap-3 mb-4" *ngIf="editable">
+                                        <button class="btn btn-azure" (click)="updateSkills()">Update</button>
                                         
                                     </div>
                                 </div>
-                                <button class="btn btn-outline-info mt-3 mb-2" id="button" style="width: 200px;" (click)="addsocialMediaLinks()">
-                                    <i class="ti ti-plus fs-3"></i>
-                                    <span class="ms-2 fs-5">
-                                        Add More Social Media
-                                    </span>
-                                </button>
+                        
+                               
                             </div>
                             
                         </div>
                     </div>
-
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <div class="text-azure mb-4">
-                                My Experties
-                            </div>
-                            <div class="row row-cards d-flex align-items-end mb-2" *ngFor="let skill of candidate.candidateSkills">
-                                
-                                <div class="col-4">
-                                    <div >
-                                        <label class="form-label required">Skill</label>
-                                        <input type="text" class="form-control" name="example-text-input" [(ngModel)]="skill.skillName" placeholder="Enter Your Skills" spellcheck="false" data-ms-editor="true">
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="w-100">
-                                        <!-- <label class="form-label required">Skill</label> -->
-                                        <mat-slider style="width: 100%;" min="0" max="10" step="1" discrete [displayWith]="formatLabel">
-                                            <input  [(ngModel)]="+skill.skillLevel" matSliderThumb />
-                                        </mat-slider> 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row row-cards mb-4">
-                                <div class="col-4">
-                                    <button class="btn btn-outline-info mt-3 w-100" style="width: 200px;" (click)="addSkills()">
-                                        <i class="ti ti-plus fs-3"></i>
-                                        <span class="ms-2 fs-5">
-                                            Add More Skills
-                                        </span>
-                                    </button>
-                                </div>
-                               
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="d-flex justify-content-end gap-3 mb-4" *ngIf="!editable">
-                        <button class="btn" (click)="back()">Back</button>
-                        <button class="btn btn-azure" (click)="advancedView()">Next</button>
-                        
-                    </div>
-
-                    <div class="d-flex justify-content-end gap-3 mb-4" *ngIf="editable">
-                        <button class="btn btn-azure" (click)="updateSkills()">Update</button>
-                        
-                    </div>
                 </div>
-            
-                
-        
-               
             </div>
             
         </div>

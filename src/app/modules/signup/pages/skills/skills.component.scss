@@ -1,33 +1,70 @@
-
 .outer-layer{
     background-color: #E6E7E8;
     width: 100%;
     margin: 0px;
-    height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.timeline{
+    margin-left: 40px;
+}
+.card-container{
+    border-radius: 20px !important;
+    height: 90vh;
+    width: 90vw;
 }
 
-.inner-layer{
-    width: 100%;
-    height: 100vh;
-    background-image: url('/assets/Group Bg final.svg');
-    background-size: 100% 100%;
-    min-height: 90vh;
-    background-position: center;
-    background-repeat: no-repeat;
+#sideNave {
+    width: 120px;
+    height: 90vh;
+    background-color: #6ca2fe;
+    display: flex;
+    align-items: center;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
 }
-.side-progress{
-    position: absolute;
-    left: 170px;
-    top: 130px;
+
+#main{
+    padding-left: 30px;
+    padding-right: 30px;
 }
+
 .btn{
     width: 150px;
 }
 
-@media only screen and (max-width: 1080px) {
-    .side-progress{
-        position: absolute;
-        left: 100px;
-        // top: 130px;
-    }
-  }
+
+// .outer-layer{
+//     background-color: #E6E7E8;
+//     width: 100%;
+//     margin: 0px;
+//     height: 100vh;
+// }
+
+// .inner-layer{
+//     width: 100%;
+//     height: 100vh;
+//     background-image: url('/assets/Group Bg final.svg');
+//     background-size: 100% 100%;
+//     min-height: 90vh;
+//     background-position: center;
+//     background-repeat: no-repeat;
+// }
+// .side-progress{
+//     position: absolute;
+//     left: 170px;
+//     top: 130px;
+// }
+// .btn{
+//     width: 150px;
+// }
+
+// @media only screen and (max-width: 1080px) {
+//     .side-progress{
+//         position: absolute;
+//         left: 100px;
+//         // top: 130px;
+//     }
+//   }

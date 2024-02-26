@@ -18,7 +18,10 @@ export class ProfileSummaryComponent implements OnInit {
   public getImage
   public getVideo
   public loader : boolean;
+  public videoLoader : boolean
   public isDataSaved : boolean = false;
+  public loaderMessage = '';
+
 
   constructor(private router: Router,
     private signupService : SignupService,
@@ -28,6 +31,8 @@ export class ProfileSummaryComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLocalData();
+    console.log(this.loader);
+    
 
   }
 
@@ -70,6 +75,7 @@ export class ProfileSummaryComponent implements OnInit {
 
 
   uploadImage(){
+    this.loader = true
     let candidateId= localStorage.getItem('userId');
     let fileName = this.getImage?.addedFiles[0]?.name;
     let video = this.getImage?.addedFiles[0];
@@ -79,11 +85,11 @@ export class ProfileSummaryComponent implements OnInit {
       this.signupService.uploadDp(form,candidateId,fileName).subscribe({
         next:(res : any)=>{
           console.log(res);
-          
+          this.loader = false
         },
         error:(err : any)=>{
           console.log(err);
-          
+          this.loader = false
         }
       });
     } 
@@ -91,19 +97,26 @@ export class ProfileSummaryComponent implements OnInit {
   }
 
   uploadVideo(){
+    
     let candidateId= localStorage.getItem('userId');
     let fileName = this.getVideo?.addedFiles[0]?.name;
     let video = this.getVideo?.addedFiles[0];
     if(this.getVideo?.addedFiles.length > 0){
+      this.videoLoader = true
+      this.loaderMessage = 'Video is Processing, Please Wait'
       const form = new FormData();
       form.append('FileContent', video);
       this.signupService.uploadVideo(form,candidateId,fileName).subscribe({
         next:(res : any)=>{
           console.log(res);
-          
+          this.videoLoader = false   
         },
         error:(err : any)=>{
           console.log(err);
+          this.videoLoader = false
+          this.toastr.error('Failed to Save Video', 'Error', {
+            positionClass: 'toast-top-right',
+          });
           
         }
       })
@@ -147,7 +160,7 @@ export class ProfileSummaryComponent implements OnInit {
     this.signupService.candidateBulk(this.candidatePayload).subscribe({
       next:(res:any)=>{
         console.log(res);
-        this.toastr.success('Data Saved Successfully', 'Success', {
+        this.toastr.success('Candidate Profile Saved Successfully', 'Success', {
           positionClass: 'toast-top-right',
         });
         localStorage.setItem('userId',res.id);
@@ -164,5 +177,11 @@ export class ProfileSummaryComponent implements OnInit {
         });
       }
     })
+  }
+
+  back(){
+    console.log("bacvk");
+    
+    this.router.navigate(['signup/skills']);
   }
 }

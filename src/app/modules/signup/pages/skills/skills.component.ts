@@ -6,6 +6,7 @@ import { DatePipe } from '@angular/common';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { SignupService } from '../../service/signup.service';
 import { Subscription } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-skills',
@@ -26,7 +27,8 @@ export class SkillsComponent implements OnInit {
     private formDataService: FormDataService,
     private datePipe: DatePipe,
     private signupService : SignupService,
-    private activeRoute:ActivatedRoute){
+    private activeRoute:ActivatedRoute,
+    private toastr: ToastrService){
 
   }
 
@@ -163,9 +165,15 @@ export class SkillsComponent implements OnInit {
           this.signupService.updateSkills(item, id, candidateId).subscribe({
             next: (res: any) => {
               console.log(res);
+              this.toastr.success('Skills Updated Successfully', 'Success', {
+                positionClass: 'toast-top-right',
+              });
             },
             error: (err: any) => {
               console.log(err);
+              this.toastr.error('Error While Updating Skills', 'Error', {
+                positionClass: 'toast-top-right',
+              });
             },
           });
         }
@@ -174,9 +182,15 @@ export class SkillsComponent implements OnInit {
         this.signupService.newSkills(item).subscribe({
           next: (res: any) => {
             console.log(res);
+            this.toastr.success('Skills Added Successfully', 'Success', {
+              positionClass: 'toast-top-right',
+            });
           },
           error: (err: any) => {
             console.log(err);
+            this.toastr.error('Error While Adding Skills', 'Error', {
+              positionClass: 'toast-top-right',
+            });
           },
         });
       }

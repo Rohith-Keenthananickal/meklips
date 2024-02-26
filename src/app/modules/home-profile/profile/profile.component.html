@@ -7,14 +7,6 @@
                 <span *ngIf="candidate?.dpId" class="avatar avatar-xl rounded-circle">
                     <img [src]="imageUrl" class="img" alt="">
                 </span>
-
-                <!-- <span *ngIf="candidate?.dpId" class="avatar avatar-xl rounded-circle" [style.backgroundImage]="'url(' + getImage() + ')'" >
-                </span>
-                 -->
-                <!-- <img *ngIf="!candidate?.dpId" [src]="getImageUrl()" height="110px" class="img" alt=""> -->
-                
-                    
-                
             </div>
             <div class="text mt-2 fs-4 fw-bold" style="color: #FEBE10;">
                 {{candidate?.firstName}} {{candidate?.lastName}}
@@ -392,8 +384,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
-          <!-- <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button> -->
         </div>
       </div>
     </div>
-  </div>
+</div>

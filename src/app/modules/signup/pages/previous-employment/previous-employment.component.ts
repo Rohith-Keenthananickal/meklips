@@ -6,6 +6,7 @@ import {MatDatepickerInputEvent, MatDatepickerModule} from '@angular/material/da
 import { DatePipe } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { SignupService } from '../../service/signup.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-previous-employment',
@@ -18,12 +19,14 @@ export class PreviousEmploymentComponent implements OnInit {
   public formData = {}
   subscription:Subscription;
   public editable : boolean
+  public loader : boolean
 
   constructor(private router:Router,
     private formDataService: FormDataService,
     private datePipe: DatePipe,
     private activeRoute:ActivatedRoute,
-    private signupService : SignupService){
+    private signupService : SignupService,
+    private toastr: ToastrService){
 
   }
   ngOnInit(): void {
@@ -103,6 +106,7 @@ export class PreviousEmploymentComponent implements OnInit {
 
 
   updateWorkExperiance(){
+    this.loader = true
     let payload = this.candidate.workExperiences;
     let candidateId = localStorage.getItem('userId')
     const filteredArray = payload.filter(obj => Object.keys(obj).length !== 0);
@@ -118,9 +122,18 @@ export class PreviousEmploymentComponent implements OnInit {
           this.signupService.updateWorkExperiance(item, id, candidateId).subscribe({
             next: (res: any) => {
               console.log(res);
+              this.loader = false
+
+              this.toastr.success('Work Experiance Updated Successfully', 'Success', {
+                positionClass: 'toast-top-right',
+              });
             },
             error: (err: any) => {
               console.log(err);
+              this.loader = false
+              this.toastr.error('Error while Updating Work Experiance ', 'Error', {
+                positionClass: 'toast-top-right',
+              });
             },
           });
         }
@@ -129,9 +142,18 @@ export class PreviousEmploymentComponent implements OnInit {
         this.signupService.AddWorkExperiance(item).subscribe({
           next: (res: any) => {
             console.log(res);
+            this.loader = false
+
+            this.toastr.success('Work Experiance Added Successfully', 'Success', {
+              positionClass: 'toast-top-right',
+            });
           },
           error: (err: any) => {
             console.log(err);
+            this.loader = false
+            this.toastr.error('Error while Adding Work Experiance ', 'Error', {
+              positionClass: 'toast-top-right',
+            });
           },
         });
       }

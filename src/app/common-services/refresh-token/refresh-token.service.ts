@@ -30,6 +30,9 @@ export class RefreshTokenService {
         }
       );
     }
+    else{
+      this.stopTokenRefresh();
+    }
     
   }
 

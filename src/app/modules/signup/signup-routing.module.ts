@@ -8,6 +8,7 @@ import { PreviousEmploymentComponent } from './pages/previous-employment/previou
 import { EducationComponent } from './pages/education/education.component';
 import { SkillsComponent } from './pages/skills/skills.component';
 import { ProfileSummaryComponent } from './pages/profile-summary/profile-summary.component';
+import { AuthGuard } from 'src/app/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -16,32 +17,42 @@ const routes: Routes = [
   },
   {
     path: 'password-update',
-    component: PasswordSetComponent
+    component: PasswordSetComponent,
+    canActivate: [AuthGuard]
   },
-  {
-    path: 'user-details',
-    component: CommonSectionComponent
-  },
+  // {
+  //   path: 'user-details',
+  //   component: CommonSectionComponent
+  // },
   {
     path: 'personal-details',
-    component: PersonalDetailsComponent
+    component: PersonalDetailsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path : 'previous-employment',
-    component : PreviousEmploymentComponent
+    component : PreviousEmploymentComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'education',
-    component: EducationComponent
+    component: EducationComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'skills',
-    component: SkillsComponent
+    component: SkillsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'profile-summary',
-    component : ProfileSummaryComponent
-  }
+    component : ProfileSummaryComponent,
+    canActivate: [AuthGuard]
+  },
+  // {
+  //   path: 'common',
+  //   component : CommonSectionComponent
+  // }
 ];
 
 @NgModule({
