@@ -20,6 +20,7 @@ export class Candidate {
     socialMediaLinks: SocialMediaLink[]
     workExperiences: WorkExperience[]
     candidateSkills: CandidateSkill[]
+    streetAddress : string;
   }
   
   export class CurrentAddress {

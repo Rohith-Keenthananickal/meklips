@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { SignupService } from '../../service/signup.service';
 import { Candidate } from '../../models/signup.models';
 import { FormDataService } from '../../service/form-data.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-profile-summary',
@@ -22,6 +23,7 @@ export class ProfileSummaryComponent implements OnInit {
   constructor(private router: Router,
     private signupService : SignupService,
     private formDataService: FormDataService,
+    private toastr: ToastrService
     ) {}
 
   ngOnInit(): void {
@@ -92,7 +94,7 @@ export class ProfileSummaryComponent implements OnInit {
     let candidateId= localStorage.getItem('userId');
     let fileName = this.getVideo?.addedFiles[0]?.name;
     let video = this.getVideo?.addedFiles[0];
-    if(this.getImage?.addedFiles.length > 0){
+    if(this.getVideo?.addedFiles.length > 0){
       const form = new FormData();
       form.append('FileContent', video);
       this.signupService.uploadVideo(form,candidateId,fileName).subscribe({
@@ -145,6 +147,9 @@ export class ProfileSummaryComponent implements OnInit {
     this.signupService.candidateBulk(this.candidatePayload).subscribe({
       next:(res:any)=>{
         console.log(res);
+        this.toastr.success('Data Saved Successfully', 'Success', {
+          positionClass: 'toast-top-right',
+        });
         localStorage.setItem('userId',res.id);
         this.uploadImage();
         this.uploadVideo();
@@ -154,6 +159,9 @@ export class ProfileSummaryComponent implements OnInit {
       error:(err:any)=>{
         console.log(err);
         this.loader = false
+        this.toastr.error('Failed To Save Data', 'Error', {
+          positionClass: 'toast-top-right',
+        });
       }
     })
   }

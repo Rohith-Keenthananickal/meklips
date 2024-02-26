@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonInterceptor } from './interceptor/common.interceptor';
 import { AuthService } from './common-services/auth.service';
+import { RefreshTokenService } from './common-services/refresh-token/refresh-token.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,7 +31,7 @@ import { FormsModule } from '@angular/forms';
       positionClass :'toast-bottom-right'
     })
   ],
-  providers: [AuthService,DatePipe,
+  providers: [AuthService,DatePipe,RefreshTokenService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: CommonInterceptor,

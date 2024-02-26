@@ -57,6 +57,11 @@
     --tblr-avatar-size: 6rem !important;
     // display: block;
 }
+.main{
+  padding-top: 50px;
+  padding-bottom: 50px;
+  box-sizing: border-box;
+}
 
 #play-btn{
     transition: 600ms ease;
@@ -176,6 +181,6 @@
 #menu-btn{
   position: absolute;
   z-index: 99999;
-  top: 100px;
+  top: 50px;
   left: 50px;
 }

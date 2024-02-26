@@ -130,17 +130,20 @@ export class ProfileComponent implements OnInit {
   }
 
   getVideo() {
-    this.profileService.getVideo(this.candidate.videoId).subscribe({
-      next: (res: any) => {
-        console.log(res);
-        this.video = URL.createObjectURL(res);
-        console.log(this.video);
-        this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.video as string);
-      },
-      error: (err: any) => {
-        console.error(err);
-      }
-    });
+    if(this.candidate?.videoId && this.candidate?.videoId !== 0){
+      this.profileService.getVideo(this.candidate?.videoId).subscribe({
+        next: (res: any) => {
+          console.log(res);
+          this.video = URL.createObjectURL(res);
+          console.log(this.video);
+          this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.video as string);
+        },
+        error: (err: any) => {
+          console.error(err);
+        }
+      });
+    }
+    
   }
   
 

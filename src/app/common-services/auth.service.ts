@@ -32,7 +32,7 @@ export class AuthService {
     return this.http.post<any>(`${environment.url}/refresh`, { refreshToken }).pipe(
       tap((tokens) => this.saveTokens(tokens)),
       catchError((error) => {
-        this.logout(); // Logout if token refresh fails
+        // this.logout(); // Logout if token refresh fails
         return throwError(error);
       })
     );
