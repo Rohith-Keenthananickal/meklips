@@ -39,6 +39,13 @@ export class PersonalDetailsComponent implements OnInit{
     // this.getUserId();
     this.candidate.currentAddress=this.currentAddress
   }
+
+  ngOnDestroy() {
+    // Unsubscribe to prevent memory leaks
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
   
   getLocalData(){
     let localData = this.formDataService.getLocalData();
@@ -95,13 +102,21 @@ export class PersonalDetailsComponent implements OnInit{
     let payload = this.candidate
     delete payload.dpId;
     delete payload.videoId;
-
+    delete payload.educationalDegrees;
+    delete payload.candidateSkills;
+    delete payload.workExperiences;
+    delete payload.socialMediaLinks;
+     let checkAddress = Object.keys(payload.currentAddress)
+     if(checkAddress.length === 0){
+      delete payload.currentAddress
+     }
+     else{
+      payload.currentAddress.candidateId = Number(id);
+     }
     this.signupService.updateCandidate(payload,id).subscribe({
       next:(res:any)=>{
         console.log(res);
-        setInterval(()=>{
-          this.router.navigate(['profile']);
-        },1000)
+        this.router.navigate(['profile']);
       },
       error:(err : any)=>{
         console.log(err);

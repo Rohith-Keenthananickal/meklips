@@ -44,6 +44,13 @@ export class EducationComponent implements OnInit {
     
   }
 
+  ngOnDestroy() {
+    // Unsubscribe to prevent memory leaks
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
   getLocalData() {
     let localData = this.formDataService.getLocalData();
     this.candidate = localData;
@@ -136,7 +143,7 @@ export class EducationComponent implements OnInit {
         });
       }
     });
-    setInterval(() => {
+    setTimeout(() => {
       this.router.navigate(['profile']);
     }, 1000);
   }

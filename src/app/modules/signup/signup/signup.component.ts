@@ -50,8 +50,9 @@ export class SignupComponent {
         next:(res: any)=>{
           console.log(res);
           if(res.status == 200){
-            this.advancedView();
             this.login();
+            this.advancedView();
+            
             
           }
         },
@@ -75,18 +76,15 @@ export class SignupComponent {
   }
 
   login() {
-    this.authService.login(this.signUpPayload).subscribe(
-      (response) => {
+    this.authService.login(this.signUpPayload).subscribe({
+      next:(res)=>{
         // Successful login, handle the response or navigate to a different page
-        console.log(response);
-        
-        
-        
+        console.log(res);
       },
-      (error) => {
-        // Handle login error
-        console.error('Login error:', error);
+      error:(err)=>{
+        console.error('Login error:', err);
       }
+    }
     );
   }
 

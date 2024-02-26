@@ -41,6 +41,13 @@ export class PreviousEmploymentComponent implements OnInit {
         
       });
   }
+
+  ngOnDestroy() {
+    // Unsubscribe to prevent memory leaks
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
   
   getLocalData(){
     let localData = this.formDataService.getLocalData();
@@ -132,7 +139,7 @@ export class PreviousEmploymentComponent implements OnInit {
       }
       
     });
-    setInterval(()=>{
+    setTimeout(()=>{
       this.router.navigate(['profile']);
     },1000)
     

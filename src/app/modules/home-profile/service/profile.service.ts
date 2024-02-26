@@ -24,7 +24,9 @@ export class ProfileService {
   }
 
   getVideo(id: number){
-    return this.http.get(`${environment.url}/api/Video/${id}/download`)
+    return this.http.get(`${environment.url}/api/Video/${id}/download`,{
+      responseType: 'blob'
+    })
   }
 
 }

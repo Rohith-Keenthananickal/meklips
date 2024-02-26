@@ -38,12 +38,19 @@ export class SkillsComponent implements OnInit {
 
     this.subscription = this.activeRoute.queryParams.subscribe(
       (params: ParamMap) => {
-        console.log(params);
+        console.log('Query Params:', params);
         this.editable = params['edit'];
-        console.log(this.editable);
+        console.log('Editable:', this.editable);
         
       });
 
+  }
+
+  ngOnDestroy() {
+    // Unsubscribe to prevent memory leaks
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
   
   getLocalData(){
@@ -134,7 +141,7 @@ export class SkillsComponent implements OnInit {
       }
       
     });
-    setInterval(()=>{
+    setTimeout(()=>{
       this.router.navigate(['profile']);
     },1000)
     

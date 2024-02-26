@@ -41,7 +41,7 @@ export class ProfileSummaryComponent implements OnInit {
   advancedView() {
     this.updateFormData();
     this.bulkSubmit();
-    setInterval(()=>{
+    setTimeout(()=>{
       localStorage.clear();
       this.router.navigate(['profile']);
     },4000)
