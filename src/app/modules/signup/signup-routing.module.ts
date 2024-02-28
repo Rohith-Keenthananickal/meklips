@@ -27,27 +27,27 @@ const routes: Routes = [
   {
     path: 'personal-details',
     component: PersonalDetailsComponent,
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path : 'previous-employment',
     component : PreviousEmploymentComponent,
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'education',
     component: EducationComponent,
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'skills',
     component: SkillsComponent,
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'profile-summary',
     component : ProfileSummaryComponent,
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   // {
   //   path: 'common',

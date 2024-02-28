@@ -7,6 +7,8 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { SignupService } from '../../service/signup.service';
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { DeleteConformationComponent } from 'src/app/common/components/delete-conformation/delete-conformation.component';
 
 @Component({
   selector: 'app-skills',
@@ -20,7 +22,7 @@ export class SkillsComponent implements OnInit {
   public formData = {}
   subscription:Subscription;
   public editable : boolean
-
+  private modalRef: NgbModalRef;
 
 
   constructor(private router:Router,
@@ -28,16 +30,22 @@ export class SkillsComponent implements OnInit {
     private datePipe: DatePipe,
     private signupService : SignupService,
     private activeRoute:ActivatedRoute,
-    private toastr: ToastrService){
+    private toastr: ToastrService,
+    private modalService: NgbModal){
 
   }
 
   ngOnInit(): void {
     this.getLocalData();
     // console.log(this.candidate);
-    this.candidate.socialMediaLinks.push(this.socialMediaLinks)
-    this.candidate.candidateSkills.push(this.candidateSkills)
-
+    if(this.candidate.socialMediaLinks.length == 0){
+      this.candidate.socialMediaLinks.push(this.socialMediaLinks)
+    }
+    if(this.candidate.candidateSkills.length == 0){
+      this.candidate.candidateSkills.push(this.candidateSkills)
+    } 
+    
+    
     this.subscription = this.activeRoute.queryParams.subscribe(
       (params: ParamMap) => {
         console.log('Query Params:', params);
@@ -47,6 +55,7 @@ export class SkillsComponent implements OnInit {
       });
 
   }
+
 
   ngOnDestroy() {
     // Unsubscribe to prevent memory leaks
@@ -66,6 +75,33 @@ export class SkillsComponent implements OnInit {
     this.candidate.socialMediaLinks.push(new SocialMediaLink());
     
     // this.workExperiences = new WorkExperience();
+  }
+
+  deleteSocialMedia(i : number){
+    this.modalRef = this.modalService.open(DeleteConformationComponent, {
+      size: 'sm',
+    });
+    this.modalRef.componentInstance.warningSubject = `You want to Delete this Social Media`;
+    this.modalRef.result
+      .then((result) => {
+        console.log(result);
+        this.candidate.socialMediaLinks.splice(i, 1);
+        
+      })
+      .catch((reason) => {});
+  }
+
+  deleteSkills(i : number){
+    this.modalRef = this.modalService.open(DeleteConformationComponent, {
+      size: 'sm',
+    });
+    this.modalRef.componentInstance.warningSubject = `You want to Delete this Skill`;
+    this.modalRef.result
+      .then((result) => {
+        console.log(result);
+        this.candidate.candidateSkills.splice(i, 1);
+      })
+      .catch((reason) => {});
   }
 
   addSkills(){
@@ -206,6 +242,9 @@ export class SkillsComponent implements OnInit {
     return JSON.stringify(obj1) === JSON.stringify(obj2);
   }
 
+  cancel(){
+    this.router.navigate(['profile']);
+  }
 
 }
 

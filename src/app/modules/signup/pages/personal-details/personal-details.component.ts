@@ -136,6 +136,10 @@ export class PersonalDetailsComponent implements OnInit{
     })
   }
 
+  cancel(){
+    this.router.navigate(['profile']);
+  }
+
   private notNullAndUndefined(value: any): boolean {
     return value !== null && value !== undefined;
   }

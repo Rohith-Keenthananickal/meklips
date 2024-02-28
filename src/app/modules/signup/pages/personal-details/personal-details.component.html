@@ -194,7 +194,7 @@
                               
                         </div>
                     </div>
-                    <div>
+                    <div class="d-flex justify-content-between flex-column">
                         <div id="main" class="d-flex align-items-start justify-content-center w-100">
                             <div class="mt-4">
                                 <div class="text-center mb-2">
@@ -258,19 +258,21 @@
                                     
                                 </div>
                         
-                                <div class="d-flex justify-content-end gap-3" style="margin-right: 100px;" *ngIf="!editable">
-                                    <button class="btn">Back</button>
-                                    <button class="btn btn-azure" (click)="updateFormData()">Next</button>
-                        
-                                </div>
-                
-                                <div class="d-flex justify-content-end gap-3" style="margin-right: 100px;" *ngIf="editable">
-                                    
-                                    <button class="btn btn-azure" (click)="updateProfile()">Update</button>
-                        
-                                </div>
+                               
                             </div>
                             
+                        </div>
+                        <div>
+                            <div class="d-flex justify-content-end gap-3" style="margin-right: 50px; margin-bottom: 50px;" *ngIf="!editable">
+                                <button class="btn">Back</button>
+                                <button class="btn btn-azure" (click)="updateFormData()">Next</button>
+                    
+                            </div>
+                            <div class="d-flex justify-content-end gap-3" style="margin-right: 50px; margin-bottom: 50px;" *ngIf="editable">
+                                <button class="btn" (click)="cancel()">Cancel</button>
+                                <button class="btn btn-azure" (click)="updateProfile()">Update</button>
+                    
+                            </div>
                         </div>
                     </div>
                 </div>

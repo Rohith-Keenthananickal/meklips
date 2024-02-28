@@ -19,6 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { UploaderModule } from "angular-uploader";
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 // import { ToastrModule } from 'ngx-toastr';
@@ -44,8 +46,10 @@ import { NgSelectModule } from '@ng-select/ng-select';
     FormsModule,
     HttpClientModule,
     MatAutocompleteModule,
-    NgSelectModule
-    // ToastrModule
+    NgSelectModule,
+    UploaderModule,
+    MatTooltipModule
+
   ]
 })
 export class SignupModule { }

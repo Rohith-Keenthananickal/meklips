@@ -23,6 +23,7 @@ export class ProfileSummaryComponent implements OnInit {
   public loaderMessage = '';
 
 
+
   constructor(private router: Router,
     private signupService : SignupService,
     private formDataService: FormDataService,
@@ -35,6 +36,8 @@ export class ProfileSummaryComponent implements OnInit {
     
 
   }
+
+
 
   getLocalData(){
     let localData = this.formDataService.getLocalData();
@@ -183,5 +186,9 @@ export class ProfileSummaryComponent implements OnInit {
     console.log("bacvk");
     
     this.router.navigate(['signup/skills']);
+  }
+
+  cancel(){
+    this.router.navigate(['profile']);
   }
 }

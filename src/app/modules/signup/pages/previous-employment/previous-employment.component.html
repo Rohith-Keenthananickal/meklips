@@ -118,7 +118,7 @@
                               
                         </div>
                     </div>
-                    <div>
+                    <div class="d-flex flex-column justify-content-between">
                         <div id="main" class="d-flex align-items-start justify-content-center w-100">
                             <div class="mt-4">
                                 <div class="text-center mb-3">
@@ -128,15 +128,20 @@
                                 <div class="text-azure fs-3 fw-bold mb-3">
                                      Employment Details
                                 </div>
-                                <div class="overflow-auto" style="height: 50vh;">
+                               
+                                <div class="overflow-auto" style="height: calc(100vh - 40vh);">
                                     <div class="card mb-3" *ngFor="let employment of candidate.workExperiences; let i = index">
                                         <div class="card-body">
-                                            <div class="text-azure mb-4" *ngIf="i == 0">
-                                                Current Employment
+                                            <div class="d-flex justify-content-between align-content-center">
+                                                <div class="text-azure mb-4" *ngIf="i == 0">
+                                                    Current Employment
+                                                </div>
+                                                <div class="text-azure mb-4" *ngIf="i !== 0">
+                                                    Previous Employment
+                                                </div>
+                                                <i class="ti ti-trash fs-2 text-azure cursor-pointer ms-3" *ngIf="i !==0" (click)="deleteEmployment(i)"  mat-raised-button matTooltip="Delete" matTooltipPosition="above"  style="margin-bottom: 15px;"></i>
                                             </div>
-                                            <div class="text-azure mb-4" *ngIf="i !== 0">
-                                                Previous Employment
-                                            </div>
+                                            
                                             <div class="row row-cards mb-4">
                                                 <div class="col-4">
                                                     <div class="mb-3">
@@ -196,7 +201,7 @@
                                         </div>
                                     </div>
                 
-                                    <button class="btn btn-azure mt-3" style="width: 200px;" (click)="addWorkExperience()">
+                                    <button class="btn btn-outline-azure mt-3" style="width: 200px;" (click)="addWorkExperience()">
                                         <i class="ti ti-plus fs-2"></i>
                                         <span class="ms-2">
                                             Add More Employment
@@ -206,21 +211,23 @@
                                    
                                 </div>
 
-                                <div class="mt-2" style="margin-right: 70px;">
-                                    <div class="d-flex justify-content-end gap-3 mb-4" *ngIf="!editable">
-                                        <button class="btn" (click)="back()">Back</button>
-                                        <button class="btn btn-azure" (click)="advancedView()">Next</button>
-                                        
-                                    </div>
-                
-                                    <div class="d-flex justify-content-end gap-3 mb-4" *ngIf="editable">
-                                        <button class="btn btn-azure" (click)="updateWorkExperiance()">Save</button>
-                                        
-                                    </div>
-                                </div>
+                               
                                 
                             </div>
                             
+                        </div>
+                        <div class="mt-2" style="margin-right: 50px;">
+                            <div class="d-flex justify-content-end gap-3 mb-4" *ngIf="!editable">
+                                <button class="btn" (click)="back()">Back</button>
+                                <button class="btn btn-azure" (click)="advancedView()">Next</button>
+                                
+                            </div>
+        
+                            <div class="d-flex justify-content-end gap-3 mb-4" *ngIf="editable">
+                                <button class="btn" (click)="cancel()">Cancel</button>
+                                <button class="btn btn-azure" (click)="updateWorkExperiance()">Save</button>
+                                
+                            </div>
                         </div>
                     </div>
                 </div>

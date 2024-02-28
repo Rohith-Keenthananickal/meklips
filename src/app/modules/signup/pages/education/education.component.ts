@@ -7,6 +7,8 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { Subscription } from 'rxjs';
 import { SignupService } from '../../service/signup.service';
 import { ToastrService } from 'ngx-toastr';
+import { DeleteConformationComponent } from 'src/app/common/components/delete-conformation/delete-conformation.component';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-education',
@@ -21,19 +23,24 @@ export class EducationComponent implements OnInit {
   public editable: boolean;
   public university: [];
   public loader : boolean;
+  private modalRef: NgbModalRef;
+  
   constructor(
     private router: Router,
     private formDataService: FormDataService,
     private datePipe: DatePipe,
     private activeRoute: ActivatedRoute,
     private signupService: SignupService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
     this.getLocalData();
     console.log(this.candidate);
-    this.candidate.educationalDegrees.push(this.educationalDegrees);
+    if(this.candidate.educationalDegrees.length == 0){
+      this.candidate.educationalDegrees.push(this.educationalDegrees);
+    }
     // this.getDegree();
     // this.candidate.workExperiences = this.workExperiences
 
@@ -71,6 +78,20 @@ export class EducationComponent implements OnInit {
   //     },
   //   });
   // }
+
+  deleteEducation(index : number){
+    this.modalRef = this.modalService.open(DeleteConformationComponent, {
+      size: 'sm',
+    });
+    this.modalRef.componentInstance.warningSubject = `You want to Delete this Education Details`;
+    this.modalRef.result
+      .then((result) => {
+        console.log(result);
+        this.candidate.educationalDegrees.splice(index, 1);
+        
+      })
+      .catch((reason) => {});
+  }
 
   addEducation(): void {
     this.candidate.educationalDegrees.push(new EducationalDegree());
@@ -203,6 +224,10 @@ export class EducationComponent implements OnInit {
 
   isEqual(obj1: any, obj2: any): boolean {
     return JSON.stringify(obj1) === JSON.stringify(obj2);
+  }
+
+  cancel(){
+    this.router.navigate(['profile']);
   }
 }
 

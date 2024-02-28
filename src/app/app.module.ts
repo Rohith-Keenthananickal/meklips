@@ -13,11 +13,14 @@ import { ToastrModule } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
-
+import { UploadWidgetModule } from '@bytescale/upload-widget-angular';
+import { DeleteConformationComponent } from './common/components/delete-conformation/delete-conformation.component';
+import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
     AppComponent,
+    DeleteConformationComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,6 +30,9 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     NgSelectModule,
     FormsModule,
+    UploadWidgetModule,
+    NgbPaginationModule, 
+    NgbAlertModule,
     ToastrModule.forRoot({
       positionClass :'toast-bottom-right'
     })

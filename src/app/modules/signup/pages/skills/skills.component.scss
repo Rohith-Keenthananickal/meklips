@@ -68,3 +68,24 @@
 //         // top: 130px;
 //     }
 //   }
+
+.card{
+    border: 1px dotted #6CA2FE !important;
+    border-radius: 10px !important;
+    
+}
+
+input[type="text"]{
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px !important;
+    border: none !important;
+}
+
+input[type="number"]{
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border: none !important;
+}
+
+::ng-deep .ng-select-container{
+    border: none !important;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px !important;
+}

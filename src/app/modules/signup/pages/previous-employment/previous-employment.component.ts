@@ -7,6 +7,8 @@ import { DatePipe } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { SignupService } from '../../service/signup.service';
 import { ToastrService } from 'ngx-toastr';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { DeleteConformationComponent } from 'src/app/common/components/delete-conformation/delete-conformation.component';
 
 @Component({
   selector: 'app-previous-employment',
@@ -20,19 +22,27 @@ export class PreviousEmploymentComponent implements OnInit {
   subscription:Subscription;
   public editable : boolean
   public loader : boolean
+  private modalRef: NgbModalRef;
 
   constructor(private router:Router,
     private formDataService: FormDataService,
     private datePipe: DatePipe,
     private activeRoute:ActivatedRoute,
     private signupService : SignupService,
-    private toastr: ToastrService){
+    private toastr: ToastrService,
+    private modalService: NgbModal){
 
   }
   ngOnInit(): void {
     this.getLocalData();
     console.log(this.candidate);
-    this.candidate.workExperiences.push(this.workExperiences)
+    if(this.candidate.workExperiences.length == 0){
+      // Object.keys(this.candidate.workExperiences).length > 0
+      console.log("0");
+      
+      this.candidate.workExperiences.push(this.workExperiences)
+    }
+   
     
     // this.candidate.workExperiences = this.workExperiences
 
@@ -56,6 +66,19 @@ export class PreviousEmploymentComponent implements OnInit {
     let localData = this.formDataService.getLocalData();
     this.candidate = localData
     this.candidate.workExperiences = this.candidate.workExperiences || [];
+  }
+  deleteEmployment(index : number){
+    this.modalRef = this.modalService.open(DeleteConformationComponent, {
+      size: 'sm',
+    });
+    this.modalRef.componentInstance.warningSubject = `You want to Delete this Employment Details`;
+    this.modalRef.result
+      .then((result) => {
+        console.log(result);
+        this.candidate.workExperiences.splice(index, 1);
+        
+      })
+      .catch((reason) => {});
   }
 
   addWorkExperience(): void {
@@ -167,5 +190,9 @@ export class PreviousEmploymentComponent implements OnInit {
 
   isEqual(obj1: any, obj2: any): boolean {
     return JSON.stringify(obj1) === JSON.stringify(obj2);
+  }
+
+  cancel(){
+    this.router.navigate(['profile']);
   }
 }
