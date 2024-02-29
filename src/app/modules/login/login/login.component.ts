@@ -40,11 +40,12 @@ export class LoginComponent {
   // }
 
   login() {
+    localStorage.setItem("meklips.email",this.user.email)
     this.authService.login(this.user).subscribe(
       (response) => {
         // Successful login, handle the response or navigate to a different page
         console.log(response);
-        this.router.navigate(['profile']);
+        this.router.navigate(['login/welcome']);
         
       },
       (error) => {
