@@ -225,4 +225,13 @@ calculateAge(dateOfBirth: string): number {
     }
     this.router.navigate(['signup/education'],navigationExtras)
   }
+
+  
+  getGradientColor(value: number): string {
+    return `var(--gradient-color-${value})`;
+  }
+
+  getProgressBarWidth(value: number): number {
+    return value; // Adjust this based on how you want the width to be calculated
+  }
 }

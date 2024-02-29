@@ -122,7 +122,7 @@
                         <div id="main" class="d-flex align-items-start justify-content-center w-100">
                             <div class="mt-4" >
                                 <div class="text-center mb-3">
-                                    <img src="./assets/Meklips-logo-final.png" width="100px" alt="logo">
+                                    <img src="./assets/Meklips-logo-final.png" width="150px" alt="logo">
                                 </div>
                                 
                                 <div class="text-azure fs-3 fw-bold mb-3">
@@ -138,7 +138,7 @@
                                                 <i class="ti ti-trash fs-2 text-azure cursor-pointer ms-3" *ngIf="i !==0" (click)="deleteEducation(i, education.id)"  mat-raised-button matTooltip="Delete" matTooltipPosition="above"  style="margin-bottom: 15px;"></i>
                                             </div>
                                           
-                                            <div class="row mb-4">
+                                            <div class="row row-cards mb-4">
                                                 <div class="col-4">
                                                     <div class="mb-3">
                                                         <label class="form-label ">School/University Name</label>
@@ -166,7 +166,7 @@
                                                 <div class="col-4">
                                                     <div class="mb-3">
                                                         <label class="form-label">Field of Study</label>
-                                                        <input type="text" class="form-control" name="example-text-input" placeholder="Enter Your Field of Study">
+                                                        <input type="text" class="form-control" name="example-text-input" [(ngModel)]="education.fieldOfStudy" placeholder="Enter Your Field of Study">
                                                     </div>
                                                 </div>
                                                 <div class="col-4">

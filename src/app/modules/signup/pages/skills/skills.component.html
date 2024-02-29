@@ -120,7 +120,7 @@
                         <div id="main" class="d-flex align-items-start justify-content-center w-100">
                             <div class="mt-4 w-100" >
                                 <div class="text-center mb-3">
-                                    <img src="./assets/Meklips-logo-final.png" width="100px" alt="logo">
+                                    <img src="./assets/Meklips-logo-final.png" width="150px" alt="logo">
                                 </div>
                                 
                                 <div class="text-azure fs-3 fw-bold mb-3">
@@ -133,7 +133,7 @@
                                                 Social Media
                                             </div>
                 
-                                            <div class="d-flex mb-4 align-items-end gap-3">
+                                            <!-- <div class="d-flex mb-4 align-items-end gap-3">
                                                 <div class="w-100" id="container">
                                                     <div class="row row-cards w-100 mb-3" *ngFor="let socialMedia of candidate.socialMediaLinks; let i = index">
                                                         <div class="col-5">
@@ -163,6 +163,38 @@
                                                         Add More Social Media
                                                     </span>
                                                 </button>
+                                            </div> -->
+                                            <div>
+                                                <div class="row row-cards">
+                                                    <div class="col-6">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Website</label>
+                                                            <input type="text" class="form-control" name="example-text-input" placeholder="Enter Website URL" spellcheck="false" data-ms-editor="true">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Github</label>
+                                                            <input type="text" class="form-control" name="example-text-input" placeholder="Enter Github URL" spellcheck="false" data-ms-editor="true">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Facebook</label>
+                                                            <input type="text" class="form-control" name="example-text-input" placeholder="Enter Facebook URL" spellcheck="false" data-ms-editor="true">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Instagram</label>
+                                                            <input type="text" class="form-control" name="example-text-input" placeholder="Enter Instagram URL" spellcheck="false" data-ms-editor="true">
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    
+                                                    
+                                                   
+                                                </div>
                                             </div>
                                             
                                         </div>
@@ -174,25 +206,28 @@
                                                 My Experties
                                             </div>
                                             <div class="row row-cards d-flex align-items-end mb-3" *ngFor="let skill of candidate.candidateSkills; let i = index">
-                                                
                                                 <div class="col-4">
-                                                    <div >
-                                                        <label class="form-label ">Skill</label>
-                                                        <input type="text" class="form-control" name="example-text-input" [(ngModel)]="skill.skillName" placeholder="Enter Your Skills" spellcheck="false" data-ms-editor="true">
-                                                    </div>
+                                                  <div>
+                                                    <label class="form-label">Skill</label>
+                                                    <input type="text" class="form-control" name="example-text-input" [(ngModel)]="skill.skillName" placeholder="Enter Your Skills" spellcheck="false" data-ms-editor="true">
+                                                  </div>
                                                 </div>
-                                                <div class="col-4">
-                                                    <div class="w-100">
-                                                        <!-- <label class="form-label ">Skill</label> -->
-                                                        <mat-slider style="width: 100%;" min="0" max="10" step="1" discrete [displayWith]="formatLabel">
-                                                            <input  [(ngModel)]="+skill.skillLevel" matSliderThumb />
-                                                        </mat-slider> 
+                                                <div class="col-6">
+                                                  <div class="d-block">
+                                                    <label class="form-label">How would you rate yourself</label>
+                                                    <div class="btn-group" role="group">
+                                                      <ng-container *ngFor="let rating of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]">
+                                                        <input type="radio" class="btn-check" name="btn-radio-basic{{i}}" [id]="'btn-radio-basic-' + rating + i" autocomplete="off" [value]="rating" [(ngModel)]="skill.skillLevel">
+                                                        <label [for]="'btn-radio-basic-' + rating + i" type="button" class="btn">{{ rating }}</label>
+                                                      </ng-container>
                                                     </div>
+                                                  </div>
                                                 </div>
                                                 <div class="col-2 d-flex align-items-end">
-                                                    <i class="ti ti-trash fs-2 text-azure cursor-pointer ms-3"  mat-raised-button matTooltip="Delete" matTooltipPosition="above" (click)="deleteSkills(i,skill.id)" style="margin-bottom: 15px;"></i>
+                                                  <i class="ti ti-trash fs-2 text-azure cursor-pointer ms-3" mat-raised-button matTooltip="Delete" matTooltipPosition="above" (click)="deleteSkills(i, skill.id)" style="margin-bottom: 8px;"></i>
                                                 </div>
-                                            </div>
+                                              </div>
+                                              
                                             <div class="row row-cards mb-4">
                                                 <div class="col-4">
                                                     <button class="btn btn-outline-info mt-3 w-100" style="width: 200px;" (click)="addSkills()">

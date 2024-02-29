@@ -9,7 +9,7 @@
 }
 
 .inner-layer{
-    width: 90%;
+    width: 75%;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -39,10 +39,10 @@
     width: 200px;
 }
 #round-div{
-    border: 3px solid #5988C7;
+    border: 5px solid #5988C7;
     background-color: #FFF;
-    width: 130px;
-    height: 130px;
+    width: 160px;
+    height: 160px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -55,7 +55,7 @@
   object-fit: cover;
 }
 .avatar-xl {
-    --tblr-avatar-size: 7rem !important;
+    --tblr-avatar-size: 9rem !important;
     // display: block;
 }
 .main{
@@ -184,4 +184,18 @@
   z-index: 99999;
   top: 50px;
   left: 50px;
+}
+
+/* Gradient Colors */
+:root {
+  --gradient-color-1: linear-gradient(to right, #FEE440, #DC7836);
+  --gradient-color-2: linear-gradient(to right, #FEE440, #FDC830);
+  --gradient-color-3: linear-gradient(to right, #FDC830, #F9B52D);
+  --gradient-color-4: linear-gradient(to right, #F9B52D, #F7A42E);
+  --gradient-color-5: linear-gradient(to right, #F7A42E, #F59630);
+  --gradient-color-6: linear-gradient(to right, #F59630, #F48B31);
+  --gradient-color-7: linear-gradient(to right, #F48B31, #F38032);
+  --gradient-color-8: linear-gradient(to right, #F38032, #F27634);
+  --gradient-color-9: linear-gradient(to right, #F27634, #F16B35);
+  --gradient-color-10: linear-gradient(to right, #F16B35, #DC7836);
 }

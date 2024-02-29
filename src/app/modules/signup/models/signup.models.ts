@@ -42,6 +42,7 @@ export class Candidate {
     location : string;
     notes : string
     id: string;
+    fieldOfStudy: string;
   }
   
   export class SocialMediaLink {
