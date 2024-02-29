@@ -137,7 +137,7 @@
                                                 <div class="w-100" id="container">
                                                     <div class="row row-cards w-100 mb-3" *ngFor="let socialMedia of candidate.socialMediaLinks; let i = index">
                                                         <div class="col-5">
-                                                            <label class="form-label required">Select Type</label>
+                                                            <label class="form-label ">Select Type</label>
                                                             <ng-select placeholder="Select Type" [(ngModel)]="socialMedia.type">
                                                                 <ng-option value="WESITE">Website</ng-option>
                                                                 <ng-option value="FACEBOOK">Facebook</ng-option>
@@ -147,7 +147,7 @@
                                                         </div>
                                                         <div class="col-5">
                                                             <div >
-                                                                <label class="form-label required">LINK / URL</label>
+                                                                <label class="form-label ">LINK / URL</label>
                                                                 <input type="text" class="form-control" name="example-text-input" placeholder="Enter Your Url" spellcheck="false" [(ngModel)]="socialMedia.url" data-ms-editor="true">
                                                             </div>
                                                         </div>
@@ -177,13 +177,13 @@
                                                 
                                                 <div class="col-4">
                                                     <div >
-                                                        <label class="form-label required">Skill</label>
+                                                        <label class="form-label ">Skill</label>
                                                         <input type="text" class="form-control" name="example-text-input" [(ngModel)]="skill.skillName" placeholder="Enter Your Skills" spellcheck="false" data-ms-editor="true">
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="w-100">
-                                                        <!-- <label class="form-label required">Skill</label> -->
+                                                        <!-- <label class="form-label ">Skill</label> -->
                                                         <mat-slider style="width: 100%;" min="0" max="10" step="1" discrete [displayWith]="formatLabel">
                                                             <input  [(ngModel)]="+skill.skillLevel" matSliderThumb />
                                                         </mat-slider> 

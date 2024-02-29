@@ -145,25 +145,25 @@
                                             <div class="row row-cards mb-4">
                                                 <div class="col-4">
                                                     <div class="mb-3">
-                                                        <label class="form-label required">Job Title</label>
+                                                        <label class="form-label ">Job Title</label>
                                                         <input type="text" class="form-control" name="example-text-input" [(ngModel)]="employment.designation" placeholder="Enter Your Job Title" spellcheck="false" data-ms-editor="true">
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="mb-3">
-                                                        <label class="form-label required">Employer</label>
+                                                        <label class="form-label ">Employer</label>
                                                         <input type="text" class="form-control" name="example-text-input" [(ngModel)]="employment.companyName" placeholder="Enter Your Employer Name" spellcheck="false" data-ms-editor="true">
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="mb-3">
-                                                        <label class="form-label required">Contact Number</label>
+                                                        <label class="form-label ">Contact Number</label>
                                                         <input type="text" class="form-control" name="example-text-input" [(ngModel)]="employment.contactNumber" placeholder="Enter Contact Number" spellcheck="false" data-ms-editor="true">
                                                     </div>
                                                 </div>
                                     
                                                 <div class="col-4">
-                                                    <label class="form-label required">Start Date</label>
+                                                    <label class="form-label ">Start Date</label>
                                                     <div class="input-icon mb-2">
                                                         <input matInput [matDatepicker]="picker" class="form-control" (dateInput)="startDate('input', $event, i)"  placeholder="Select Start Date">
                                                         <span class="input-icon-addon">
@@ -173,7 +173,7 @@
                                                       </div>
                                                 </div>
                                                 <div class="col-4">
-                                                    <label class="form-label required">End Date</label>
+                                                    <label class="form-label ">End Date</label>
                                                     <div class="input-icon mb-2">
                                                         <input matInput [matDatepicker]="picker2" class="form-control" (dateInput)="endDate('input', $event, i)" [disabled]="employment.currentJob" placeholder="Select End Date">
                                                         <span class="input-icon-addon">
@@ -192,7 +192,7 @@
                                                 </div>
                                                 <div class="col-12">
                                                     <div>
-                                                        <label class="form-label required">Add Your Responsibilities</label>
+                                                        <label class="form-label ">Add Your Responsibilities</label>
                                                         <textarea class="form-control" name="example-textarea-input" rows="3" [(ngModel)]="employment.responsibilities" placeholder="* Worked with the development team" spellcheck="false" data-ms-editor="true"></textarea>
                                                     </div>
                                                 </div>

@@ -199,6 +199,15 @@ calculateAge(dateOfBirth: string): number {
     this.router.navigate(['signup/skills'],navigationExtras)
   }
 
+  editProfile(){
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        edit:true,
+      }
+    }
+    this.router.navigate(['signup/profile-summary'],navigationExtras)
+  }
+
   updateExperiance(){
     const navigationExtras: NavigationExtras = {
       queryParams: {

@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { SignupService } from '../../service/signup.service';
 import { Candidate } from '../../models/signup.models';
 import { FormDataService } from '../../service/form-data.service';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
+import { ProfileService } from 'src/app/modules/home-profile/service/profile.service';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-profile-summary',
@@ -21,20 +24,39 @@ export class ProfileSummaryComponent implements OnInit {
   public videoLoader : boolean
   public isDataSaved : boolean = false;
   public loaderMessage = '';
-
-
+  subscription:Subscription;
+  public editable : string
+  public imageUrl
+  image: string;
+  video: string;
+  videoUrl: SafeUrl;
 
   constructor(private router: Router,
     private signupService : SignupService,
     private formDataService: FormDataService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private activeRoute:ActivatedRoute,
+    private profileService : ProfileService,
+    private sanitizer:DomSanitizer
     ) {}
 
   ngOnInit(): void {
     this.getLocalData();
     console.log(this.loader);
-    
-
+    this.subscription = this.activeRoute.queryParams.subscribe(
+      (params: ParamMap) => {
+        console.log('Query Params:', params);
+        this.editable = params['edit'];
+        console.log('Editable:', this.editable);
+        console.log(typeof(this.editable));
+        
+      if(this.editable == "true"){
+        this.getUserImage();
+        this.getUSerVideo();
+      }
+        
+    });
+   
   }
 
 
@@ -71,9 +93,14 @@ export class ProfileSummaryComponent implements OnInit {
     this.videoFile.push(...event.addedFiles);
   }
 
-  onRemove(event: any) {
+  onRemoveImage(event: any) {
     console.log(event);
-    // this.files.splice(this.files.indexOf(event), 1);
+    this.imageFile.splice(this.imageFile.indexOf(event), 1);
+  }
+
+  onRemoveVideo(event: any) {
+    console.log(event);
+    this.videoFile.splice(this.videoFile.indexOf(event), 1);
   }
 
 
@@ -184,11 +211,76 @@ export class ProfileSummaryComponent implements OnInit {
 
   back(){
     console.log("bacvk");
-    
     this.router.navigate(['signup/skills']);
   }
 
   cancel(){
     this.router.navigate(['profile']);
   }
+
+  getUserImage() {
+    if (this.candidate.dpId !== 0) {
+      this.profileService.getImage(this.candidate.dpId).subscribe({
+        next: (res: any) => {
+          console.log(res);
+          this.image = URL.createObjectURL(res);
+          console.log(this.image);
+          this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(this.image as string);
+
+          // Create a File object with the provided data
+          const mockFile = new File([res], 'profile-picture.jpg', { type: 'image/jpeg' });
+
+          // Add the mock file to the imageFile array
+          this.imageFile.push(mockFile);
+        },
+        error: (err: any) => {
+          console.log(err);
+        }
+      });
+    }
+  }
+
+  getUSerVideo() {
+    if(this.candidate?.videoId && this.candidate?.videoId !== 0){
+      this.profileService.getVideo(this.candidate?.videoId).subscribe({
+        next: (res: any) => {
+          console.log(res);
+          this.video = URL.createObjectURL(res);
+          console.log(this.video);
+          this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.video as string);
+
+          // Create a File object with the provided data
+          const mockVideoFile = new File([], 'profile-video.mp4', { type: 'video/mp4' });
+
+          // Add the mock video file to the videoFile array
+          this.videoFile.push(mockVideoFile);
+        },
+        error: (err: any) => {
+          console.error(err);
+        }
+      });
+    }
+    
+  }
+
+  async updateProfile() {
+    try {
+      this.loader = true;
+  
+      await this.uploadImage();
+      await this.uploadVideo();  
+  
+      
+      setTimeout(()=>{
+        this.loader = false;
+        this.router.navigate(['profile']);
+      },4000)
+      
+    } catch (error) {
+      console.error('An error occurred during profile update:', error);
+      this.loader = false;
+      // Handle error or display a message to the user
+    }
+  }
+
 }

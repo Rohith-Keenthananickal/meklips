@@ -52,7 +52,7 @@ export class SkillsComponent implements OnInit {
         this.editable = params['edit'];
         console.log('Editable:', this.editable);
         
-      });
+    });
 
   }
 

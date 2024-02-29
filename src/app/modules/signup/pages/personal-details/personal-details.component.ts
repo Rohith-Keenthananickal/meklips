@@ -31,6 +31,7 @@ export class PersonalDetailsComponent implements OnInit{
   }
   ngOnInit(): void {
     this.getLocalData();
+
     this.subscription = this.activeRoute.queryParams.subscribe(
       (params: ParamMap) => {
         console.log(params);
@@ -40,7 +41,10 @@ export class PersonalDetailsComponent implements OnInit{
       });
 
     // this.getUserId();
-    this.candidate.currentAddress=this.currentAddress
+    let email = localStorage.getItem('meklips.email');
+    this.candidate.email = email;
+    this.candidate.currentAddress=this.currentAddress;
+  
   }
 
   ngOnDestroy() {
