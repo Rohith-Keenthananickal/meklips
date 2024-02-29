@@ -67,7 +67,7 @@ export class PreviousEmploymentComponent implements OnInit {
     this.candidate = localData
     this.candidate.workExperiences = this.candidate.workExperiences || [];
   }
-  deleteEmployment(index : number){
+  deleteEmployment(index : number, id:string){
     this.modalRef = this.modalService.open(DeleteConformationComponent, {
       size: 'sm',
     });
@@ -75,7 +75,28 @@ export class PreviousEmploymentComponent implements OnInit {
     this.modalRef.result
       .then((result) => {
         console.log(result);
-        this.candidate.workExperiences.splice(index, 1);
+        if(id){
+          this.signupService.deleteWorkExperiance(id).subscribe({
+            next:(res:any)=>{
+              console.log(res);
+              
+              this.toastr.success('Work Experience Deleted', 'Success', {
+                positionClass: 'toast-top-right',
+              });
+            },
+            error:(err:any)=>{
+              console.log(err);
+              this.toastr.error('Failed to Delete Work Experience ', 'Error', {
+                positionClass: 'toast-top-right',
+              });
+            }
+          })
+        }
+        else{
+          this.candidate.workExperiences.splice(index, 1);
+        }
+        
+
         
       })
       .catch((reason) => {});

@@ -91,7 +91,7 @@ export class SkillsComponent implements OnInit {
       .catch((reason) => {});
   }
 
-  deleteSkills(i : number){
+  deleteSkills(index : number ,id :string){
     this.modalRef = this.modalService.open(DeleteConformationComponent, {
       size: 'sm',
     });
@@ -99,7 +99,27 @@ export class SkillsComponent implements OnInit {
     this.modalRef.result
       .then((result) => {
         console.log(result);
-        this.candidate.candidateSkills.splice(i, 1);
+        if(id){
+          this.signupService.deleteSkill(id).subscribe({
+            next:(res:any)=>{
+              console.log(res);
+              this.candidate.candidateSkills.splice(index, 1);
+              this.toastr.success('Skill Deleted', 'Success', {
+                positionClass: 'toast-top-right',
+              });
+            },
+            error:(err:any)=>{
+              console.log(err);
+              this.toastr.error('Failed to Delete Skill ', 'Error', {
+                positionClass: 'toast-top-right',
+              });
+            }
+          })
+        }
+        else{
+          this.candidate.candidateSkills.splice(index, 1);
+        }
+
       })
       .catch((reason) => {});
   }

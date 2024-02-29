@@ -52,6 +52,18 @@ export class SignupService {
     return this.http.post(`${environment.url}/api/EducationalDegree`, payload);
   }
 
+  deleteEducation(id){
+    return this.http.delete(`${environment.url}/api/EducationalDegree/${id}`);
+  }
+
+  deleteWorkExperiance(id){
+    return this.http.delete(`${environment.url}/api/WorkExperience/${id}`);
+  }
+
+  deleteSkill(id){
+    return this.http.delete(`${environment.url}/api/CandidateSkill/${id}`);
+  }
+
   updateWorkExperiance(payload : any, id : any, candidateId : any){
     return this.http.put(`${environment.url}/api/WorkExperience/${candidateId}/${id}`, payload);
   }

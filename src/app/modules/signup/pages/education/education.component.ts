@@ -79,7 +79,7 @@ export class EducationComponent implements OnInit {
   //   });
   // }
 
-  deleteEducation(index : number){
+  deleteEducation(index : number, id : string){
     this.modalRef = this.modalService.open(DeleteConformationComponent, {
       size: 'sm',
     });
@@ -87,8 +87,27 @@ export class EducationComponent implements OnInit {
     this.modalRef.result
       .then((result) => {
         console.log(result);
-        this.candidate.educationalDegrees.splice(index, 1);
-        
+        if(id){
+          this.signupService.deleteEducation(id).subscribe({
+            next:(res:any)=>{
+              console.log(res);
+              this.candidate.educationalDegrees.splice(index, 1);
+              this.toastr.success('Education Details Deleted', 'Success', {
+                positionClass: 'toast-top-right',
+              });
+            },
+            error:(err:any)=>{
+              console.log(err);
+              this.toastr.error('Failed to Delete Education Details ', 'Error', {
+                positionClass: 'toast-top-right',
+              });
+            }
+          })
+        }
+        else{
+          this.candidate.educationalDegrees.splice(index, 1);
+        }
+
       })
       .catch((reason) => {});
   }
