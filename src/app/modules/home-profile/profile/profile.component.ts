@@ -227,11 +227,21 @@ calculateAge(dateOfBirth: string): number {
   }
 
   
-  getGradientColor(value: number): string {
-    return `var(--gradient-color-${value})`;
-  }
-
   getProgressBarWidth(value: number): number {
     return value; // Adjust this based on how you want the width to be calculated
+  }
+
+  getBackgroundColor(skillLevel: number): string {
+    if (skillLevel >= 8) {
+      return '#68A0FC';
+    } else if (skillLevel < 8 && skillLevel >= 6) {
+      return '#DC7836';
+    } else if (skillLevel < 6 && skillLevel >= 4) {
+      return '#F9BC63';
+    } else if (skillLevel < 4 && skillLevel >= 2) {
+      return '#FFD132';
+    } else {
+      return ''; // Handle other cases as needed
+    }
   }
 }

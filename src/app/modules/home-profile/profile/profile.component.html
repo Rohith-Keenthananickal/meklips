@@ -234,15 +234,20 @@
                             <div class="mb-2 d-flex flex-column justify-content-start align-items-start" *ngFor="let skill of candidate?.candidateSkills">
                                 <span class="text fs-3 bold mb-2">{{skill.skillName}}</span>
         
-                                <mat-progress-bar mode="determinate" [value]="skill?.skillLevel*10"></mat-progress-bar>
+                                <!-- <mat-progress-bar mode="determinate" [value]="skill?.skillLevel*10"></mat-progress-bar> -->
+                                    <div class="progress">
+                                        <div class="progress-bar"
+                                        [style.width.%]="getProgressBarWidth(skill?.skillLevel * 10)"
+                                        [style.backgroundColor]="getBackgroundColor(skill?.skillLevel)"
+                                        role="progressbar"
+                                        aria-valuemin="0"
+                                        aria-valuemax="100">
+                                    <span class="visually-hidden">{{ skill?.skillLevel }}% Complete</span>
+                                </div>
+                                </div>
+                               
     
                             </div>
-                            <!-- <div *ngFor="let skill of candidate?.candidateSkills" class="progress mb-2">
-                                <div class="progress-bar" [style.width.%]="getProgressBarWidth(skill?.skillLevel)" [style.background]="getGradientColor(skill?.skillLevel)" role="progressbar" aria-valuemin="0" aria-valuemax="100" >
-                                  <span class="visually-hidden">{{ skill?.skillLevel }}% Complete</span>
-                                </div>
-                              </div> -->
-                           
                         </div>
                         
         

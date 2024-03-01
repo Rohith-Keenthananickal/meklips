@@ -37,12 +37,11 @@ export class PreviousEmploymentComponent implements OnInit {
     this.getLocalData();
     console.log(this.candidate);
     if(this.candidate.workExperiences.length == 0){
-      // Object.keys(this.candidate.workExperiences).length > 0
-      console.log("0");
-      
+      this.workExperiences.isEditable = true
       this.candidate.workExperiences.push(this.workExperiences)
+
     }
-   
+  
     
     // this.candidate.workExperiences = this.workExperiences
 
@@ -101,9 +100,18 @@ export class PreviousEmploymentComponent implements OnInit {
       })
       .catch((reason) => {});
   }
+  editData(index){
+    this.candidate.workExperiences[index].isEditable= true
+  }
 
   addWorkExperience(): void {
-    this.candidate.workExperiences.push(new WorkExperience());
+    let newExperence = new WorkExperience()
+    newExperence.isEditable = true
+    this.candidate.workExperiences.forEach(item=>{
+      item.isEditable = false
+    })
+    this.candidate.workExperiences.push(newExperence);
+
     // this.workExperiences = new WorkExperience();
   }
 

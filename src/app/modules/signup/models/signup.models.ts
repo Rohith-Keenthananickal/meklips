@@ -62,6 +62,7 @@ export class Candidate {
     contactNumber: string
     location: string;
     id : string
+    isEditable : boolean = false;
 
   }
   

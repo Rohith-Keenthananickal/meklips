@@ -1,3 +1,17 @@
+/* Gradient Colors */
+:root {
+  --gradient-color-1: linear-gradient(to right, #FEE440, #DC7836);
+  --gradient-color-2: linear-gradient(to right, #FEE440, #FDC830);
+  --gradient-color-3: linear-gradient(to right, #FDC830, #F9B52D);
+  --gradient-color-4: linear-gradient(to right, #F9B52D, #F7A42E);
+  --gradient-color-5: linear-gradient(to right, #F7A42E, #F59630);
+  --gradient-color-6: linear-gradient(to right, #F59630, #F48B31);
+  --gradient-color-7: linear-gradient(to right, #F48B31, #F38032);
+  --gradient-color-8: linear-gradient(to right, #F38032, #F27634);
+  --gradient-color-9: linear-gradient(to right, #F27634, #F16B35);
+  --gradient-color-10: linear-gradient(to right, #F16B35, #DC7836);
+}
+
 .outer-layer{
     background-color: #E6E7E8;
     width: 100%;
@@ -21,6 +35,8 @@
     text-indent: 0.1em;
     position: relative;
     z-index: 9999;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 
 .inner-layer:before {
@@ -59,8 +75,7 @@
     // display: block;
 }
 .main{
-  padding-top: 50px;
-  padding-bottom: 50px;
+
   box-sizing: border-box;
 }
 
@@ -186,16 +201,3 @@
   left: 50px;
 }
 
-/* Gradient Colors */
-:root {
-  --gradient-color-1: linear-gradient(to right, #FEE440, #DC7836);
-  --gradient-color-2: linear-gradient(to right, #FEE440, #FDC830);
-  --gradient-color-3: linear-gradient(to right, #FDC830, #F9B52D);
-  --gradient-color-4: linear-gradient(to right, #F9B52D, #F7A42E);
-  --gradient-color-5: linear-gradient(to right, #F7A42E, #F59630);
-  --gradient-color-6: linear-gradient(to right, #F59630, #F48B31);
-  --gradient-color-7: linear-gradient(to right, #F48B31, #F38032);
-  --gradient-color-8: linear-gradient(to right, #F38032, #F27634);
-  --gradient-color-9: linear-gradient(to right, #F27634, #F16B35);
-  --gradient-color-10: linear-gradient(to right, #F16B35, #DC7836);
-}
