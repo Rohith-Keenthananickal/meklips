@@ -129,32 +129,74 @@
                                     Education
                                 </div>
                                 <div class="overflow-auto" style="height: calc(100vh - 40vh);">
-                                    <div class="card mb-3" *ngFor="let education of candidate.educationalDegrees; let i = index">
+                                    <div class="container mb-3" style="margin-left: 0px;">
+                                        <div class="row row-cards">
+                                            <div class="col-6" style="padding-left: 0px;" *ngFor="let education of candidate.educationalDegrees; let i = index">
+                                                <div class="card" >
+                                                    <div class="card-body">
+                                                        <div class="d-flex justify-content-between">
+                                                            <div class="card-title text-azure mb-3">
+                                                                Schooling
+                                                            </div>
+                                                            
+                                                            <div class="d-flex gap-2">
+                                                                <i class="ti ti-edit fs-2 text-azure cursor-pointer" mat-raised-button matTooltip="Edit" (click)="editData(i)"  matTooltipPosition="above"></i>
+                                                                <i class="ti ti-trash fs-2 text-azure cursor-pointer" mat-raised-button matTooltip="Delete"  matTooltipPosition="above"></i>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="text fw-bold mb-1">
+                                                            {{education.fieldOfStudy}}, {{education.degree}}
+                                                        </div>
+                                                        <div class="text">
+                                                            {{education.university}}
+                                                        </div>
+                                                        <div class="text">
+                                                            {{education?.location}}
+                                                        </div>
+                                                        <div class="text">
+                                                            {{education?.notes}}
+                                                        </div>
+                                                        <div class="text-muted">
+                                                            <span>
+                                                                {{education?.graduationMonth}}
+                                                            </span>
+                                                          
+                                                            <span>
+                                                                {{education?.graduationYear}}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mb-3" >
                                         <div class="card-body">
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div class="text-azure mb-4">
                                                     Schooling
                                                 </div>
-                                                <i class="ti ti-trash fs-2 text-azure cursor-pointer ms-3" *ngIf="i !==0" (click)="deleteEducation(i, education.id)"  mat-raised-button matTooltip="Delete" matTooltipPosition="above"  style="margin-bottom: 15px;"></i>
+                                                
                                             </div>
                                           
                                             <div class="row row-cards mb-4">
                                                 <div class="col-4">
                                                     <div class="mb-3">
                                                         <label class="form-label ">School/University Name</label>
-                                                        <input type="text" class="form-control" name="example-text-input" [(ngModel)]="education.university" placeholder="Enter Your School/University Name">
+                                                        <input type="text" class="form-control" name="example-text-input" [(ngModel)]="educationalDegrees.university" placeholder="Enter Your School/University Name">
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="mb-3">
                                                         <label class="form-label">School Location</label>
-                                                        <input type="text" class="form-control" name="example-text-input" [(ngModel)]="education.location" placeholder="Enter Your School Location">
+                                                        <input type="text" class="form-control" name="example-text-input" [(ngModel)]="educationalDegrees.location" placeholder="Enter Your School Location">
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="mb-3">
                                                         <label class="form-label">Degree</label>
-                                                        <input type="text" class="form-control" placeholder="Enter Degree" [(ngModel)]="education.degree">
+                                                        <input type="text" class="form-control" placeholder="Enter Degree" [(ngModel)]="educationalDegrees.degree">
                                                         <!-- <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto"> -->
                                                         <!-- <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
                                                         @for (option of filteredOptions | async; track option) {
@@ -166,12 +208,12 @@
                                                 <div class="col-4">
                                                     <div class="mb-3">
                                                         <label class="form-label">Field of Study</label>
-                                                        <input type="text" class="form-control" name="example-text-input" [(ngModel)]="education.fieldOfStudy" placeholder="Enter Your Field of Study">
+                                                        <input type="text" class="form-control" name="example-text-input" [(ngModel)]="educationalDegrees.fieldOfStudy" placeholder="Enter Your Field of Study">
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
                                                     <label class="form-label ">Graduation Month</label>
-                                                    <ng-select placeholder="Month" [(ngModel)]="education.graduationMonth">
+                                                    <ng-select placeholder="Month" [(ngModel)]="educationalDegrees.graduationMonth">
                                                         <ng-option value="January">January</ng-option>
                                                         <ng-option value="February">February</ng-option>
                                                         <ng-option value="March">March</ng-option>
@@ -188,33 +230,38 @@
                                                 </div>
                                                 <div class="col-4">
                                                     <label class="form-label ">Graduation Year</label>
-                                                    <input type="number" class="form-control" placeholder="Enter Year" [(ngModel)]="education.graduationYear">
-                                                    <!-- <div class="input-icon mb-2">
-                                                        <input matInput [matDatepicker]="picker2" class="form-control" placeholder="Select End Date" (dateInput)="endDate('input', $event)">
-                                                        <span class="input-icon-addon">
-                                                            <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
-                                                            <mat-datepicker #picker2 startView="year"></mat-datepicker>
-                                                        </span>
-                                                      </div> -->
+                                                    <input type="number" class="form-control" placeholder="Enter Year" [(ngModel)]="educationalDegrees.graduationYear">
                                                 </div>
                                                 <div class="col-12">
                                                     <div>
                                                         <label class="form-label ">Add Notes</label>
-                                                        <textarea class="form-control" name="example-textarea-input" [(ngModel)]="education.notes" rows="3" placeholder="* Worked with the development team"></textarea>
+                                                        <textarea class="form-control" maxlength="250" name="example-textarea-input" [(ngModel)]="educationalDegrees.notes" rows="3" placeholder="* Worked with the development team"></textarea>
                                                     </div>
                                                 </div>
                                                 
+                                            </div>
+
+                                            <div class="d-flex justify-content-end">
+                                                <button class="btn btn-azure" (click)="saveToCard()" *ngIf="edit == true">
+                                                    Save 
+                                                </button>
+                                                <button class="btn btn-outline-azure mt-3" style="width: 200px;" (click)="saveToCard()" *ngIf="edit == false">
+                                                    <i class="ti ti-plus fs-2"></i>
+                                                    <span class="ms-2">
+                                                        Add More Education
+                                                    </span>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
                 
                                 
-                                    <button class="btn btn-outline-azure mt-3" style="width: 200px;" (click)="addEducation()">
+                                    <!-- <button class="btn btn-outline-azure mt-3" style="width: 200px;" (click)="addEducation()">
                                         <i class="ti ti-plus fs-2"></i>
                                         <span class="ms-2 fs-5">
                                             Add More Education
                                         </span>
-                                    </button>
+                                    </button> -->
                 
                                     
                                 </div>

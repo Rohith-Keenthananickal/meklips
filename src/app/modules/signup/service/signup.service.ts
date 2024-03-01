@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from 'src/environment/environment';
-import { Candidate, CandidateSkill, Signup, Video } from '../models/signup.models';
+import { Candidate, CandidateSkill, CandidateSummaryPayload, Signup, Video } from '../models/signup.models';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -74,5 +74,9 @@ export class SignupService {
 
   getDegree(){
     return this.http.get(`${environment.url}/api/University`);
+  }
+
+  updateCandidateSummary(payload : CandidateSummaryPayload,candidateId : any){
+    return this.http.put(`${environment.url}/api/Candidates/${candidateId}/Summary`, payload);
   }
 }

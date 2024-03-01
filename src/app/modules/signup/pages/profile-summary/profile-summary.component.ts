@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { SignupService } from '../../service/signup.service';
-import { Candidate } from '../../models/signup.models';
+import { Candidate, CandidateSummaryPayload } from '../../models/signup.models';
 import { FormDataService } from '../../service/form-data.service';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
@@ -30,6 +30,7 @@ export class ProfileSummaryComponent implements OnInit {
   image: string;
   video: string;
   videoUrl: SafeUrl;
+  public summaryPayload = new CandidateSummaryPayload ()
 
   constructor(private router: Router,
     private signupService : SignupService,
@@ -218,6 +219,21 @@ export class ProfileSummaryComponent implements OnInit {
     this.router.navigate(['profile']);
   }
 
+  updateSummary(){
+    this.summaryPayload.candidateId = Number(this.candidate.id)
+    this.summaryPayload.experienceSummary = this.candidate.experienceSummary
+    this.signupService.updateCandidateSummary(this.summaryPayload, this.candidate.id).subscribe({
+      next:(res:any)=>{
+        console.log(res);
+        
+      },
+      error:(err:any)=>{
+        console.log(err);
+        
+      }
+    })
+  }
+
   getUserImage() {
     if (this.candidate.dpId !== 0) {
       this.profileService.getImage(this.candidate.dpId).subscribe({
@@ -268,14 +284,12 @@ export class ProfileSummaryComponent implements OnInit {
       this.loader = true;
   
       await this.uploadImage();
-      await this.uploadVideo();  
+      await this.uploadVideo();
   
-      
-      setTimeout(()=>{
-        this.loader = false;
-        this.router.navigate(['profile']);
-      },4000)
-      
+      // Assuming uploadImage and uploadVideo return promises, handle the completion here
+  
+      this.loader = false;
+      this.router.navigate(['profile']);
     } catch (error) {
       console.error('An error occurred during profile update:', error);
       this.loader = false;

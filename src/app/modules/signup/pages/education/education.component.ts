@@ -24,6 +24,7 @@ export class EducationComponent implements OnInit {
   public university: [];
   public loader : boolean;
   private modalRef: NgbModalRef;
+  public edit : boolean = false;
   
   constructor(
     private router: Router,
@@ -38,12 +39,6 @@ export class EducationComponent implements OnInit {
   ngOnInit(): void {
     this.getLocalData();
     console.log(this.candidate);
-    if(this.candidate.educationalDegrees.length == 0){
-      this.candidate.educationalDegrees.push(this.educationalDegrees);
-    }
-    // this.getDegree();
-    // this.candidate.workExperiences = this.workExperiences
-
     this.subscription = this.activeRoute.queryParams.subscribe(
       (params: ParamMap) => {
         console.log(params);
@@ -65,6 +60,20 @@ export class EducationComponent implements OnInit {
     let localData = this.formDataService.getLocalData();
     this.candidate = localData;
     this.candidate.educationalDegrees = this.candidate.educationalDegrees || [];
+  }
+
+  saveToCard(){
+    this.edit = false
+    this.candidate.educationalDegrees.push(this.educationalDegrees)
+    this.educationalDegrees = new EducationalDegree();
+  }
+
+  editData(index){
+    this.edit = true
+    let temp = this.candidate.educationalDegrees[index]
+    let temp2 = JSON.parse(JSON.stringify(temp));
+    this.candidate.educationalDegrees.splice(index,1)
+    this.educationalDegrees = temp2;
   }
 
   // getDegree() {

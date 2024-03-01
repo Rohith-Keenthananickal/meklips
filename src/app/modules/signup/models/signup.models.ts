@@ -21,6 +21,7 @@ export class Candidate {
     workExperiences: WorkExperience[]
     candidateSkills: CandidateSkill[]
     streetAddress : string;
+    id : string
   }
   
   export class CurrentAddress {
@@ -56,13 +57,12 @@ export class Candidate {
     designation: string
     companyName: string
     startDate: string
-    currentJob: boolean
+    currentJob: boolean = false;
     endDate: string
     responsibilities: string;
     contactNumber: string
     location: string;
     id : string
-    isEditable : boolean = false;
 
   }
   
@@ -75,4 +75,10 @@ export class Candidate {
 
   export class Video{
     FileContent : File;
+  }
+
+  export class CandidateSummaryPayload{
+    candidateId : number;
+    experienceSummary : string;
+    technicalSummary : string;
   }

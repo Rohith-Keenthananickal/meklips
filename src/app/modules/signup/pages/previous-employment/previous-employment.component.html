@@ -130,55 +130,87 @@
                                 </div>
                                
                                 <div class="overflow-auto" style="height: calc(100vh - 40vh);">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-6" *ngFor="let employment of candidate.workExperiences; let i = index">
-                                                <div class="card" *ngIf="employment.isEditable == false">
+                                    <div class="container mb-3" style="margin-left: 0px;">
+                                        <div class="row row-cards">
+                                            <div class="col-6" style="padding-left: 0px;" *ngFor="let employment of candidate.workExperiences; let i = index">
+                                                <div class="card" >
                                                     <div class="card-body">
-                                                        <button class="btn" (click)="editData(i)">edit</button>
+                                                        <div class="d-flex justify-content-between">
+                                                            <div class="card-title text-azure mb-3" *ngIf="employment?.currentJob == true">
+                                                                Current Employment
+                                                            </div>
+                                                            <div class="card-title text-azure mb-3" *ngIf="employment?.currentJob == false ">
+                                                                Previous Employment
+                                                            </div>
+                                                            <div class="d-flex gap-2">
+                                                                <i class="ti ti-edit fs-2 text-azure cursor-pointer" mat-raised-button matTooltip="Edit" (click)="editData(i)" matTooltipPosition="above"></i>
+                                                                <i class="ti ti-trash fs-2 text-azure cursor-pointer" mat-raised-button matTooltip="Delete" (click)="deleteEmploymentLocally(i)" matTooltipPosition="above"></i>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="text fw-bold mb-1">
+                                                            {{employment.designation}}
+                                                        </div>
+                                                        <div class="d-flex gap-3 align-items-center">
+                                                            <div class="text">
+                                                                {{employment.companyName}}
+                                                            </div>
+                                                            <div class="text">
+                                                                {{employment.contactNumber}}
+                                                            </div>
+                                                        </div>
+                                                        <ul class="mb-2" *ngIf="employment?.responsibilities">
+                                                            <li>{{employment.responsibilities}}</li>
+
+                                                        </ul>
+                                                        <div class="text-muted">
+                                                            {{employment?.startDate}} - <span *ngIf="employment?.currentJob == true">Present</span>
+                                                            <span *ngIf="employment?.currentJob == false">{{employment?.endDate}}</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <ng-container *ngFor="let employment of candidate.workExperiences; let i = index">
 
-                                        <div class="card mb-3" *ngIf="employment.isEditable == true">
+                                    <ng-container >
+
+                                        <div class="card mb-3" >
                                             <div class="card-body">
                                                 <div class="d-flex justify-content-between align-content-center">
-                                                    <div class="text-azure mb-4" *ngIf="i == 0">
+                                                    <div class="text-azure mb-4" >
                                                         Current Employment
                                                     </div>
-                                                    <div class="text-azure mb-4" *ngIf="i !== 0">
+                                                    <div class="text-azure mb-4" >
                                                         Previous Employment
                                                     </div>
-                                                    <i class="ti ti-trash fs-2 text-azure cursor-pointer ms-3" *ngIf="i !==0" (click)="deleteEmployment(i,employment.id)"  mat-raised-button matTooltip="Delete" matTooltipPosition="above"  style="margin-bottom: 15px;"></i>
+                                                    <!-- <i class="ti ti-trash fs-2 text-azure cursor-pointer ms-3"   mat-raised-button matTooltip="Delete" matTooltipPosition="above"  style="margin-bottom: 15px;"></i> -->
                                                 </div>
                                                 
                                                 <div class="row row-cards mb-4">
                                                     <div class="col-4">
                                                         <div class="mb-3">
                                                             <label class="form-label ">Job Title</label>
-                                                            <input type="text" class="form-control" name="example-text-input" [(ngModel)]="employment.designation" placeholder="Enter Your Job Title" spellcheck="false" data-ms-editor="true">
+                                                            <input type="text" class="form-control" name="example-text-input" [(ngModel)]="workExperiences.designation" placeholder="Enter Your Job Title" spellcheck="false" data-ms-editor="true">
                                                         </div>
                                                     </div>
                                                     <div class="col-4">
                                                         <div class="mb-3">
                                                             <label class="form-label ">Employer</label>
-                                                            <input type="text" class="form-control" name="example-text-input" [(ngModel)]="employment.companyName" placeholder="Enter Your Employer Name" spellcheck="false" data-ms-editor="true">
+                                                            <input type="text" class="form-control" name="example-text-input" [(ngModel)]="workExperiences.companyName" placeholder="Enter Your Employer Name" spellcheck="false" data-ms-editor="true">
                                                         </div>
                                                     </div>
                                                     <div class="col-4">
                                                         <div class="mb-3">
                                                             <label class="form-label ">Contact Number</label>
-                                                            <input type="text" class="form-control" name="example-text-input" [(ngModel)]="employment.contactNumber" placeholder="Enter Contact Number" spellcheck="false" data-ms-editor="true">
+                                                            <input type="text" class="form-control" name="example-text-input" [(ngModel)]="workExperiences.contactNumber" placeholder="Enter Contact Number" spellcheck="false" data-ms-editor="true">
                                                         </div>
                                                     </div>
                                         
                                                     <div class="col-4">
                                                         <label class="form-label ">Start Date</label>
                                                         <div class="input-icon mb-2">
-                                                            <input matInput [matDatepicker]="picker" class="form-control" (dateInput)="startDate('input', $event, i)"  placeholder="Select Start Date">
+                                                            <input matInput [matDatepicker]="picker" class="form-control" (dateInput)="startDate('input', $event)" [(ngModel)]="workExperiences.startDate" placeholder="Select Start Date">
                                                             <span class="input-icon-addon">
                                                                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                                                                 <mat-datepicker #picker></mat-datepicker>
@@ -188,17 +220,17 @@
                                                     <div class="col-4">
                                                         <label class="form-label ">End Date</label>
                                                         <div class="input-icon mb-2">
-                                                            <input matInput [matDatepicker]="picker2" class="form-control" (dateInput)="endDate('input', $event, i)" [disabled]="employment.currentJob" placeholder="Select End Date">
+                                                            <input matInput [matDatepicker]="picker2" class="form-control" (dateInput)="endDate('input', $event)" [(ngModel)]="workExperiences.endDate" [disabled]="workExperiences.currentJob" placeholder="Select End Date">
                                                             <span class="input-icon-addon">
                                                                 <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
                                                                 <mat-datepicker #picker2></mat-datepicker>
                                                             </span>
                                                           </div>
                                                     </div>
-                                                    <div class="col-4 d-flex align-items-center" *ngIf="i == 0">
+                                                    <div class="col-4 d-flex align-items-center" >
                                                         <div>
                                                             <label class="form-check m-0 mt-3">
-                                                                <input class="form-check-input" type="checkbox" [(ngModel)]="employment.currentJob">
+                                                                <input class="form-check-input" type="checkbox" [(ngModel)]="workExperiences.currentJob">
                                                                 <span class="form-check-label">I Currently Work Here</span>
                                                             </label>
                                                         </div>
@@ -206,23 +238,34 @@
                                                     <div class="col-12">
                                                         <div>
                                                             <label class="form-label ">Add Your Responsibilities</label>
-                                                            <textarea class="form-control" name="example-textarea-input" rows="3" [(ngModel)]="employment.responsibilities" placeholder="* Worked with the development team" spellcheck="false" data-ms-editor="true"></textarea>
+                                                            <textarea class="form-control" name="example-textarea-input" rows="3" maxlength="250" [(ngModel)]="workExperiences.responsibilities" placeholder="* Worked with the development team" spellcheck="false" data-ms-editor="true"></textarea>
                                                         </div>
                                                     </div>
                                                     
                                                 </div>
+
+                                                <div class="d-flex justify-content-end">
+                                                    <button class="btn btn-azure" (click)="saveToCard()" *ngIf="edit == true">
+                                                        Save 
+                                                    </button>
+                                                    <button class="btn btn-outline-azure mt-3" style="width: 200px;" (click)="saveToCard()" *ngIf="edit == false">
+                                                        <i class="ti ti-plus fs-2"></i>
+                                                        <span class="ms-2">
+                                                            Add More Employment
+                                                        </span>
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </ng-container>
-                                    
-                
-                                    <button class="btn btn-outline-azure mt-3" style="width: 200px;" (click)="addWorkExperience()">
+                        
+                                    <!-- <button class="btn btn-outline-azure mt-3" style="width: 200px;" (click)="addWorkExperience()">
                                         <i class="ti ti-plus fs-2"></i>
                                         <span class="ms-2">
                                             Add More Employment
                                         </span>
                                     </button>
-                
+                 -->
                                    
                                 </div>
 

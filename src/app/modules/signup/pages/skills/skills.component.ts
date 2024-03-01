@@ -23,6 +23,10 @@ export class SkillsComponent implements OnInit {
   subscription:Subscription;
   public editable : boolean
   private modalRef: NgbModalRef;
+  public website = new SocialMediaLink()
+  public github = new SocialMediaLink()
+  public facebook = new SocialMediaLink()
+  public instagram = new SocialMediaLink()
 
 
   constructor(private router:Router,
@@ -40,10 +44,15 @@ export class SkillsComponent implements OnInit {
     // console.log(this.candidate);
     if(this.candidate.socialMediaLinks.length == 0){
       this.candidate.socialMediaLinks.push(this.socialMediaLinks)
+
     }
     if(this.candidate.candidateSkills.length == 0){
       this.candidate.candidateSkills.push(this.candidateSkills)
-    } 
+    }
+    this.website.type= "WEBSITE"
+    this.instagram.type= "INSTAGRAM"
+    this.facebook.type= "FACEBOOK"
+    this.github.type= "GITHUB"
     
     
     this.subscription = this.activeRoute.queryParams.subscribe(
@@ -130,6 +139,11 @@ export class SkillsComponent implements OnInit {
   }
 
   updateFormData() {
+    // this.candidate.socialMediaLinks.push(this.socialMediaLinks)
+    this.candidate.socialMediaLinks.push(this.website)
+    this.candidate.socialMediaLinks.push(this.facebook)
+    this.candidate.socialMediaLinks.push(this.instagram)
+    this.candidate.socialMediaLinks.push(this.github)
     console.log(this.candidate);
     this.formDataService.updateFormData(this.candidate);
     // this.advancedView();

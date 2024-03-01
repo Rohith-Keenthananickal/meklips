@@ -23,6 +23,7 @@ export class PreviousEmploymentComponent implements OnInit {
   public editable : boolean
   public loader : boolean
   private modalRef: NgbModalRef;
+  public edit : boolean = false;
 
   constructor(private router:Router,
     private formDataService: FormDataService,
@@ -36,14 +37,6 @@ export class PreviousEmploymentComponent implements OnInit {
   ngOnInit(): void {
     this.getLocalData();
     console.log(this.candidate);
-    if(this.candidate.workExperiences.length == 0){
-      this.workExperiences.isEditable = true
-      this.candidate.workExperiences.push(this.workExperiences)
-
-    }
-  
-    
-    // this.candidate.workExperiences = this.workExperiences
 
     this.subscription = this.activeRoute.queryParams.subscribe(
       (params: ParamMap) => {
@@ -60,12 +53,28 @@ export class PreviousEmploymentComponent implements OnInit {
       this.subscription.unsubscribe();
     }
   }
+
+  saveToCard(){
+    this.edit = false
+    this.candidate.workExperiences.push(this.workExperiences)
+    this.workExperiences = new WorkExperience();
+  }
+
+  editData(index){
+    this.edit = true
+    let temp = this.candidate.workExperiences[index]
+    let temp2 = JSON.parse(JSON.stringify(temp));
+    this.candidate.workExperiences.splice(index,1)
+    this.workExperiences = temp2;
+  }
   
   getLocalData(){
     let localData = this.formDataService.getLocalData();
     this.candidate = localData
     this.candidate.workExperiences = this.candidate.workExperiences || [];
   }
+
+
   deleteEmployment(index : number, id:string){
     this.modalRef = this.modalService.open(DeleteConformationComponent, {
       size: 'sm',
@@ -100,25 +109,30 @@ export class PreviousEmploymentComponent implements OnInit {
       })
       .catch((reason) => {});
   }
-  editData(index){
-    this.candidate.workExperiences[index].isEditable= true
+
+  deleteEmploymentLocally(index){
+    this.modalRef = this.modalService.open(DeleteConformationComponent, {
+      size: 'sm',
+    });
+    this.modalRef.componentInstance.warningSubject = `You want to Delete this Employment Details`;
+    this.modalRef.result.then((result) => {
+      console.log(result);
+      this.candidate.workExperiences.splice(index,1)
+    })
+    
   }
+
 
   addWorkExperience(): void {
     let newExperence = new WorkExperience()
-    newExperence.isEditable = true
-    this.candidate.workExperiences.forEach(item=>{
-      item.isEditable = false
-    })
     this.candidate.workExperiences.push(newExperence);
 
-    // this.workExperiences = new WorkExperience();
   }
 
   updateFormData() {
     console.log(this.candidate);
     this.formDataService.updateFormData(this.candidate);
-    // this.advancedView();
+
   }
 
   formatDate(selectedDate: any): string {
@@ -132,18 +146,15 @@ export class PreviousEmploymentComponent implements OnInit {
   }
 
 
-  startDate(type: string, event: MatDatepickerInputEvent<Date>, i) {
+  startDate(type: string, event: MatDatepickerInputEvent<Date>) {
     console.log(this.formatDate(event.value));
-    console.log(this.workExperiences[i]);
-    
-    this.candidate.workExperiences[i].startDate = this.formatDate(event.value);
-     
+    this.workExperiences.startDate = this.formatDate(this.workExperiences.startDate) 
   }
 
-  endDate(type: string, event: MatDatepickerInputEvent<Date>, i) {
+  endDate(type: string, event: MatDatepickerInputEvent<Date>) {
     console.log(event.value);
-    console.log(this.formatDate(event.value));
-    this.candidate.workExperiences[i].endDate = this.formatDate(event.value);
+    this.workExperiences.endDate = this.formatDate(this.workExperiences.endDate) 
+
   }
 
   advancedView(){
