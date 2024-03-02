@@ -72,6 +72,7 @@ export class EducationComponent implements OnInit {
   }
 
   editData(index){
+    this.saveToCard();
     this.edit = true
     let temp = this.candidate.educationalDegrees[index]
     let temp2 = JSON.parse(JSON.stringify(temp));

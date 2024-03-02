@@ -66,8 +66,6 @@ export class PreviousEmploymentComponent implements OnInit {
   }
 
   saveToCard(){
-    console.log(this.workExperiences.designation);
-    
     if(this.workExperiences.designation !== undefined){
       this.edit = false
       this.candidate.workExperiences.push(this.workExperiences)
@@ -77,6 +75,7 @@ export class PreviousEmploymentComponent implements OnInit {
   }
 
   editData(index){
+    this.saveToCard();
     this.edit = true
     let temp = this.candidate.workExperiences[index]
     let temp2 = JSON.parse(JSON.stringify(temp));
