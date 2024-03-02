@@ -145,7 +145,7 @@
                                     </div>
     
                                     <div class="overflow-auto ms-3" style="height: calc(100vh - 50vh);">
-                                        <div class="d-flex gap-5 align-items-center mb-5">
+                                        <div class="d-flex gap-5 align-items-center mb-4">
                                             <div >
                                                 <label class="form-label ">Upload Profile Picture</label>
                                                 <ngx-dropzone (change)="imageSelect($event)" style="height: 100%; width: fit-content;" accept="image/jpeg,image/jpg,image/png,image/gif">
@@ -168,7 +168,7 @@
                                         </div>
 
                                         
-                                        <div class="card mb-3 w-50">
+                                        <div class="card mb-3 w-75">
                                             <div class="card-body">
                                                 <div class="text-azure mb-1">
                                                     Now Let's add your Summary
@@ -176,7 +176,7 @@
                                                 <div class="text fs-5 fw-bold mb-3">
                                                     Will shown as your highlight Summary
                                                 </div>
-                                                <textarea class="form-control" maxlength="250" name="example-textarea-input" rows="2" [(ngModel)]="candidate.experienceSummary" placeholder="'I design and develop unique digital experiances that enhance peoples lives and makes the world a better place'" spellcheck="false" data-ms-editor="true"></textarea>
+                                                <textarea class="form-control" maxlength="250" name="example-textarea-input" rows="5" [(ngModel)]="candidate.experienceSummary" placeholder="'I design and develop unique digital experiances that enhance peoples lives and makes the world a better place'" spellcheck="false" data-ms-editor="true"></textarea>
                                             </div>
                                         </div>
                                       

@@ -140,8 +140,8 @@
                                                             </div>
                                                             
                                                             <div class="d-flex gap-2">
-                                                                <i class="ti ti-edit fs-2 text-azure cursor-pointer" mat-raised-button matTooltip="Edit" (click)="editData(i)"  matTooltipPosition="above"></i>
-                                                                <i class="ti ti-trash fs-2 text-azure cursor-pointer" mat-raised-button matTooltip="Delete"  matTooltipPosition="above"></i>
+                                                                <i class="ti ti-edit fs-2 text-azure cursor-pointer" mat-raised-button matTooltip="Edit" matTooltipPosition="above" (click)="editData(i)"  ></i>
+                                                                <i class="ti ti-trash fs-2 text-azure cursor-pointer" mat-raised-button matTooltip="Delete" (click)="deleteEducation(i,education.id)"  matTooltipPosition="above"></i>
                                                             </div>
                                                         </div>
                                                         
@@ -235,7 +235,7 @@
                                                 <div class="col-12">
                                                     <div>
                                                         <label class="form-label ">Add Notes</label>
-                                                        <textarea class="form-control" maxlength="250" name="example-textarea-input" [(ngModel)]="educationalDegrees.notes" rows="3" placeholder="* Worked with the development team"></textarea>
+                                                        <textarea class="form-control" maxlength="250" name="example-textarea-input" [(ngModel)]="educationalDegrees.notes" rows="5" placeholder="* Worked with the development team"></textarea>
                                                     </div>
                                                 </div>
                                                 

@@ -20,6 +20,7 @@
     width: 90vw;
 }
 
+
 #sideNave {
     width: 120px;
     height: 90vh;
@@ -33,6 +34,8 @@
 #main{
     padding-left: 30px;
     padding-right: 30px;
+    height: calc(100vh - 200px);
+    overflow: auto;
 }
 
 .btn{

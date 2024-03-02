@@ -232,7 +232,7 @@
                                     <div class="col-5">
                                         <label class="form-label ">DOB</label>
                                         <div class="input-icon mb-2">
-                                            <input matInput [matDatepicker]="picker" class="form-control" (dateInput)="dob('input', $event)" [(ngModel)]="candidate.dob"  placeholder="Select Date">
+                                            <input matInput [matDatepicker]="picker" class="form-control" (click)="openDatepicker()" (dateInput)="dob('input', $event)" [(ngModel)]="candidate.dob"  placeholder="Select Date">
                                             <span class="input-icon-addon">
                                                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                                                 <mat-datepicker #picker></mat-datepicker>
@@ -252,7 +252,7 @@
                                     <div class="col-10">
                                         <div class="mb-3">
                                             <label class="form-label ">Address/City/ST/Zip</label>
-                                            <textarea class="form-control" maxlength="250" name="example-textarea-input" rows="3" [(ngModel)]="candidate.streetAddress" placeholder="Enter Your Address" spellcheck="false" data-ms-editor="true"></textarea>
+                                            <textarea class="form-control" maxlength="250" name="example-textarea-input" rows="4" [(ngModel)]="candidate.streetAddress" placeholder="Enter Your Address" spellcheck="false" data-ms-editor="true"></textarea>
                                         </div>
                                     </div>
                                     

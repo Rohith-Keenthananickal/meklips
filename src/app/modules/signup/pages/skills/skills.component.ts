@@ -225,25 +225,33 @@ export class SkillsComponent implements OnInit {
     const filteredArray = payload.filter(obj => Object.keys(obj).length !== 0);
     const storedFormData = JSON.parse(localStorage.getItem('formData'));
     
-    filteredArray.forEach((item) => {
+    filteredArray.forEach((item, index, array) => {
       if (item.id) {
         const matchingData = storedFormData.candidateSkills.find((data) => data.id === item.id);
-  
+    
         if (!matchingData || !this.isEqual(matchingData, item)) {
           let id = item.id;
           let candidateId = item.candidateId;
           this.signupService.updateSkills(item, id, candidateId).subscribe({
             next: (res: any) => {
               console.log(res);
-              this.toastr.success('Skills Updated Successfully', 'Success', {
-                positionClass: 'toast-top-right',
-              });
+              
             },
             error: (err: any) => {
               console.log(err);
               this.toastr.error('Error While Updating Skills', 'Error', {
                 positionClass: 'toast-top-right',
               });
+            },
+            complete: () => {
+              // Check if it's the last iteration and execute your function
+              if (index === array.length - 1) {
+                this.toastr.success('Skills Updated Successfully', 'Success', {
+                  positionClass: 'toast-top-right',
+                });
+                this.updateFormData();
+                this.router.navigate(['profile']);
+              }
             },
           });
         }
@@ -252,9 +260,7 @@ export class SkillsComponent implements OnInit {
         this.signupService.newSkills(item).subscribe({
           next: (res: any) => {
             console.log(res);
-            this.toastr.success('Skills Added Successfully', 'Success', {
-              positionClass: 'toast-top-right',
-            });
+            
           },
           error: (err: any) => {
             console.log(err);
@@ -262,13 +268,27 @@ export class SkillsComponent implements OnInit {
               positionClass: 'toast-top-right',
             });
           },
+          complete: () => {
+            // Check if it's the last iteration and execute your function
+            if (index === array.length - 1) {
+              this.toastr.success('Skills Added Successfully', 'Success', {
+                positionClass: 'toast-top-right',
+              });
+              this.updateFormData();
+              this.router.navigate(['profile']);
+            }
+          },
         });
       }
     });
-    setTimeout(()=>{
-      this.updateFormData();
-      this.router.navigate(['profile']);
-    },1000)
+    
+    // executeAfterLastIteration() {
+    //   setTimeout(() => {
+        
+    //   }, 1000);
+    // }
+    
+
     
   }
 

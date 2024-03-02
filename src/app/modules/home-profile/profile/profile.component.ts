@@ -95,7 +95,9 @@ export class ProfileComponent implements OnInit {
     
   // }
 
-
+  goToVideo(){
+    this.router.navigate(['profile/video']);
+  }
 
   logout(){
     this.authService.logout();

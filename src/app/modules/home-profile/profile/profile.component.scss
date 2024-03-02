@@ -12,8 +12,9 @@
 }
 
 .inner-layer{
-    // width: 75%;
-    width: fit-content;
+    width: 80%;
+    box-sizing: border-box;
+    // width: fit-content;
     // min-height: 95vh;
     display: flex;
     align-items: center;
@@ -25,8 +26,6 @@
     text-indent: 0.1em;
     position: relative;
     z-index: 9999;
-    // padding-top: 50px;
-    // padding-bottom: 50px;
 
 }
 
@@ -68,6 +67,7 @@
 .main{
   padding: 50px;
   margin: 50px;
+  margin-left: 0px;
   box-sizing: border-box;
 }
 

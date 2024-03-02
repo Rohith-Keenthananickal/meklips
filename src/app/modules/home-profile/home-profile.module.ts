@@ -3,18 +3,19 @@ import { CommonModule } from '@angular/common';
 
 import { HomeProfileRoutingModule } from './home-profile-routing.module';
 import { ProfileComponent } from './profile/profile.component';
-import {MatSliderModule} from '@angular/material/slider';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { ProfileVideoComponent } from './pages/profile-video/profile-video.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
-    ProfileComponent
+    ProfileComponent,
+    ProfileVideoComponent
   ],
   imports: [
     CommonModule,
     HomeProfileRoutingModule,
-    MatSliderModule,
-    MatProgressBarModule
+    MatTooltipModule
+
   ]
 })
 export class HomeProfileModule { }

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { FormDataService } from '../../service/form-data.service';
 import { Candidate, WorkExperience } from '../../models/signup.models';
-import {MatDatepickerInputEvent, MatDatepickerModule} from '@angular/material/datepicker';
+import {MatDatepicker, MatDatepickerInputEvent, MatDatepickerModule} from '@angular/material/datepicker';
 import { DatePipe } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { SignupService } from '../../service/signup.service';
@@ -16,6 +16,9 @@ import { DeleteConformationComponent } from 'src/app/common/components/delete-co
   styleUrls: ['./previous-employment.component.scss']
 })
 export class PreviousEmploymentComponent implements OnInit {
+  @ViewChild('picker') datepicker!: MatDatepicker<Date>;
+  @ViewChild('picker2') datepicker2!: MatDatepicker<Date>;
+
   public candidate = new Candidate();
   public workExperiences : WorkExperience = new WorkExperience()
   public formData = {}
@@ -54,10 +57,23 @@ export class PreviousEmploymentComponent implements OnInit {
     }
   }
 
+  openDatepicker() {
+    this.datepicker.open();
+  }
+
+  openDatepicker2() {
+    this.datepicker2.open();
+  }
+
   saveToCard(){
-    this.edit = false
-    this.candidate.workExperiences.push(this.workExperiences)
-    this.workExperiences = new WorkExperience();
+    console.log(this.workExperiences.designation);
+    
+    if(this.workExperiences.designation !== undefined){
+      this.edit = false
+      this.candidate.workExperiences.push(this.workExperiences)
+      this.workExperiences = new WorkExperience();
+    }
+   
   }
 
   editData(index){
@@ -87,7 +103,8 @@ export class PreviousEmploymentComponent implements OnInit {
           this.signupService.deleteWorkExperiance(id).subscribe({
             next:(res:any)=>{
               console.log(res);
-              
+              this.candidate.workExperiences.splice(index, 1);
+              this.updateFormData();
               this.toastr.success('Work Experience Deleted', 'Success', {
                 positionClass: 'toast-top-right',
               });
@@ -102,10 +119,8 @@ export class PreviousEmploymentComponent implements OnInit {
         }
         else{
           this.candidate.workExperiences.splice(index, 1);
+          this.updateFormData();
         }
-        
-
-        
       })
       .catch((reason) => {});
   }
@@ -143,6 +158,12 @@ export class PreviousEmploymentComponent implements OnInit {
     const formattedDate = this.datePipe.transform(jsDate, 'yyyy-MM-dd');
 
     return formattedDate || '';
+  }
+
+  checkForCurrentEmployment() : boolean{
+    return this.candidate.workExperiences.some((experience)=>{
+      experience.currentJob == true;
+    })    
   }
 
 

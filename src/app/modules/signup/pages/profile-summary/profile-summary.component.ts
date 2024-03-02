@@ -282,7 +282,7 @@ export class ProfileSummaryComponent implements OnInit {
   async updateProfile() {
     try {
       this.loader = true;
-  
+      this.updateSummary();
       await this.uploadImage();
       await this.uploadVideo();
   

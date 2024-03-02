@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { FormDataService } from '../../service/form-data.service';
 import { Candidate, CurrentAddress } from '../../models/signup.models';
 import { SignupService } from '../../service/signup.service';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { MatDatepicker, MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { DatePipe } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
@@ -14,6 +14,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./personal-details.component.scss']
 })
 export class PersonalDetailsComponent implements OnInit{
+  @ViewChild('picker') datepicker!: MatDatepicker<Date>;
   public candidate = new Candidate();
   public currentAddress = new CurrentAddress();
   public formData = {}
@@ -45,6 +46,10 @@ export class PersonalDetailsComponent implements OnInit{
     this.candidate.email = email;
     this.candidate.currentAddress=this.currentAddress;
   
+  }
+
+  openDatepicker() {
+    this.datepicker.open();
   }
 
   ngOnDestroy() {

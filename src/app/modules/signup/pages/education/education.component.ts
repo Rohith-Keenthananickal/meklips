@@ -63,9 +63,12 @@ export class EducationComponent implements OnInit {
   }
 
   saveToCard(){
-    this.edit = false
-    this.candidate.educationalDegrees.push(this.educationalDegrees)
-    this.educationalDegrees = new EducationalDegree();
+    if(this.educationalDegrees.degree !== undefined && this.educationalDegrees.university !== undefined){
+      this.edit = false
+      this.candidate.educationalDegrees.push(this.educationalDegrees)
+      this.educationalDegrees = new EducationalDegree();
+    }
+    
   }
 
   editData(index){
@@ -101,6 +104,7 @@ export class EducationComponent implements OnInit {
             next:(res:any)=>{
               console.log(res);
               this.candidate.educationalDegrees.splice(index, 1);
+              this.updateFormData();
               this.toastr.success('Education Details Deleted', 'Success', {
                 positionClass: 'toast-top-right',
               });
@@ -115,6 +119,8 @@ export class EducationComponent implements OnInit {
         }
         else{
           this.candidate.educationalDegrees.splice(index, 1);
+          this.updateFormData();
+
         }
 
       })
