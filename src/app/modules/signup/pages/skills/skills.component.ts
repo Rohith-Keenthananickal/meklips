@@ -42,10 +42,10 @@ export class SkillsComponent implements OnInit {
   ngOnInit(): void {
     this.getLocalData();
     // console.log(this.candidate);
-    if(this.candidate.socialMediaLinks.length == 0){
-      this.candidate.socialMediaLinks.push(this.socialMediaLinks)
+    // if(this.candidate.socialMediaLinks.length == 0){
+    //   this.candidate.socialMediaLinks.push(this.socialMediaLinks)
 
-    }
+    // }
     if(this.candidate.candidateSkills.length == 0){
       this.candidate.candidateSkills.push(this.candidateSkills)
     }
@@ -135,15 +135,23 @@ export class SkillsComponent implements OnInit {
 
   addSkills(){
     this.candidate.candidateSkills.push(new CandidateSkill());
-    this.updateFormData();
+    // this.updateFormData();
   }
 
   updateFormData() {
     // this.candidate.socialMediaLinks.push(this.socialMediaLinks)
-    this.candidate.socialMediaLinks.push(this.website)
-    this.candidate.socialMediaLinks.push(this.facebook)
-    this.candidate.socialMediaLinks.push(this.instagram)
-    this.candidate.socialMediaLinks.push(this.github)
+    if(this.website.url){
+      this.candidate.socialMediaLinks.push(this.website)
+    }
+    if(this.facebook.url){
+      this.candidate.socialMediaLinks.push(this.facebook)
+    }
+    if(this.github.url){
+      this.candidate.socialMediaLinks.push(this.github)
+    }
+    if(this.instagram.url){
+      this.candidate.socialMediaLinks.push(this.instagram)
+    }
     console.log(this.candidate);
     this.formDataService.updateFormData(this.candidate);
     // this.advancedView();

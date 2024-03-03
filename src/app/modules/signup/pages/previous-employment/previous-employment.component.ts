@@ -179,6 +179,7 @@ export class PreviousEmploymentComponent implements OnInit {
 
   advancedView(){
     // this.addWorkExperience();
+    this.saveToCard();
     this.updateFormData();
     this.router.navigate(['signup/education']);
   }
@@ -189,6 +190,7 @@ export class PreviousEmploymentComponent implements OnInit {
 
 
   updateWorkExperiance(){
+    this.saveToCard();
     this.loader = true
     let payload = this.candidate.workExperiences;
     let candidateId = localStorage.getItem('userId')

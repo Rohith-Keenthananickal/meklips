@@ -161,6 +161,7 @@ export class EducationComponent implements OnInit {
   }
 
   advancedView() {
+    this.saveToCard();
     this.updateFormData();
     this.router.navigate(['signup/skills']);
   }
@@ -208,6 +209,7 @@ export class EducationComponent implements OnInit {
   // }
 
   updateEducation(){
+    this.saveToCard();
     this.loader = true;
     let payload = this.candidate.educationalDegrees;
     let candidateId = localStorage.getItem('userId')

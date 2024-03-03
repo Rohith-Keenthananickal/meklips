@@ -37,7 +37,7 @@ export class ProfileVideoComponent implements OnInit{
     // Check if videoPlayer is defined before accessing nativeElement
     if (this.videoPlayer && this.videoPlayer.nativeElement) {
       this.calculateVideoAspectRatio();
-      this.setVideoHeight();
+      // this.setVideoHeight();
     }
   }
 
@@ -48,13 +48,13 @@ export class ProfileVideoComponent implements OnInit{
     }
   }
 
-  setVideoHeight() {
-    if (this.videoPlayer && this.videoPlayer.nativeElement) {
-      const videoElement: HTMLVideoElement = this.videoPlayer.nativeElement;
-      const calculatedHeight = videoElement.offsetWidth / this.videoAspectRatio;
-      videoElement.style.height = `${calculatedHeight}px`;
-    }
-  }
+  // setVideoHeight() {
+  //   if (this.videoPlayer && this.videoPlayer.nativeElement) {
+  //     const videoElement: HTMLVideoElement = this.videoPlayer.nativeElement;
+  //     const calculatedHeight = videoElement.offsetWidth / this.videoAspectRatio;
+  //     videoElement.style.height = `${calculatedHeight}px`;
+  //   }
+  // }
 
   getVideo() {
     this.profileService.getVideo(this.videoId).subscribe({
