@@ -47,6 +47,7 @@ export class Candidate {
   }
   
   export class SocialMediaLink {
+    id: string
     candidateId: number
     type: string
     url: string

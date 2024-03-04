@@ -63,6 +63,8 @@ export class ProfileComponent implements OnInit {
       next:(res : any)=>{
         console.log(res);
         this.candidate = res;
+        let address = document.getElementById('address')
+        // address.innerHTML(this.candidate.streetAddress)
         this.candidate.candidateSkills = this.candidate.candidateSkills.slice().sort((a, b) => b.skillLevel - a.skillLevel);
         this.getImage();
         localStorage.setItem('formData',JSON.stringify(this.candidate));
@@ -90,6 +92,13 @@ export class ProfileComponent implements OnInit {
         
       }
     })
+  }
+
+  formatData(remark: string): string {
+    if (remark) {
+      return remark.replace(/\n/g, '<br>');
+    }
+    return '';
   }
 
   // convertBlobToDataUrl(blob: Blob): void {

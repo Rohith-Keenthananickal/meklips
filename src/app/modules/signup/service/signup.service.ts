@@ -40,9 +40,18 @@ export class SignupService {
     return this.http.put(`${environment.url}/api/CandidateSkill/${candidateId}/${id}`, payload);
   }
 
+  updateSocialMedia(payload : any, id : any, candidateId : any){
+    return this.http.put(`${environment.url}/api/SocialMediaLink/${candidateId}/${id}`, payload);
+  }
+
   newSkills(payload : any){
     return this.http.post(`${environment.url}/api/CandidateSkill`, payload);
   }
+
+  newSocialMedia(payload : any){
+    return this.http.post(`${environment.url}/api/SocialMediaLink`, payload);
+  }
+
 
   updateEducation(payload : any, id : any, candidateId : any){
     return this.http.put(`${environment.url}/api/EducationalDegree/${candidateId}/${id}`, payload);

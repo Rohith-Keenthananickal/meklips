@@ -5,7 +5,7 @@ import { FormDataService } from '../../service/form-data.service';
 import { DatePipe } from '@angular/common';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { SignupService } from '../../service/signup.service';
-import { Subscription } from 'rxjs';
+import { Subscription, isEmpty } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { DeleteConformationComponent } from 'src/app/common/components/delete-conformation/delete-conformation.component';
@@ -82,8 +82,27 @@ export class SkillsComponent implements OnInit {
   getLocalData(){
     let localData = this.formDataService.getLocalData();
     this.candidate = localData
-    this.candidate.socialMediaLinks = this.candidate.socialMediaLinks || [];
     this.candidate.candidateSkills = this.candidate.candidateSkills || [];
+    this.candidate.socialMediaLinks.forEach((item)=>{
+      if(item.type == 'INSTAGRAM'){
+        this.instagram.url = item.url
+      }
+      if(item.type == 'FACEBOOK'){
+        this.facebook.url = item.url
+      }
+      if(item.type == 'TWITTER'){
+        this.twitter.url = item.url
+      }
+      if(item.type == 'WEBSITE'){
+        this.website.url = item.url
+      }
+      if(item.type == 'GITHUB'){
+        this.github.url = item.url
+      }
+      if(item.type == 'LINKEDIN'){
+        this.linkedIn.url = item.url
+      }
+    })
   }
 
   addsocialMediaLinks(): void {
@@ -183,8 +202,19 @@ export class SkillsComponent implements OnInit {
   advancedView(){
     // this.addsocialMediaLinks();
     this.updateFormData();
-    this.router.navigate(['signup/profile-summary']);
+    const hasEmptySkillLevel = this.candidate.candidateSkills.some(skill => skill.skillLevel === undefined || skill.skillLevel === null);
+    console.log(hasEmptySkillLevel);
+    console.log(this.candidate.candidateSkills);
     
+    if (hasEmptySkillLevel) {
+      this.toastr.warning('You Should rate yourself for all the skills', '', {
+        positionClass: 'toast-top-right',
+      });
+      
+    } 
+    else {
+      this.router.navigate(['signup/profile-summary']);
+    }
   }
 
   back(){
@@ -196,50 +226,23 @@ export class SkillsComponent implements OnInit {
     return `${value}%`;
   }
 
-  // updateSkills(){
-  //   this.updateFormData();
-  //   let payload = this.candidate.candidateSkills;
-  //   let candidateId = localStorage.getItem('userId')
-  //   const filteredArray = payload.filter(obj => Object.keys(obj).length !== 0);
-  //   console.log(filteredArray);
-    
-  //   filteredArray.forEach((item)=>{
-  //     if(item.id){
-  //       let id = item.id;
-  //       let candidateId = item.candidateId;
-  //       this.signupService.updateSkills(item,id,candidateId).subscribe({
-  //         next:(res:any)=>{
-  //           console.log(res);
-            
-  //         },
-  //         error:(err : any)=>{
-  //           console.log(err);
-            
-  //         }
-  //       });
-  //     }
-  //     else{
-  //       item.candidateId = Number(candidateId)
-  //       this.signupService.newSkills(item).subscribe({
-  //         next:(res:any)=>{
-  //           console.log(res);
-            
-  //         },
-  //         error:(err : any)=>{
-  //           console.log(err);
-            
-  //         }
-  //       });
-  //     }
-      
-  //   });
-  //   setTimeout(()=>{
-  //     this.router.navigate(['profile']);
-  //   },1000)
-    
-  // }
+  updateData(){
+    this.loader = true;
+    this.loaderMessage = "Please wait while we are saving the data"
+    // this.updateSkills();
+    this.updateSocialMedia();
+    setTimeout(()=>{
+      this.toastr.success('Skills Added Successfully', 'Success', {
+        positionClass: 'toast-top-right',
+      });
+      this.updateFormData();
+
+      // this.router.navigate(['profile']);
+    },3000)
+  }
 
   updateSkills(){
+
     let payload = this.candidate.candidateSkills;
     let candidateId = localStorage.getItem('userId')
     const filteredArray = payload.filter(obj => Object.keys(obj).length !== 0);
@@ -301,15 +304,55 @@ export class SkillsComponent implements OnInit {
         });
       }
     });
-    this.loader = true;
-    this.loaderMessage = "Please wait while we are saving the data"
-    setTimeout(()=>{
-      this.toastr.success('Skills Added Successfully', 'Success', {
-        positionClass: 'toast-top-right',
-      });
-      this.updateFormData();
-      this.router.navigate(['profile']);
-    },3000)
+    
+    
+  }
+
+  updateSocialMedia(){
+    console.log("socialMedia");
+    
+    let payload = this.candidate.socialMediaLinks;
+    let candidateId = localStorage.getItem('userId')
+    const filteredArray = payload.filter(obj => Object.keys(obj).length !== 0);
+    const storedFormData = JSON.parse(localStorage.getItem('formData'));
+    
+    filteredArray.forEach((item, index, array) => {
+      if (item.id) {
+        const matchingData = storedFormData.socialMediaLinks.find((data) => data.id === item.id);
+        
+        if (!matchingData || !this.isEqual(matchingData, item)) {
+          let id = item.id;
+          let candidateId = item.candidateId;
+          this.signupService.updateSocialMedia(item, id, candidateId).subscribe({
+            next: (res: any) => {
+              console.log(res);
+              
+            },
+            error: (err: any) => {
+              console.log(err);
+              this.toastr.error('Error While Updating Social Media', 'Error', {
+                positionClass: 'toast-top-right',
+              });
+            },
+          });
+        }
+      } else {
+        item.candidateId = Number(candidateId);
+        this.signupService.newSocialMedia(item).subscribe({
+          next: (res: any) => {
+            console.log(res);
+            
+          },
+          error: (err: any) => {
+            console.log(err);
+            this.toastr.error('Error While Adding Social Media', 'Error', {
+              positionClass: 'toast-top-right',
+            });
+          },
+        });
+      }
+    });
+    
   }
 
   isEqual(obj1: any, obj2: any): boolean {

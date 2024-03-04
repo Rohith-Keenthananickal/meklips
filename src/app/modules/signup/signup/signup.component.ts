@@ -49,6 +49,7 @@ export class SignupComponent {
   // }
 
   signup(){
+    localStorage.clear();
     if(this.signUpPayload.password == this.cpassword){
       localStorage.setItem("meklips.email",this.signUpPayload.email)
       this.signupService.signup(this.signUpPayload).subscribe({
