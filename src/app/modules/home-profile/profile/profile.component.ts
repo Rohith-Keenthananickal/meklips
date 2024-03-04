@@ -81,6 +81,12 @@ export class ProfileComponent implements OnInit {
           });
           this.router.navigate(['signup/personal-details']);
         }
+        if(err.status == 400){
+          this.toastr.error('Please Complete Your Profile', 'Error', {
+            positionClass: 'toast-top-right',
+          });
+          this.router.navigate(['signup/personal-details']);
+        }
         
       }
     })

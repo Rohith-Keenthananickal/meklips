@@ -188,6 +188,7 @@ export class ProfileSummaryComponent implements OnInit {
   bulkSubmit(){
     this.loader = true
     this.candidatePayload = this.processData();
+    delete this.candidatePayload.currentAddress;
     this.signupService.candidateBulk(this.candidatePayload).subscribe({
       next:(res:any)=>{
         console.log(res);
