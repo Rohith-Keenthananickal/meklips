@@ -157,7 +157,7 @@
                                             </div>
                                             <div >
                                                 <label class="form-label ">Upload a Profile Video</label>
-                                                <ngx-dropzone (change)="videoSelect($event)" style="height: 100%; width: fit-content;">
+                                                <ngx-dropzone (change)="videoSelect($event)" style="height: 100%; width: fit-content;" accept="video/*">
                                                     <ngx-dropzone-label style="padding: 20px;">Upload Profile Video Here</ngx-dropzone-label>
                                                     <ngx-dropzone-video-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of videoFile" [file]="f" [removable]="true" (removed)="onRemoveVideo(f)">
                                                         

@@ -63,6 +63,7 @@ export class ProfileComponent implements OnInit {
       next:(res : any)=>{
         console.log(res);
         this.candidate = res;
+        this.candidate.candidateSkills = this.candidate.candidateSkills.slice().sort((a, b) => b.skillLevel - a.skillLevel);
         this.getImage();
         localStorage.setItem('formData',JSON.stringify(this.candidate));
         localStorage.setItem('userId',res.id)
@@ -234,14 +235,16 @@ calculateAge(dateOfBirth: string): number {
   }
 
   getBackgroundColor(skillLevel: number): string {
-    if (skillLevel >= 8) {
-      return '#68A0FC';
-    } else if (skillLevel < 8 && skillLevel >= 6) {
-      return '#DC7836';
-    } else if (skillLevel < 6 && skillLevel >= 4) {
-      return '#F9BC63';
-    } else if (skillLevel < 4 && skillLevel >= 2) {
-      return '#FFD132';
+    if (skillLevel > 8) {
+      return '#90d400';
+    } else if (skillLevel == 7 || skillLevel == 8) {
+      return '#bbd711';
+    } else if (skillLevel == 5 || skillLevel == 6) {
+      return '#feba28';
+    } else if (skillLevel == 3 || skillLevel == 4) {
+      return '#fe5c25';
+    } else if (skillLevel == 1 || skillLevel == 2) {
+      return '#fa001c';
     } else {
       return ''; // Handle other cases as needed
     }

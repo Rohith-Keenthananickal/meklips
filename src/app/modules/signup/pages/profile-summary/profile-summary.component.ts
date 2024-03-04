@@ -287,9 +287,11 @@ export class ProfileSummaryComponent implements OnInit {
       await this.uploadVideo();
   
       // Assuming uploadImage and uploadVideo return promises, handle the completion here
-  
-      this.loader = false;
-      this.router.navigate(['profile']);
+      setTimeout(()=>{
+        this.loader = false;
+        this.router.navigate(['profile']);
+      },2000)
+     
     } catch (error) {
       console.error('An error occurred during profile update:', error);
       this.loader = false;

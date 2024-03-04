@@ -40,7 +40,7 @@
         <div class="main  w-100">
             
             <div class="d-flex justify-content-center gap-5 align-items-start mt-1">
-                <div class="text-center" style="width: 250px;">
+                <div class="text-center" style="min-width: 250px;">
                     <div class="d-flex justify-content-end">
                         <i class="ti ti-edit text-azure fs-1 cursor-pointer" mat-raised-button matTooltip="Edit Profile" matTooltipPosition="above" (click)="editProfile()"></i>
                     </div>
@@ -79,7 +79,7 @@
                         {{candidate?.streetAddress}}
                     </div>
                     <div class="text-azure text-decoration-underline cursor-pointer fs-4">
-                        Contact <a href="mailto:{{candidate.email}}">{{candidate?.firstName}}</a> 
+                        Contact <a href="mailto:{{candidate?.email}}">{{candidate?.firstName}}</a> 
                     </div>
                     <div class="mt-3" id="play-btn" *ngIf="candidate?.videoId" (click)="goToVideo()">
                         <i class="ti ti-player-play-filled text-yellow cursor-pointer" style="font-size: 40px;"></i>
@@ -88,44 +88,50 @@
                         <i class="ti ti-player-play-filled text-yellow cursor-pointer" data-bs-toggle="modal" data-bs-target="#modal-large" style="font-size: 40px;"></i>
                     </div> -->
     
-                    <div class="text-azure fw-bold fs-3 bold mt-3 mb-3">
+                    <div class="text-azure fw-bold fs-3 bold mt-3 mb-4">
                        "{{candidate?.experienceSummary}}"
                     </div>
                     <div class="d-flex flex-column">
                         <div *ngFor="let media of candidate?.socialMediaLinks" class="mb-1">
-                            <div class="d-flex align-items-center gap-1" >
-                                <div class="d-flex align-items-center gap-1" style="min-width: 100px;" *ngIf="media?.type == 'WEBSITE'">
+                            <div class="d-flex align-items-start flex-wrap" >
+                                <div class="d-flex align-items-center gap-1" style="min-width: 120px;" *ngIf="media?.type == 'WEBSITE'">
                                     <i class="ti ti-world fs-1"></i>
-                                    <div class="text-blue fs-3">
+                                    <div class="text-blue fs-4">
                                         {{ media?.type | titlecase }}
                                     </div>
                                 </div>
-                                <div class="d-flex align-items-center gap-1" style="min-width: 100px;" *ngIf="media?.type == 'FACEBOOK'">
+                                <div class="d-flex align-items-center gap-1" style="min-width: 120px;" *ngIf="media?.type == 'FACEBOOK'">
                                     <i class="ti ti-brand-facebook text-blue fs-1" style="color: #e4405f;"></i>
-                                    <div class="text-blue fs-3">
+                                    <div class="text-blue fs-4">
                                         {{media?.type}}
                                     </div>
                                 </div>
-                                <div class="d-flex align-items-center gap-1" style="min-width: 100px;" *ngIf="media?.type == 'TWITTER'">
+                                <div class="d-flex align-items-center gap-1" style="min-width: 120px;" *ngIf="media?.type == 'TWITTER'">
                                     <i class="ti ti-brand-twitter text-blue fs-1"></i>
-                                    <div class="text-blue fs-3">
+                                    <div class="text-blue fs-4">
                                         {{media?.type}}
                                     </div>
                                 </div>
-                                <div class="d-flex align-items-center gap-1" style="min-width: 100px;" *ngIf="media?.type == 'INSTAGRAM'">
+                                <div class="d-flex align-items-center gap-1" style="min-width: 120px;" *ngIf="media?.type == 'INSTAGRAM'">
                                     <i class="ti ti-brand-instagram fs-1 text-danger"></i>
-                                    <div class="text-blue fs-3">
+                                    <div class="text-blue fs-4">
                                         {{media?.type}}
                                     </div>
                                 </div>
-                                <div class="d-flex align-items-center gap-1" style="min-width: 100px;" *ngIf="media?.type == 'GITHUB'">
+                                <div class="d-flex align-items-center gap-1" style="min-width: 120px;" *ngIf="media?.type == 'GITHUB'">
                                     <i class="ti ti-brand-github fs-1 text-purple"></i>
-                                    <div class="text-blue fs-3">
+                                    <div class="text-blue fs-4">
                                         {{media?.type}}
                                     </div>
                                 </div>
-                                <div class="fs-3 text-black">
-                                    <a href="https://+{{media?.url}}" target="blank" class="text-black">{{media?.url}}</a>
+                                <div class="d-flex align-items-center gap-1" style="min-width: 120px;" *ngIf="media?.type == 'LINKEDIN'">
+                                    <i class="ti ti-brand-linkedin fs-1 text-blue"></i>
+                                    <div class="text-blue fs-4">
+                                        {{media?.type}}
+                                    </div>
+                                </div>
+                                <div class="fs-4 text-black">
+                                    <a href="https://{{media?.url}}" target="blank" class="text-black">{{media?.url}}</a>
                                     
                                 </div>
                             </div>
@@ -149,7 +155,7 @@
                         <div>
                             <div class="profile-details mb-2">
                                 <div class="d-flex align-items-center mb-2">
-                                    <div style="min-width: 80px;">
+                                    <div style="min-width: 100px;">
                                         <div class="fs-3 text-azure bold" style="width: fit-content;">
                                             Name
                                         </div>
@@ -160,7 +166,7 @@
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-center mb-2">
-                                    <div style="min-width: 80px;">
+                                    <div style="min-width: 100px;">
                                         <div class="fs-3 text-azure bold" style="width: fit-content;">
                                             Email
                                         </div>
@@ -171,7 +177,7 @@
                                     </div>
                                 </div>
                                 <!-- <div class="d-flex align-items-center mb-2">
-                                    <div style="min-width: 80px;">
+                                    <div style="min-width: 100px;">
                                         <div class="fs-5 text-azure bold" style="width: fit-content;">
                                             Phone
                                         </div>
@@ -182,7 +188,7 @@
                                     </div>
                                 </div> -->
                                 <div class="d-flex align-items-center mb-2">
-                                    <div style="min-width: 80px;">
+                                    <div style="min-width: 100px;">
                                         <div class="fs-3 text-azure bold" style="width: fit-content;">
                                            Mobile
                                         </div>
@@ -193,7 +199,7 @@
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-center mb-2">
-                                    <div style="min-width: 80px;">
+                                    <div style="min-width: 100px;">
                                         <div class="fs-3 text-azure bold" style="width: fit-content;">
                                           Address
                                         </div>
@@ -207,7 +213,7 @@
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-start mb-1">
-                                    <div style="min-width: 80px;">
+                                    <div style="min-width: 100px;">
                                         <div class="fs-3 text-azure bold" style="width: fit-content;">
                                           Profession
                                         </div>
@@ -231,20 +237,20 @@
                             </div>
                         </div>
         
-                        <div class="d-flex gap-2 align-items-center mb-3 mt-3">
-                            <span class="text p-2 bg-azure text-white fs-4">
-                               My Experties
+                        <div class="d-flex gap-2 align-items-center mb-3 mt-4">
+                            <span class="text p-2 bg-azure text-white fs-4 ">
+                               My Expertise
                            </span>
                            <span class="cursor-pointer">
                             <i class="ti ti-edit text-azure fs-1" (click)="updateSkills()"></i>
                            </span>
                         </div>
                         <div>
-                            <div class="mb-2 d-flex flex-column justify-content-start align-items-start" *ngFor="let skill of candidate?.candidateSkills">
-                                <span class="text fs-3 bold mb-2">{{skill.skillName}}</span>
+                            <div class="mb-3 d-flex flex-column justify-content-start align-items-start" *ngFor="let skill of candidate?.candidateSkills">
+                                <span class="text fs-3 bold mb-1">{{skill.skillName}}</span>
         
                                 <!-- <mat-progress-bar mode="determinate" [value]="skill?.skillLevel*10"></mat-progress-bar> -->
-                                    <div class="progress">
+                                    <div class="progress" style="height: 5px !important;">
                                         <div class="progress-bar"
                                         [style.width.%]="getProgressBarWidth(skill?.skillLevel * 10)"
                                         [style.backgroundColor]="getBackgroundColor(skill?.skillLevel)"
@@ -254,13 +260,8 @@
                                     <span class="visually-hidden">{{ skill?.skillLevel }}% Complete</span>
                                 </div>
                                 </div>
-                               
-    
                             </div>
                         </div>
-                        
-        
-                       
                     </div>
                 </div>
                 
@@ -269,7 +270,7 @@
                 <div class="text d-block">
                     <div>
                         <div class="d-flex gap-2 align-items-center mb-3">
-                            <span class="text p-2 bg-azure text-white fs-3">
+                            <span class="text p-2 bg-azure text-white fs-4">
                                 Experiences 
                            </span>
                            <span>
@@ -303,28 +304,6 @@
                                         </div>
                                       
                                     </li>
-                                    <!-- <li class="ms-0 d-flex flex-column align-items-start">
-                                    
-                                        <div class="text-azure fs-5 bold">
-                                            -09/2015
-                                         </div>
-                                        <div class="d-flex align-items-center gap-1 mt-2 mb-1">
-                                            <div class="text-muted bold fs-5">
-                                               SigmaTel
-                                              </div>
-                                              <span class="text-muted fs-5">
-                                                New York
-                                              </span>
-                                        </div>
-                                        <div class="text-azure fs-5 bold mb-1">
-                                            Junior Web Developer
-                                        </div>
-                                        <div class="text-azure fs-5">
-                                           -09/2011
-                                        </div>
-                                      
-                                    </li> -->
-        
                                    
                                   </ul>
                             </div>
@@ -334,7 +313,7 @@
                         </div>
         
                         <div class="d-flex gap-2 align-items-center mb-3">
-                            <span class="text p-2 bg-azure text-white fs-3">
+                            <span class="text p-2 bg-azure text-white fs-4">
                                 Education
                            </span>
                            <span>

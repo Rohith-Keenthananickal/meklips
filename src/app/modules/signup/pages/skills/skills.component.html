@@ -1,62 +1,7 @@
-<!-- <div class="outer-layer">
-    <div class="inner-layer d-flex ">
-        <div class="side-progress">
-            <ul class="timeline">
-                <li class="timeline-event" >
-                  <div class="timeline-event-icon bg-yellow" style="border-radius: 50%;">
-                    <i class="ti ti-user fs-2 text-white"></i>
-                  </div>
-                  <div class="card timeline-event-card" style="height: 50px; visibility: hidden;">
-                    
-                  </div>
-                 
-                </li>
-                <li class="timeline-event">
-                  <div class="timeline-event-icon bg-yellow" style="border-radius: 50%;">
-                    <i class="ti ti-calendar fs-2 text-white"></i>
-                  </div>
-                  <div class="card timeline-event-card" style="height: 50px; visibility: hidden;">
-                    
-                  </div>
-                
-                </li>
-                <li class="timeline-event">
-                    <div class="timeline-event-icon bg-yellow" style="border-radius: 50%;">
-                        <i class="ti ti-file fs-2 text-white"></i>
-                    </div>
-                    <div class="card timeline-event-card" style="height: 50px; visibility: hidden;">
-                      
-                    </div>
-                  
-                </li>
-                <li class="timeline-event">
-                    <div class="timeline-event-icon bg-yellow" style="border-radius: 50%;">
-                        <i class="ti ti-list fs-2 text-white"></i>
-                    </div>
-                    <div class="card timeline-event-card" style="height: 50px; visibility: hidden;">
-                      
-                    </div>
-                  
-                </li>
-                <li class="timeline-event">
-                    <div class="timeline-event-icon" style="border-radius: 50%;">
-                        <i class="ti ti-check fs-2"></i>
-                    </div>
-                    <div class="card timeline-event-card" style="height: 50px; visibility: hidden;">
-                      
-                    </div>
-                  
-                </li>
-
-              </ul>
-              
-        </div>
-        
-       
-    </div>
-</div> -->
-
-
+<div class="loading-overlay d-flex  flex-column" *ngIf="loader">
+    <div class="loading"></div>
+    <div class="loading-text">{{loaderMessage}} <span class="animated-dots"></span></div>
+</div>
 
 <div class="outer-layer">
     <div class="inner-layer d-flex ">

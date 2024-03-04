@@ -29,6 +29,8 @@ export class SkillsComponent implements OnInit {
   public instagram = new SocialMediaLink();
   public twitter = new SocialMediaLink();
   public linkedIn = new SocialMediaLink();
+  public loaderMessage = '';
+  public loader : boolean;
 
 
   constructor(private router:Router,
@@ -261,16 +263,16 @@ export class SkillsComponent implements OnInit {
                 positionClass: 'toast-top-right',
               });
             },
-            complete: () => {
-              // Check if it's the last iteration and execute your function
-              if (index === array.length - 1) {
-                this.toastr.success('Skills Updated Successfully', 'Success', {
-                  positionClass: 'toast-top-right',
-                });
-                this.updateFormData();
-                this.router.navigate(['profile']);
-              }
-            },
+            // complete: () => {
+            //   // Check if it's the last iteration and execute your function
+            //   if (index === array.length - 1) {
+            //     this.toastr.success('Skills Updated Successfully', 'Success', {
+            //       positionClass: 'toast-top-right',
+            //     });
+            //     this.updateFormData();
+            //     this.router.navigate(['profile']);
+            //   }
+            // },
           });
         }
       } else {
@@ -286,28 +288,28 @@ export class SkillsComponent implements OnInit {
               positionClass: 'toast-top-right',
             });
           },
-          complete: () => {
-            // Check if it's the last iteration and execute your function
-            if (index === array.length - 1) {
-              this.toastr.success('Skills Added Successfully', 'Success', {
-                positionClass: 'toast-top-right',
-              });
-              this.updateFormData();
-              this.router.navigate(['profile']);
-            }
-          },
+          // complete: () => {
+          //   // Check if it's the last iteration and execute your function
+          //   if (index === array.length - 1) {
+          //     this.toastr.success('Skills Added Successfully', 'Success', {
+          //       positionClass: 'toast-top-right',
+          //     });
+          //     this.updateFormData();
+          //     this.router.navigate(['profile']);
+          //   }
+          // },
         });
       }
     });
-    
-    // executeAfterLastIteration() {
-    //   setTimeout(() => {
-        
-    //   }, 1000);
-    // }
-    
-
-    
+    this.loader = true;
+    this.loaderMessage = "Please wait while we are saving the data"
+    setTimeout(()=>{
+      this.toastr.success('Skills Added Successfully', 'Success', {
+        positionClass: 'toast-top-right',
+      });
+      this.updateFormData();
+      this.router.navigate(['profile']);
+    },3000)
   }
 
   isEqual(obj1: any, obj2: any): boolean {
