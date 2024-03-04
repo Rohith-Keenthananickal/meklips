@@ -169,25 +169,81 @@
                                                     <div class="col-6">
                                                         <div class="mb-3">
                                                             <label class="form-label">Website</label>
-                                                            <input type="text" class="form-control" name="example-text-input" placeholder="Enter Website URL" [(ngModel)]="website.url" spellcheck="false" data-ms-editor="true">
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">
+                                                                  https://
+                                                                </span>
+                                                                <input type="text" class="form-control" placeholder="Enter Website URL" [(ngModel)]="website.url" autocomplete="off" spellcheck="false" data-ms-editor="true">
+                                                               
+                                                              </div>
+                                                            <!-- <input type="text" class="form-control" name="example-text-input" placeholder="Enter Website URL" [(ngModel)]="website.url" spellcheck="false" data-ms-editor="true"> -->
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
                                                         <div class="mb-3">
                                                             <label class="form-label">Github</label>
-                                                            <input type="text" class="form-control" name="example-text-input" placeholder="Enter Github URL" [(ngModel)]="github.url" spellcheck="false" data-ms-editor="true">
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">
+                                                                  https://
+                                                                </span>
+                                                                <input type="text" class="form-control" placeholder="Enter Github URL" [(ngModel)]="github.url" autocomplete="off" spellcheck="false" data-ms-editor="true">
+                                                               
+                                                              </div>
+                                                            <!-- <input type="text" class="form-control" name="example-text-input" placeholder="Enter Github URL" [(ngModel)]="github.url" spellcheck="false" data-ms-editor="true"> -->
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
                                                         <div class="mb-3">
                                                             <label class="form-label">Facebook</label>
-                                                            <input type="text" class="form-control" name="example-text-input" placeholder="Enter Facebook URL" [(ngModel)]="facebook.url" spellcheck="false" data-ms-editor="true">
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">
+                                                                  https://
+                                                                </span>
+                                                                <input type="text" class="form-control" placeholder="Enter Facebook URL" [(ngModel)]="facebook.url" autocomplete="off" spellcheck="false" data-ms-editor="true">
+                                                               
+                                                              </div>
+                                                            <!-- <input type="text" class="form-control" name="example-text-input" placeholder="Enter Facebook URL" [(ngModel)]="facebook.url" spellcheck="false" data-ms-editor="true"> -->
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
                                                         <div class="mb-3">
                                                             <label class="form-label">Instagram</label>
-                                                            <input type="text" class="form-control" name="example-text-input" placeholder="Enter Instagram URL" [(ngModel)]="instagram.url" spellcheck="false" data-ms-editor="true">
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">
+                                                                  https://
+                                                                </span>
+                                                                <input type="text" class="form-control" placeholder="Enter Instagram URL" [(ngModel)]="instagram.url" autocomplete="off" spellcheck="false" data-ms-editor="true">
+                                                               
+                                                              </div>
+                                                            
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-6">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Twitter</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">
+                                                                  https://
+                                                                </span>
+                                                                <input type="text" class="form-control" placeholder="Enter Twitter URL" [(ngModel)]="twitter.url" autocomplete="off" spellcheck="false" data-ms-editor="true">
+                                                               
+                                                              </div>
+                                                            
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-6">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">LinkedIn</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">
+                                                                  https://
+                                                                </span>
+                                                                <input type="text" class="form-control" placeholder="Enter LinkedIn URL" [(ngModel)]="linkedIn.url" autocomplete="off" spellcheck="false" data-ms-editor="true">
+                                                               
+                                                              </div>
+                                                            
                                                         </div>
                                                     </div>
                                                     
@@ -205,14 +261,14 @@
                                             <div class="text-azure mb-4">
                                                 My Experties
                                             </div>
-                                            <div class="row row-cards d-flex align-items-end mb-3" *ngFor="let skill of candidate.candidateSkills; let i = index">
+                                            <div class="d-flex gap-3 align-items-end mb-3" *ngFor="let skill of candidate.candidateSkills; let i = index">
                                                 <div class="col-4">
                                                   <div>
                                                     <label class="form-label">Skill</label>
                                                     <input type="text" class="form-control" name="example-text-input" [(ngModel)]="skill.skillName" placeholder="Enter Your Skills" spellcheck="false" data-ms-editor="true">
                                                   </div>
                                                 </div>
-                                                <div class="col-6">
+                                                <div class="">
                                                   <div class="d-block">
                                                     <label class="form-label">How would you rate yourself</label>
                                                     <div class="btn-group" role="group">
@@ -223,7 +279,7 @@
                                                     </div>
                                                   </div>
                                                 </div>
-                                                <div class="col-2 d-flex align-items-end">
+                                                <div class="d-flex align-items-end">
                                                   <i class="ti ti-trash fs-2 text-azure cursor-pointer ms-3" mat-raised-button matTooltip="Delete" matTooltipPosition="above" (click)="deleteSkills(i, skill.id)" style="margin-bottom: 8px;"></i>
                                                 </div>
                                               </div>

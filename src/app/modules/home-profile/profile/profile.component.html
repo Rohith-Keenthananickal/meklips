@@ -91,41 +91,41 @@
                     <div class="text-azure fw-bold fs-3 bold mt-3 mb-3">
                        "{{candidate?.experienceSummary}}"
                     </div>
-                    <div class="d-flex justify-content-center flex-column align-items-center">
+                    <div class="d-flex flex-column">
                         <div *ngFor="let media of candidate?.socialMediaLinks" class="mb-1">
                             <div class="d-flex align-items-center gap-1" >
-                                <div class="d-flex align-items-center gap-1" *ngIf="media?.type == 'WEBSITE'">
+                                <div class="d-flex align-items-center gap-1" style="min-width: 100px;" *ngIf="media?.type == 'WEBSITE'">
                                     <i class="ti ti-world fs-1"></i>
                                     <div class="text-blue fs-3">
                                         {{ media?.type | titlecase }}
                                     </div>
                                 </div>
-                                <div class="d-flex align-items-center gap-1" *ngIf="media?.type == 'FACEBOOK'">
+                                <div class="d-flex align-items-center gap-1" style="min-width: 100px;" *ngIf="media?.type == 'FACEBOOK'">
                                     <i class="ti ti-brand-facebook text-blue fs-1" style="color: #e4405f;"></i>
                                     <div class="text-blue fs-3">
                                         {{media?.type}}
                                     </div>
                                 </div>
-                                <div class="d-flex align-items-center gap-1" *ngIf="media?.type == 'TWITTER'">
+                                <div class="d-flex align-items-center gap-1" style="min-width: 100px;" *ngIf="media?.type == 'TWITTER'">
                                     <i class="ti ti-brand-twitter text-blue fs-1"></i>
                                     <div class="text-blue fs-3">
                                         {{media?.type}}
                                     </div>
                                 </div>
-                                <div class="d-flex align-items-center gap-1" *ngIf="media?.type == 'INSTAGRAM'">
+                                <div class="d-flex align-items-center gap-1" style="min-width: 100px;" *ngIf="media?.type == 'INSTAGRAM'">
                                     <i class="ti ti-brand-instagram fs-1 text-danger"></i>
                                     <div class="text-blue fs-3">
                                         {{media?.type}}
                                     </div>
                                 </div>
-                                <div class="d-flex align-items-center gap-1" *ngIf="media?.type == 'GITHUB'">
+                                <div class="d-flex align-items-center gap-1" style="min-width: 100px;" *ngIf="media?.type == 'GITHUB'">
                                     <i class="ti ti-brand-github fs-1 text-purple"></i>
                                     <div class="text-blue fs-3">
                                         {{media?.type}}
                                     </div>
                                 </div>
                                 <div class="fs-3 text-black">
-                                    <a href="{{media?.url}}" target="blank" class="text-black">{{media?.url}}</a>
+                                    <a href="https://+{{media?.url}}" target="blank" class="text-black">{{media?.url}}</a>
                                     
                                 </div>
                             </div>
