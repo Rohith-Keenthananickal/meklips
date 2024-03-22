@@ -17,6 +17,10 @@ export class ProfileService {
     return this.http.get(`${environment.url}/api/Candidates`)
   }
 
+  getCandidateById(id : number){
+    return this.http.get(`${environment.url}/api/Candidates/${id}`)
+  }
+
   getImage(id: number){
     return this.http.get(`${environment.url}/api/Dp/${id}/download`,{
       responseType: 'blob'

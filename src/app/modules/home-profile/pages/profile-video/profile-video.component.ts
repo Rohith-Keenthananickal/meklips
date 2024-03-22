@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ProfileService } from '../../service/profile.service';
 import { Candidate } from 'src/app/modules/signup/models/signup.models';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile-video',
@@ -16,15 +16,24 @@ export class ProfileVideoComponent implements OnInit{
   video: string;
   videoUrl: SafeUrl;
   public videoId
+  subscription: any;
+  public candidateId;
 
 
   constructor(private profileService : ProfileService,
     private router:Router,
-    private sanitizer:DomSanitizer){
+    private sanitizer:DomSanitizer,
+    private activeRoute:ActivatedRoute,){
 
   }
 
   ngOnInit(): void {
+
+    this.subscription = this.activeRoute.paramMap.subscribe(
+      (params: ParamMap) => {
+        this.candidateId = params.get('id');
+        
+      });
     let localData = localStorage.getItem('formData');
     let parsedData = JSON.parse(localData)
     this.videoId = parsedData.videoId;
@@ -72,6 +81,11 @@ export class ProfileVideoComponent implements OnInit{
   }
 
   backToProfile(){
-    this.router.navigate(['profile']);
+    if(this.candidateId){
+      this.router.navigate(['profile/'+this.candidateId]);
+    }
+    else{
+      this.router.navigate(['profile']);
+    }
   }
 }

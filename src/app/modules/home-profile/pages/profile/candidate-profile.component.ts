@@ -1,51 +1,57 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/common-services/auth.service';
-import { ProfileService } from '../service/profile.service';
+import { ProfileService } from '../../service/profile.service';
 import { ToastrService } from 'ngx-toastr';
-import { NavigationExtras, Router } from '@angular/router';
-import { Candidate } from '../../signup/models/signup.models';
-import { Login } from '../../login/models/login.models';
+import { ActivatedRoute, NavigationExtras, ParamMap, Router } from '@angular/router';
+import { Candidate } from '../../../signup/models/signup.models';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { Observable } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Location } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 
 @Component({
   selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  templateUrl: './candidate-profile.component.html',
+  styleUrls: ['./candidate-profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class CandidateProfileComponent implements OnInit{
   public auth: boolean;
   public nAuth: boolean;
   public candidate : Candidate;
   public image
-  displayedFileURL: any;
+  public displayedFileURL: any;
   public loader : boolean;
-  imageSrc: string | ArrayBuffer;
-  imageToShow: string | ArrayBuffer;
+  public imageSrc: string | ArrayBuffer;
+  public imageToShow: string | ArrayBuffer;
   public imageUrl
-  video: string;
-  videoUrl: SafeUrl;
-  public candidateId;
-public url
+  public video: string;
+  public videoUrl: SafeUrl;
+  public url : string
+  public candidateId 
+  subscription:Subscription;
 
 
   constructor(private authService: AuthService,
     private profileService : ProfileService,
     private toastr: ToastrService,
     private router:Router,
+    private activeRoute:ActivatedRoute,
+    private location: Location,
     private sanitizer:DomSanitizer){
 
   }
   ngOnInit(): void {
-    this.auth = this.authService.isAuthenticated();
-    console.log(this.authService.isAuthenticated());
+    this.subscription = this.activeRoute.paramMap.subscribe(
+      (params: ParamMap) => {
+        this.candidateId = params.get('id');
+        
+      });
+    // this.auth = this.authService.isAuthenticated();
+    // console.log(this.authService.isAuthenticated());
     this.getUser();
-
-    this.candidateId = localStorage.getItem('userId');
-    
-    this.url = window.location.origin + window.location.pathname+'/'+this.candidateId ;
+    this.url = window.location.origin + window.location.pathname;
+    console.log('Full URL with protocol:', this.url);
   }
 
  
@@ -65,12 +71,10 @@ public url
   
   getUser() {
     this.loader = true
-    this.profileService.getUserData().subscribe({
+    this.profileService.getCandidateById(this.candidateId).subscribe({
       next:(res : any)=>{
         console.log(res);
         this.candidate = res;
-        let address = document.getElementById('address')
-        // address.innerHTML(this.candidate.streetAddress)
         this.candidate.candidateSkills = this.candidate.candidateSkills.slice().sort((a, b) => b.skillLevel - a.skillLevel);
         this.getImage();
         localStorage.setItem('formData',JSON.stringify(this.candidate));
@@ -97,7 +101,7 @@ public url
         }
         
       }
-    })
+    });
   }
 
   formatData(remark: string): string {
@@ -107,27 +111,9 @@ public url
     return '';
   }
 
-  // convertBlobToDataUrl(blob: Blob): void {
-  //   const reader = new FileReader();
-  //   reader.onloadend = () => {
-  //     this.imageSrc = reader.result;
-  //   };
-  //   reader.readAsDataURL(blob);
-  //   console.log(this.imageSrc);
-    
-  // }
-
   goToVideo(){
-    this.router.navigate(['/profile/video']);
-  }
+    this.router.navigate(['profile/' + this.candidateId + '/video']);
 
-  copeToClipboard(){
-    this.toastr.show('Link Copied To Clipboard','',{
-      positionClass: 'toast-top-right',
-    });
-    
-  //  this.toastr.show('Link Copied To Clipboard',)
-    
   }
 
   logout(){
@@ -135,15 +121,15 @@ public url
     this.router.navigate(['login']);
   }
 
-  loadImage(){
-    
-  }
+
 
   getImage(){
     if(this.candidate.dpId !==0){
       this.profileService.getImage(this.candidate.dpId).subscribe({
         next:(res :any)=>{
+          console.log(res);
           this.image = URL.createObjectURL(res)
+          console.log(this.image);
           this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(this.image as string);
           // return this.sanitizer.bypassSecurityTrustUrl(this.image as string);
           // this.createImageFromBlob(res);
@@ -164,7 +150,9 @@ public url
     if(this.candidate?.videoId && this.candidate?.videoId !== 0){
       this.profileService.getVideo(this.candidate?.videoId).subscribe({
         next: (res: any) => {
+          console.log(res);
           this.video = URL.createObjectURL(res);
+          console.log(this.video);
           this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.video as string);
         },
         error: (err: any) => {
@@ -175,25 +163,6 @@ public url
     
   }
   
-
-//   getImageUrl(): SafeUrl {
-//     // Use DomSanitizer to create a safe URL for the base64 image
-//     // this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(this.imageToShow as string);
-//     return this.sanitizer.bypassSecurityTrustUrl(this.imageToShow as string);
-//   }
-
-//   createImageFromBlob(image: Blob) {
-//     let reader = new FileReader();
-//     reader.addEventListener("load", () => {
-//        this.imageToShow = reader.result;
-//       //  console.log(this.imageToShow);
-//     }, false);
-
-//     if (image) {
-//        reader.readAsDataURL(image);
-//     }
-//  } 
-
 
 calculateAge(dateOfBirth: string): number {
   const dob = new Date(dateOfBirth);
@@ -218,43 +187,6 @@ calculateAge(dateOfBirth: string): number {
     }
     this.router.navigate(['signup/personal-details'],navigationExtras)
   }
-
-  updateSkills(){
-    const navigationExtras: NavigationExtras = {
-      queryParams: {
-        edit:true,
-      }
-    }
-    this.router.navigate(['signup/skills'],navigationExtras)
-  }
-
-  editProfile(){
-    const navigationExtras: NavigationExtras = {
-      queryParams: {
-        edit:true,
-      }
-    }
-    this.router.navigate(['signup/profile-summary'],navigationExtras)
-  }
-
-  updateExperiance(){
-    const navigationExtras: NavigationExtras = {
-      queryParams: {
-        edit:true,
-      }
-    }
-    this.router.navigate(['signup/previous-employment'],navigationExtras)
-  }
-
-  updateEducation(){
-    const navigationExtras: NavigationExtras = {
-      queryParams: {
-        edit:true,
-      }
-    }
-    this.router.navigate(['signup/education'],navigationExtras)
-  }
-
   
   getProgressBarWidth(value: number): number {
     return value; // Adjust this based on how you want the width to be calculated
@@ -274,11 +206,5 @@ calculateAge(dateOfBirth: string): number {
     } else {
       return ''; // Handle other cases as needed
     }
-  }
-
-  advancedView(){
-    console.log(this.candidateId);
-    
-    this.router.navigate(['/profile/', this.candidateId]);
   }
 }

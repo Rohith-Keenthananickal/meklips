@@ -12,9 +12,9 @@
                 {{candidate?.firstName}} {{candidate?.lastName}}
             </div>
             <div *ngFor="let work of candidate?.workExperiences">
-                <span *ngIf="work.currentJob == true" class="text-white text-centerfs-5 fw-bold">
+                <div *ngIf="work.currentJob == true" class="text-white text-center fs-5 fw-bold">
                     {{work?.designation}}
-                </span>
+                </div>
                 <div class="text-white text-center fs-5" *ngIf="work.currentJob == true" >
                     {{work?.companyName}}
                 </div>
@@ -40,106 +40,107 @@
         <div class="main  w-100">
             
             <div class="d-flex justify-content-center gap-5 align-items-start mt-1">
-                <div class="text-center" style="min-width: 250px;">
-                    <div class="d-flex justify-content-end">
-                        <i class="ti ti-edit text-azure fs-1 cursor-pointer" mat-raised-button matTooltip="Edit Profile" matTooltipPosition="above" (click)="editProfile()"></i>
-                    </div>
-                    <div class="d-flex justify-content-center">
+                <div class="text-center" style="min-width: 300px;">
+                    
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex justify-content-center gap-3 flex-column align-items-center">
+                            <div>
+                                <img src="/assets/half_moon.svg" alt="moon img" width="30" style="position: relative; left: 5px;">
+                                <span class="text-azure fs-5 fw-bold" style="position: relative; right:14px;">{{calculateAge(candidate?.dob)}}</span>
+                            </div>
+                            <span>
+                                <i class="ti ti-at" style="font-size: 35px; color: #ffd600;"></i>
+                            </span>
+                        </div>
                         <div class="avatar rounded-circle text-center" id="round-div">
-                            <!-- <span *ngIf="candidate?.dpId" class="avatar avatar-xl rounded-circle" 
-                              [style.backgroundImage]="'url(https://api.meklips.com/api/Dp/' + candidate?.dpId + '/download)'"
-                            ></span> -->
+                        
                             <span *ngIf="candidate?.dpId" class="avatar avatar-xl rounded-circle">
                                 <img [src]="imageUrl" class="img" alt="">
                             </span>
                             
                            
-                          </div>
+                        </div>
+                        <qrcode *ngIf="url" [qrdata]="url" [colorDark]="'#4299e1'" [width]="83" [errorCorrectionLevel]="'M'"></qrcode>
+
                           
                     </div>
-                    
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span class="text-yellow p-1 fs-4" style="border-radius: 50%; border: 3px solid #f5a002;">
-                            {{calculateAge(candidate?.dob)}}
-                        </span>
-                        <span>
-                            <i class="ti ti-at text-yellow" (click)="advancedView()" style="font-size: 35px;"></i>
-                        </span>
-                    </div>
-                    <div class="text-azure fs-1 mt-2 fw-bold">
-                        {{candidate?.firstName}} {{candidate?.lastName}}
-                    </div>
-                    <div class="text-muted fs-3 fw-bold" *ngFor="let work of candidate?.workExperiences">
-                        <span *ngIf="work.currentJob == true">
-                            {{work?.designation}}
-                        </span>
-                        
-                    </div>
-                    <div class="text-muted fs-3" [innerHTML]="formatData(candidate?.streetAddress)">
-                        <!-- {{candidate?.streetAddress}} -->
-                    </div>
-                    <div class="text-azure text-decoration-underline cursor-pointer fs-4">
-                        Contact <a href="mailto:{{candidate?.email}}">{{candidate?.firstName}}</a> 
-                    </div>
-                    <div class="mt-3" id="play-btn" *ngIf="candidate?.videoId" (click)="goToVideo()">
-                        <i class="ti ti-player-play-filled text-yellow cursor-pointer" style="font-size: 40px;"></i>
-                    </div>
-                    <!-- <div class="mt-3" id="play-btn" *ngIf="candidate?.videoId">
-                        <i class="ti ti-player-play-filled text-yellow cursor-pointer" data-bs-toggle="modal" data-bs-target="#modal-large" style="font-size: 40px;"></i>
-                    </div> -->
-    
-                    <div class="text-azure fw-bold fs-3 bold mt-3 mb-2" [innerHTML]="formatData(candidate?.experienceSummary)">
-                       <!-- "{{candidate?.experienceSummary}}" -->
-                    </div>
-                    <div class="mb-4" matTooltip="Share this Profile" matTooltipPosition="above">
-                        <i class="ti ti-share fs-1 text-azure text-center cursor-pointer" (click)="copeToClipboard()" [cdkCopyToClipboard]="url"></i>
-                    </div>
-                    <div class="d-flex flex-column">
-                        <div *ngFor="let media of candidate?.socialMediaLinks" class="mb-1">
-                            <div class="d-flex align-items-start flex-wrap" >
-                                <div class="d-flex align-items-center gap-1" style="min-width: 120px;" *ngIf="media?.type == 'WEBSITE'">
-                                    <i class="ti ti-world fs-1"></i>
-                                    <div class="text-blue fs-4">
-                                        {{ media?.type | titlecase }}
+
+                    <div style="position: relative; right: 20px;">
+                        <div class="text-azure fs-1 mt-2 fw-bold">
+                            {{candidate?.firstName}} {{candidate?.lastName}}
+                        </div>
+                        <div class="text-muted fs-3 fw-bold" *ngFor="let work of candidate?.workExperiences">
+                            <span *ngIf="work.currentJob == true">
+                                {{work?.designation}}
+                            </span>
+                            
+                        </div>
+                        <div class="text-muted fs-3" [innerHTML]="formatData(candidate?.streetAddress)">
+                            <!-- {{candidate?.streetAddress}} -->
+                        </div>
+                        <div class="text-azure text-decoration-underline cursor-pointer fs-4">
+                            Contact <a href="mailto:{{candidate?.email}}">{{candidate?.firstName}}</a> 
+                        </div>
+                        <div class="mt-3" id="play-btn" *ngIf="candidate?.videoId" (click)="goToVideo()">
+                            <!-- <i class="ti ti-player-play-filled text-yellow cursor-pointer" style="font-size: 40px;"></i> -->
+                            <img src="/assets/play_iconb.gif" alt="">
+                        </div>
+                        <!-- <div class="mt-3" id="play-btn" *ngIf="candidate?.videoId">
+                            <i class="ti ti-player-play-filled text-yellow cursor-pointer" data-bs-toggle="modal" data-bs-target="#modal-large" style="font-size: 40px;"></i>
+                        </div> -->
+        
+                        <div class="text-azure fw-bold fs-3 bold mt-3 mb-4" [innerHTML]="formatData(candidate?.experienceSummary)">
+                           <!-- "{{candidate?.experienceSummary}}" -->
+                        </div>
+                        <div class="d-flex flex-column">
+                            <div *ngFor="let media of candidate?.socialMediaLinks" class="mb-1">
+                                <div class="d-flex align-items-start flex-wrap" >
+                                    <div class="d-flex align-items-center gap-1" style="min-width: 120px;" *ngIf="media?.type == 'WEBSITE'">
+                                        <i class="ti ti-world fs-1"></i>
+                                        <div class="text-blue fs-4">
+                                            {{ media?.type | titlecase }}
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="d-flex align-items-center gap-1" style="min-width: 120px;" *ngIf="media?.type == 'FACEBOOK'">
-                                    <i class="ti ti-brand-facebook text-blue fs-1" style="color: #e4405f;"></i>
-                                    <div class="text-blue fs-4">
-                                        {{media?.type}}
+                                    <div class="d-flex align-items-center gap-1" style="min-width: 120px;" *ngIf="media?.type == 'FACEBOOK'">
+                                        <i class="ti ti-brand-facebook text-blue fs-1" style="color: #e4405f;"></i>
+                                        <div class="text-blue fs-4">
+                                            {{media?.type}}
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="d-flex align-items-center gap-1" style="min-width: 120px;" *ngIf="media?.type == 'TWITTER'">
-                                    <i class="ti ti-brand-twitter text-blue fs-1"></i>
-                                    <div class="text-blue fs-4">
-                                        {{media?.type}}
+                                    <div class="d-flex align-items-center gap-1" style="min-width: 120px;" *ngIf="media?.type == 'TWITTER'">
+                                        <i class="ti ti-brand-twitter text-blue fs-1"></i>
+                                        <div class="text-blue fs-4">
+                                            {{media?.type}}
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="d-flex align-items-center gap-1" style="min-width: 120px;" *ngIf="media?.type == 'INSTAGRAM'">
-                                    <i class="ti ti-brand-instagram fs-1 text-danger"></i>
-                                    <div class="text-blue fs-4">
-                                        {{media?.type}}
+                                    <div class="d-flex align-items-center gap-1" style="min-width: 120px;" *ngIf="media?.type == 'INSTAGRAM'">
+                                        <i class="ti ti-brand-instagram fs-1 text-danger"></i>
+                                        <div class="text-blue fs-4">
+                                            {{media?.type}}
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="d-flex align-items-center gap-1" style="min-width: 120px;" *ngIf="media?.type == 'GITHUB'">
-                                    <i class="ti ti-brand-github fs-1 text-purple"></i>
-                                    <div class="text-blue fs-4">
-                                        {{media?.type}}
+                                    <div class="d-flex align-items-center gap-1" style="min-width: 120px;" *ngIf="media?.type == 'GITHUB'">
+                                        <i class="ti ti-brand-github fs-1 text-purple"></i>
+                                        <div class="text-blue fs-4">
+                                            {{media?.type}}
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="d-flex align-items-center gap-1" style="min-width: 120px;" *ngIf="media?.type == 'LINKEDIN'">
-                                    <i class="ti ti-brand-linkedin fs-1 text-blue"></i>
-                                    <div class="text-blue fs-4">
-                                        {{media?.type}}
+                                    <div class="d-flex align-items-center gap-1" style="min-width: 120px;" *ngIf="media?.type == 'LINKEDIN'">
+                                        <i class="ti ti-brand-linkedin fs-1 text-blue"></i>
+                                        <div class="text-blue fs-4">
+                                            {{media?.type}}
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="fs-4 text-black">
-                                    <a href="https://{{media?.url}}" target="blank" class="text-black">{{media?.url}}</a>
-                                    
+                                    <div class="fs-4 text-black">
+                                        <a href="https://{{media?.url}}" target="blank" class="text-black">{{media?.url}}</a>
+                                        
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                   
+                    
                     
                     
                     
@@ -151,9 +152,7 @@
                             <span class="text p-2 bg-azure text-white fs-4">
                                 Personal Details
                            </span>
-                           <span>
-                            <i class="ti ti-edit text-azure fs-1 cursor-pointer" (click)="personalDetails()"></i>
-                           </span>
+                          
                         </div>  
                         <div>
                             <div class="profile-details mb-2">
@@ -179,17 +178,7 @@
                                         {{candidate?.email}}
                                     </div>
                                 </div>
-                                <!-- <div class="d-flex align-items-center mb-2">
-                                    <div style="min-width: 100px;">
-                                        <div class="fs-5 text-azure bold" style="width: fit-content;">
-                                            Phone
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="text-muted fw-bold fs-11">
-                                        {{candidate?.phone || '--'}}
-                                    </div>
-                                </div> -->
+                               
                                 <div class="d-flex align-items-center mb-2">
                                     <div style="min-width: 100px;">
                                         <div class="fs-3 text-azure bold" style="width: fit-content;">
@@ -244,9 +233,7 @@
                             <span class="text p-2 bg-azure text-white fs-4 ">
                                My Expertise
                            </span>
-                           <span class="cursor-pointer">
-                            <i class="ti ti-edit text-azure fs-1" (click)="updateSkills()"></i>
-                           </span>
+                          
                         </div>
                         <div>
                             <div class="mb-3 d-flex flex-column justify-content-start align-items-start" *ngFor="let skill of candidate?.candidateSkills">
@@ -276,9 +263,7 @@
                             <span class="text p-2 bg-azure text-white fs-4">
                                 Experiences 
                            </span>
-                           <span>
-                            <i class="ti ti-edit text-azure fs-1 cursor-pointer" (click)="updateExperiance()"></i>
-                           </span>
+                           
                         </div>
                         <div class="d-flex align-items-start justify-content-start mb-3">
                             <div>
@@ -319,9 +304,7 @@
                             <span class="text p-2 bg-azure text-white fs-4">
                                 Education
                            </span>
-                           <span>
-                            <i class="ti ti-edit text-azure fs-1 cursor-pointer" (click)="updateEducation()"></i>
-                           </span>
+                          
                         </div>
                         <div class="d-flex align-items-start justify-content-start">
                             <div>
@@ -369,24 +352,3 @@
 
 </div>
 
-
-
-<div class="modal modal-blur fade" id="modal-large" tabindex="-1" style="display: none; z-index: 9999;" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body d-flex align-items-center justify-content-center">
-            <div>
-                <video width="400" height="400" controls *ngIf="candidate?.videoId && videoUrl">
-                    <source [src]="videoUrl" type="video/mp4">
-                    <source [src]="videoUrl" type="video/ogg">
-                    Your browser does not support HTML video.
-                  </video>
-            </div>
-            
-        </div>
-      </div>
-    </div>
-</div>

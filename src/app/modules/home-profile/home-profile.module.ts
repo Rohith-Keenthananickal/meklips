@@ -5,16 +5,22 @@ import { HomeProfileRoutingModule } from './home-profile-routing.module';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileVideoComponent } from './pages/profile-video/profile-video.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { CandidateProfileComponent } from './pages/profile/candidate-profile.component';
+import { QRCodeModule } from 'angularx-qrcode';
+import {ClipboardModule} from '@angular/cdk/clipboard';
 
 @NgModule({
   declarations: [
     ProfileComponent,
-    ProfileVideoComponent
+    ProfileVideoComponent,
+    CandidateProfileComponent,
   ],
   imports: [
     CommonModule,
     HomeProfileRoutingModule,
-    MatTooltipModule
+    MatTooltipModule,
+    QRCodeModule,
+    ClipboardModule,
 
   ]
 })
