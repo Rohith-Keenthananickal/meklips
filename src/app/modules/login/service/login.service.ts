@@ -12,7 +12,7 @@ export class LoginService {
   constructor(private http: HttpClient,private router: Router) { }
 
   login(payload : Login){
-    return this.http.post(`${environment.url}/login`, payload)
+    return this.http.post(`${environment.url}/users/login`, payload)
   }
 
 

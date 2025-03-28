@@ -1,3 +1,5 @@
+/* Gradient Colors */
+
 .outer-layer{
     background-color: #E6E7E8;
     width: 100%;
@@ -6,11 +8,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: auto;
 }
 
 .inner-layer{
-    width: 90%;
-    min-height: 100vh;
+    width: 80%;
+    box-sizing: border-box;
+    // width: fit-content;
+    // min-height: 95vh;
+    display: flex;
+    align-items: center;
     background-color: #FFF;
     margin: 20px 0;
     border-radius: 50%/10%;
@@ -19,6 +26,7 @@
     text-indent: 0.1em;
     position: relative;
     z-index: 9999;
+
 }
 
 .inner-layer:before {
@@ -37,16 +45,31 @@
     width: 200px;
 }
 #round-div{
-    border: 3px solid #5988C7;
+    border: 5px solid #5988C7;
     background-color: #FFF;
-    width: 110px;
-    height: 110px;
+    width: 160px;
+    height: 160px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
+.img{
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .avatar-xl {
-    --tblr-avatar-size: 6rem !important;
+    --tblr-avatar-size: 9rem !important;
+    // display: block;
+}
+.main{
+  padding: 50px;
+  margin: 50px;
+  margin-left: 0px;
+  margin-right: 0px;
+  box-sizing: border-box;
 }
 
 #play-btn{
@@ -167,6 +190,7 @@
 #menu-btn{
   position: absolute;
   z-index: 99999;
-  top: 100px;
+  top: 50px;
   left: 50px;
 }
+

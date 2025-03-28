@@ -1,0 +1,19 @@
+<div class="outer-layer">
+    <div class="inner-layer m-3">
+        <div>
+
+        </div>
+        <div id="main">
+            <video #videoPlayer style="height: 70vh; max-width: 286px; border-radius: 14px;" controls *ngIf="videoUrl">
+                <source [src]="videoUrl" type="video/mp4">
+                <source [src]="videoUrl" type="video/ogg">
+                Your browser does not support HTML video.
+              </video>
+        </div>
+        <div style="margin-top: 100px;">
+            <div class="round" (click)="backToProfile()" mat-raised-button matTooltip="Back" matTooltipPosition="above">
+                <i class="ti ti-arrow-back-up fs-1 text-white"></i>
+            </div>
+        </div>
+    </div>
+</div>

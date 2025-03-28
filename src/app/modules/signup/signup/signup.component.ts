@@ -42,22 +42,34 @@ export class SignupComponent {
     
   }
 
+  // getMatchingErrorCodes(err: any, errorCodes: string[]): string[] {
+  //   return err.error.errors
+  //     .map((error: any) => error.code)
+  //     .filter((errorCode: string) => errorCodes.includes(errorCode));
+  // }
+
   signup(){
-    // this.loginPayload.email = this.email;
-    // this.loginPayload.password = this.password
+    localStorage.clear();
     if(this.signUpPayload.password == this.cpassword){
+      localStorage.setItem("meklips.email",this.signUpPayload.email)
       this.signupService.signup(this.signUpPayload).subscribe({
         next:(res: any)=>{
           console.log(res);
           if(res.status == 200){
-            this.advancedView();
             this.login();
+            
+            
             
           }
         },
         error:(err:any)=>{
           console.log(err);
-          this.toastr.error('Failed To Register', 'Error', {
+          console.log(err.error.errors);
+          const errorValues = Object.values(err.error.errors)[0];
+          const errorMessage = errorValues[0];
+          console.log(errorMessage);
+        
+          this.toastr.error(errorMessage, 'Error', {
             positionClass: 'toast-top-right',
           });
         }
@@ -75,18 +87,16 @@ export class SignupComponent {
   }
 
   login() {
-    this.authService.login(this.signUpPayload).subscribe(
-      (response) => {
+    this.authService.login(this.signUpPayload).subscribe({
+      next:(res)=>{
         // Successful login, handle the response or navigate to a different page
-        console.log(response);
-        
-        
-        
+        console.log(res);
+        this.advancedView();
       },
-      (error) => {
-        // Handle login error
-        console.error('Login error:', error);
+      error:(err)=>{
+        console.error('Login error:', err);
       }
+    }
     );
   }
 

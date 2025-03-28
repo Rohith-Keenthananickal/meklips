@@ -1,0 +1,72 @@
+<div class="card border-yellow border-3">
+  <div class="card-body d-flex justify-content-between " style="height: 99vh;">
+    <div class="d-flex flex-column justify-content-between" style="width: 33%;">
+      <div>
+        <img src="/assets/me-logo.png" alt="" width="100">
+      </div>
+      <div class="text-center">
+        <img src="/assets/apple-watch.png" alt="" class="apple-watch">
+      </div>
+      <div>
+        <img src="/assets/volume.png" alt="" width="100">
+      </div>
+    </div>
+    <div style="width: 360px">
+      <div class="card border-yellow border-3" style="height: calc(100vh - 38px);">
+        <div class="card-body p-0">
+          <div>
+            <i class="ti ti-menu-2 fs-1 cursor-pointer text-white menu-icon"></i>
+            <!-- <img src="/assets/qr-code-new.svg" alt="" class="qr-image text-white"> -->
+            <img src="/assets/half_moon.svg" alt="" class="moon">
+            <span class="text at text-white fw-bold fs-1">&#64;</span>
+            <img width="200" height="200" src="/assets/user-img.jpg" alt="" style="width: 100%;">
+            <div class="background-blue" style="height: 263px;">
+              <div class="text-white text-center d-flex flex-column justify-content-center align-items-center">
+              <span class="profile-name">{{candidate?.firstName}} {{candidate?.lastName}}</span>
+              <span *ngFor="let work of candidate?.workExperiences">
+                <span *ngIf="work.currentJob == true" class="profile-role text-center">
+                    {{work?.designation}} &#64; {{work?.companyName}} <br> {{work?.location}}
+                </span>
+              </span>
+
+
+              <span class="card-title fs-4 fw-normal p-2 pt-0 mt-2">
+                {{candidate?.experienceSummary}}
+              </span>
+            </div>
+            
+            
+            
+          </div>
+          <div class="d-flex flex-column justify-content-between align-items-center bottom-part">
+            <span>
+              <ul class="nav nav-tabs nav-fill p-0 m-2 d-flex justify-content-center gap-2" data-bs-toggle="tabs" role="tablist">
+                <li class="nav-item" role="presentation" *ngFor="let highlight of candidate?.candidateHighlights; let i = index">
+                  <a href="#tabs-home-{{i}}" (click)="selectedHighlight = i" class="nav-link p-1 fw-500" [ngClass]="{'active': i === 0}" data-bs-toggle="tab" aria-selected="true" role="tab">{{highlight?.highlightKey}}</a>
+                </li>
+              </ul>
+              <span class="tab-content d-block">
+                <span class="heighlight-content">
+                  {{candidate?.candidateHighlights[selectedHighlight]?.highlightValue}}
+                </span>
+              </span>
+            </span>
+            
+
+            <span class="d-flex justify-content-center align-items-center">
+              <img src="/assets/mK-logo.png" alt="mK-logo" width="120">
+              <img src="/assets/share.svg" alt="share" width="30">
+            </span>
+          </div>
+        </div>
+          
+        </div>
+      </div>
+    </div>
+    <div style="width: 33%;">
+      <div class="h-100 d-flex flex-column justify-content-center align-items-center">
+        <img src="/assets/watch-img.jpeg" alt="" style="width: 40%;">
+      </div>
+    </div>
+  </div>
+</div>

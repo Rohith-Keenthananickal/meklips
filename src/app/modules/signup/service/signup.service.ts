@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from 'src/environment/environment';
-import { Candidate, CandidateSkill, Signup, Video } from '../models/signup.models';
+import { Candidate, CandidateSkill, CandidateSummaryPayload, Signup, Video } from '../models/signup.models';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class SignupService {
   constructor(private http: HttpClient, private router: Router) { }
 
   signup(payload: Signup): Observable<HttpResponse<any>> {
-    return this.http.post(`${environment.url}/register`, payload, { observe: 'response' });
+    return this.http.post(`${environment.url}/users/register`, payload, { observe: 'response' });
   }
 
   getUserId(){
@@ -40,9 +40,18 @@ export class SignupService {
     return this.http.put(`${environment.url}/api/CandidateSkill/${candidateId}/${id}`, payload);
   }
 
+  updateSocialMedia(payload : any, id : any, candidateId : any){
+    return this.http.put(`${environment.url}/api/SocialMediaLink/${candidateId}/${id}`, payload);
+  }
+
   newSkills(payload : any){
     return this.http.post(`${environment.url}/api/CandidateSkill`, payload);
   }
+
+  newSocialMedia(payload : any){
+    return this.http.post(`${environment.url}/api/SocialMediaLink`, payload);
+  }
+
 
   updateEducation(payload : any, id : any, candidateId : any){
     return this.http.put(`${environment.url}/api/EducationalDegree/${candidateId}/${id}`, payload);
@@ -50,6 +59,18 @@ export class SignupService {
 
   AddEducation(payload : any){
     return this.http.post(`${environment.url}/api/EducationalDegree`, payload);
+  }
+
+  deleteEducation(id){
+    return this.http.delete(`${environment.url}/api/EducationalDegree/${id}`);
+  }
+
+  deleteWorkExperiance(id){
+    return this.http.delete(`${environment.url}/api/WorkExperience/${id}`);
+  }
+
+  deleteSkill(id){
+    return this.http.delete(`${environment.url}/api/CandidateSkill/${id}`);
   }
 
   updateWorkExperiance(payload : any, id : any, candidateId : any){
@@ -62,5 +83,9 @@ export class SignupService {
 
   getDegree(){
     return this.http.get(`${environment.url}/api/University`);
+  }
+
+  updateCandidateSummary(payload : CandidateSummaryPayload,candidateId : any){
+    return this.http.put(`${environment.url}/api/Candidates/${candidateId}/Summary`, payload);
   }
 }

@@ -14,7 +14,11 @@ export class ProfileService {
   constructor(private http: HttpClient,private router: Router) { }
 
   getUserData(){
-    return this.http.get(`${environment.url}/api/Candidates`)
+    return this.http.get(`${environment.url}/candidates`)
+  }
+
+  getCandidateById(id : number){
+    return this.http.get(`${environment.url}/candidates/${id}`)
   }
 
   getImage(id: number){
@@ -24,7 +28,17 @@ export class ProfileService {
   }
 
   getVideo(id: number){
-    return this.http.get(`${environment.url}/api/Video/${id}/download`)
+    return this.http.get(`${environment.url}/api/Video/${id}/download`,{
+      responseType: 'blob'
+    })
+  }
+
+  getUserImage(id: number){
+    return this.http.get(`${environment.url}/candidates/image/${id}`)
+  }
+
+  getUserVideo(id: number){
+    return this.http.get(`${environment.url}/candidates/video/${id}`)
   }
 
 }

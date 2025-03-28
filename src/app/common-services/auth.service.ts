@@ -16,7 +16,7 @@ export class AuthService {
 
   login(login : Login): Observable<any> {
     // return this.http.post<any>(`${environment.url}/login`, login,{ context: new HttpContext().set(BYPASS_INJECTION, true)}).pipe(
-      return this.http.post<any>(`${environment.url}/login`, login).pipe(
+      return this.http.post<any>(`${environment.url}/users/login`, login).pipe(
       tap((tokens) => this.saveTokens(tokens)),
       catchError((error) => throwError(error)) // Handle login errors
     );
@@ -32,7 +32,7 @@ export class AuthService {
     return this.http.post<any>(`${environment.url}/refresh`, { refreshToken }).pipe(
       tap((tokens) => this.saveTokens(tokens)),
       catchError((error) => {
-        this.logout(); // Logout if token refresh fails
+        // this.logout(); // Logout if token refresh fails
         return throwError(error);
       })
     );

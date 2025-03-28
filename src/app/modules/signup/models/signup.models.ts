@@ -20,6 +20,9 @@ export class Candidate {
     socialMediaLinks: SocialMediaLink[]
     workExperiences: WorkExperience[]
     candidateSkills: CandidateSkill[]
+    streetAddress : string;
+    id : string;
+    candidateHighlights: CandidateHighlight[];
   }
   
   export class CurrentAddress {
@@ -41,9 +44,11 @@ export class Candidate {
     location : string;
     notes : string
     id: string;
+    fieldOfStudy: string;
   }
   
   export class SocialMediaLink {
+    id: string
     candidateId: number
     type: string
     url: string
@@ -54,7 +59,7 @@ export class Candidate {
     designation: string
     companyName: string
     startDate: string
-    currentJob: boolean
+    currentJob: boolean = false;
     endDate: string
     responsibilities: string;
     contactNumber: string
@@ -72,4 +77,17 @@ export class Candidate {
 
   export class Video{
     FileContent : File;
+  }
+
+  export class CandidateSummaryPayload{
+    candidateId : number;
+    experienceSummary : string;
+    technicalSummary : string;
+  }
+
+  export class CandidateHighlight{
+    id : string;
+    candidateId : number;
+    highlightKey : string;
+    highlightValue : string;
   }
