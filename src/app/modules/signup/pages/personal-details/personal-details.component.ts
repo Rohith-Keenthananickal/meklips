@@ -111,7 +111,7 @@ export class PersonalDetailsComponent implements OnInit{
   updateProfile(){
     this.loader = true
     console.log(this.candidate);
-    let id = localStorage.getItem('userId')
+    let id = localStorage.getItem('meklips.userId')
     let payload = this.candidate
     delete payload.dpId;
     delete payload.videoId;

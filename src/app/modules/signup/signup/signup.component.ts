@@ -55,21 +55,17 @@ export class SignupComponent {
       this.signupService.signup(this.signUpPayload).subscribe({
         next:(res: any)=>{
           console.log(res);
-          if(res.status == 200){
-            this.login();
-            
-            
-            
-          }
+          this.advancedView();
+          this.login();
         },
         error:(err:any)=>{
           console.log(err);
-          console.log(err.error.errors);
-          const errorValues = Object.values(err.error.errors)[0];
-          const errorMessage = errorValues[0];
-          console.log(errorMessage);
+          console.log(err.error.error);
+          // const errorValues = Object.values(err.error.errors)[0];
+          // const errorMessage = errorValues[0];
+          // console.log(errorMessage);
         
-          this.toastr.error(errorMessage, 'Error', {
+          this.toastr.error(err.error.error, 'Error', {
             positionClass: 'toast-top-right',
           });
         }
@@ -91,6 +87,8 @@ export class SignupComponent {
       next:(res)=>{
         // Successful login, handle the response or navigate to a different page
         console.log(res);
+        let userId = res?.data?.user?.id
+        localStorage.setItem("meklips.userId",userId)
         this.advancedView();
       },
       error:(err)=>{

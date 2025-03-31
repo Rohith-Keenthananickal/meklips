@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/common-services/auth.service';
 import { ProfileService } from '../../service/profile.service';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { Candidate } from 'src/app/modules/signup/models/signup.models';
 import { HttpErrorResponse } from '@angular/common/http';
 @Component({
@@ -15,6 +15,7 @@ export class ProfileCardComponent implements OnInit {
   public candidate : Candidate;
   public loader : boolean;
   public selectedHighlight : number = 0;
+  public imageUrl: string;
   constructor(private authService: AuthService,
     private profileService : ProfileService,
     private toastr: ToastrService,
@@ -25,6 +26,28 @@ export class ProfileCardComponent implements OnInit {
   ngOnInit() {
     this.candidateId = Number(localStorage.getItem('meklips.userId'));
     this.getCandidateInfo();
+  }
+
+  goToPersonalDetails(){
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        edit:true,
+      }
+    }
+    this.router.navigate(['signup/personal-details'],navigationExtras)
+  }
+
+  openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+  }
+
+  logout(){
+    this.authService.logout();
+    this.router.navigate(['login']);
+  }
+
+  closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
   }
 
   getCandidateInfo(){

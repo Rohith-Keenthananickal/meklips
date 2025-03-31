@@ -181,7 +181,7 @@ export class PreviousEmploymentComponent implements OnInit {
     // this.addWorkExperience();
     this.saveToCard();
     this.updateFormData();
-    this.router.navigate(['signup/education']);
+    this.router.navigate(['signup/highlights']);
   }
 
   back(){

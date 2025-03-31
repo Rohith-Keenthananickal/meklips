@@ -18,7 +18,7 @@ export class ProfileService {
   }
 
   getCandidateById(id : number){
-    return this.http.get(`${environment.url}/candidates/${id}`)
+    return this.http.get(`${environment.url}api/candidates/${id}`)
   }
 
   getImage(id: number){

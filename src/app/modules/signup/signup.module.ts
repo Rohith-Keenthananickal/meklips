@@ -21,6 +21,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { UploaderModule } from "angular-uploader";
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { HighlightsComponent } from './pages/highlights/highlights.component';
 
 
 // import { ToastrModule } from 'ngx-toastr';
@@ -35,6 +36,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     EducationComponent,
     SkillsComponent,
     ProfileSummaryComponent,
+    HighlightsComponent,
     // DatePipe
   ],
   imports: [

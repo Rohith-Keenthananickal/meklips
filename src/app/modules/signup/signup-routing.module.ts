@@ -9,6 +9,7 @@ import { EducationComponent } from './pages/education/education.component';
 import { SkillsComponent } from './pages/skills/skills.component';
 import { ProfileSummaryComponent } from './pages/profile-summary/profile-summary.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
+import { HighlightsComponent } from './pages/highlights/highlights.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,11 @@ const routes: Routes = [
   {
     path: 'profile-summary',
     component : ProfileSummaryComponent,
+    // canActivate: [AuthGuard]
+  },
+  {
+    path: 'highlights',
+    component : HighlightsComponent,
     // canActivate: [AuthGuard]
   },
   // {

@@ -78,7 +78,7 @@ export class ProfileSummaryComponent implements OnInit {
   }
 
   profileView(){
-    this.router.navigate(['profile']);
+    this.router.navigate(['/profile']);
   }
 
   imageSelect(event: any) {
@@ -107,12 +107,12 @@ export class ProfileSummaryComponent implements OnInit {
 
   uploadImage(){
     this.loader = true
-    let candidateId= localStorage.getItem('userId');
+    let candidateId= localStorage.getItem('candidateId');
     let fileName = this.getImage?.addedFiles[0]?.name;
     let video = this.getImage?.addedFiles[0];
     if(this.getImage?.addedFiles?.length > 0){
       const form = new FormData();
-      form.append('FileContent', video);
+      form.append('image', video);
       this.signupService.uploadDp(form,candidateId,fileName).subscribe({
         next:(res : any)=>{
           console.log(res);
@@ -129,14 +129,14 @@ export class ProfileSummaryComponent implements OnInit {
 
   uploadVideo(){
     
-    let candidateId= localStorage.getItem('userId');
+    let candidateId= localStorage.getItem('candidateId');
     let fileName = this.getVideo?.addedFiles[0]?.name;
     let video = this.getVideo?.addedFiles[0];
     if(this.getVideo?.addedFiles.length > 0){
       this.videoLoader = true
       this.loaderMessage = 'Video is Processing, Please Wait'
       const form = new FormData();
-      form.append('FileContent', video);
+      form.append('video', video);
       this.signupService.uploadVideo(form,candidateId,fileName).subscribe({
         next:(res : any)=>{
           console.log(res);
@@ -189,13 +189,14 @@ export class ProfileSummaryComponent implements OnInit {
     this.loader = true
     this.candidatePayload = this.processData();
     delete this.candidatePayload.currentAddress;
+    this.candidatePayload.userId = localStorage.getItem('meklips.userId');
     this.signupService.candidateBulk(this.candidatePayload).subscribe({
       next:(res:any)=>{
         console.log(res);
         this.toastr.success('Candidate Profile Saved Successfully', 'Success', {
           positionClass: 'toast-top-right',
         });
-        localStorage.setItem('userId',res.id);
+        localStorage.setItem('candidateId',res.data.id);
         this.uploadImage();
         this.uploadVideo();
         this.loader = false
@@ -213,7 +214,7 @@ export class ProfileSummaryComponent implements OnInit {
 
   back(){
     console.log("bacvk");
-    this.router.navigate(['signup/skills']);
+    this.router.navigate(['signup/highlights']);
   }
 
   cancel(){

@@ -20,9 +20,11 @@ export class Candidate {
     socialMediaLinks: SocialMediaLink[]
     workExperiences: WorkExperience[]
     candidateSkills: CandidateSkill[]
+    
     streetAddress : string;
     id : string;
     candidateHighlights: CandidateHighlight[];
+    userId : any;
   }
   
   export class CurrentAddress {

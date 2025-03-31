@@ -13,7 +13,7 @@ export class SignupService {
   constructor(private http: HttpClient, private router: Router) { }
 
   signup(payload: Signup): Observable<HttpResponse<any>> {
-    return this.http.post(`${environment.url}/users/register`, payload, { observe: 'response' });
+    return this.http.post(`${environment.url}api/users/register`, payload, { observe: 'response' });
   }
 
   getUserId(){
@@ -21,19 +21,19 @@ export class SignupService {
   }
 
   candidateBulk(payload : Candidate){
-    return this.http.post(`${environment.url}/api/Candidates`, payload);
+    return this.http.post(`${environment.url}api/candidates/`, payload);
   }
 
   uploadVideo(payload , userId : string, fileName : string){
-    return this.http.post(`${environment.url}/api/Video/upload?CandidateId=${userId}&FileName=${fileName}`, payload);
+    return this.http.post(`${environment.url}api/candidates/${userId}/video`, payload);
   }
 
   uploadDp(payload , userId : string, fileName : string){
-    return this.http.post(`${environment.url}/api/Dp/upload?CandidateId=${userId}&FileName=${fileName}`, payload);
+    return this.http.post(`${environment.url}api/candidates/${userId}/image`, payload);
   }
 
   updateCandidate(payload : Candidate, id : any){
-    return this.http.put(`${environment.url}/api/Candidates/${id}`, payload);
+    return this.http.put(`${environment.url}api/candidates/${id}`, payload);
   }
 
   updateSkills(payload : any, id : any, candidateId : any){
