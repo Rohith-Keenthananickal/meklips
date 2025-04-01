@@ -60,6 +60,7 @@ export class ProfileCardComponent implements OnInit {
         localStorage.setItem('formData',JSON.stringify(this.candidate));
         // localStorage.setItem('userId',res.id)
         localStorage.setItem('CandidateId',String(this.candidate?.currentAddress?.candidateId))
+        this.imageUrl = ('https://api.meklips.com/media/user_images/' + this.candidate?.dpId);
         this.loader = false
         // this.getVideo();
         
