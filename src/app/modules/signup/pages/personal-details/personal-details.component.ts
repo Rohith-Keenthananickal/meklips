@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, ParamMap, Router } from '@angular/router';
 import { FormDataService } from '../../service/form-data.service';
 import { Candidate, CurrentAddress } from '../../models/signup.models';
 import { SignupService } from '../../service/signup.service';
@@ -47,6 +47,16 @@ export class PersonalDetailsComponent implements OnInit{
     this.candidate.currentAddress=this.currentAddress;
   
   }
+
+  goToNextPage(){
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        edit:true,
+      }
+    }
+    this.router.navigate(['signup/previous-employment'],navigationExtras)
+  }
+
 
   openDatepicker() {
     this.datepicker.open();

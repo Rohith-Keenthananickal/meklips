@@ -8,7 +8,6 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { CandidateProfileComponent } from './pages/profile/candidate-profile.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import {ClipboardModule} from '@angular/cdk/clipboard';
-import { ProfileNewUiComponent } from './pages/profile-new-ui/profile-new-ui.component';
 import { ProfileCardComponent } from './pages/profile-card/profile-card.component';
 
 @NgModule({
@@ -16,7 +15,6 @@ import { ProfileCardComponent } from './pages/profile-card/profile-card.componen
     ProfileComponent,
     ProfileVideoComponent,
     CandidateProfileComponent,
-    ProfileNewUiComponent,
     ProfileCardComponent
   ],
   imports: [

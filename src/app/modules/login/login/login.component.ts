@@ -11,7 +11,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  public user = new Login()
+  public user = new Login();
+  public loading : boolean = false;
   constructor(private router:Router,
     private loginService : LoginService,
     private authService: AuthService,
@@ -40,6 +41,7 @@ export class LoginComponent {
   // }
 
   login() {
+    this.loading = true;
     localStorage.setItem("meklips.email",this.user.email)
     this.authService.login(this.user).subscribe(
       (response) => {
@@ -47,11 +49,14 @@ export class LoginComponent {
         console.log(response);
         let userId = response?.data?.user?.id
         localStorage.setItem("meklips.userId",userId)
+        this.loading = false;
+        
         this.router.navigate(['login/welcome']);
         
       },
       (error) => {
-        
+        this.loading = false;
+      
         // Handle login error
         console.error('Login error:', error);
         if(error.status == 401){

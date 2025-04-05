@@ -14,10 +14,11 @@ export class ProfileVideoComponent implements OnInit{
   videoAspectRatio: number;
   public candidate : Candidate;
   video: string;
-  videoUrl: SafeUrl;
+  // videoUrl: SafeUrl;
   public videoId
   subscription: any;
   public candidateId;
+  public videoUrl : string;
 
 
   constructor(private profileService : ProfileService,
@@ -37,6 +38,7 @@ export class ProfileVideoComponent implements OnInit{
     let localData = localStorage.getItem('formData');
     let parsedData = JSON.parse(localData)
     this.videoId = parsedData.videoId;
+    this.videoUrl = ('https://api.meklips.com/media/profile_videos/' + parsedData?.videoId);
     console.log(this.videoId);
     this.getVideo()
     
@@ -66,17 +68,17 @@ export class ProfileVideoComponent implements OnInit{
   // }
 
   getVideo() {
-    this.profileService.getVideo(this.videoId).subscribe({
-      next: (res: any) => {
-        console.log(res);
-        this.video = URL.createObjectURL(res);
-        console.log(this.video);
-        this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.video as string);
-      },
-      error: (err: any) => {
-        console.error(err);
-      }
-    });
+    // this.profileService.getVideo(this.videoId).subscribe({
+    //   next: (res: any) => {
+    //     console.log(res);
+    //     this.video = URL.createObjectURL(res);
+    //     console.log(this.video);
+    //     this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.video as string);
+    //   },
+    //   error: (err: any) => {
+    //     console.error(err);
+    //   }
+    // });
     
   }
 

@@ -159,6 +159,38 @@
                                             </div>
                                         </div>
 
+                                        <!-- <div class="profile-image-wrapper" *ngIf="candidate?.dpId">
+                                            <label class="form-label">Current Profile Picture</label><br>
+                                            <img
+                                              [src]="'https://api.meklips.com/media/user_images/' + candidate.dpId"
+                                              alt="Profile Picture"
+                                              class="rounded-circle"
+                                              width="120"
+                                              height="120"
+                                            />
+                                          </div>
+                                          
+                                          <div>
+                                            <label class="form-label mt-3">Upload New Profile Picture</label>
+                                            <ngx-dropzone
+                                              (change)="imageSelect($event)"
+                                              style="height: 100%; width: fit-content;"
+                                              accept="image/jpeg,image/jpg,image/png,image/gif"
+                                            >
+                                              <ngx-dropzone-label style="padding: 20px;">
+                                                Drag or click to upload
+                                              </ngx-dropzone-label>
+                                          
+                                              <ngx-dropzone-image-preview
+                                                *ngFor="let f of imageFile"
+                                                [file]="f"
+                                                [removable]="true"
+                                                (removed)="onRemoveImage(f)"
+                                              ></ngx-dropzone-image-preview>
+                                            </ngx-dropzone>
+                                        </div> -->
+                                          
+
                                         
                                         <div class="card mb-3 w-75">
                                             <div class="card-body">

@@ -12,7 +12,7 @@ export class Candidate {
     mobile: string
     dob: string
     gender: string
-    dpId : number;
+    dpId : any;
     videoId : number;
     experienceSummary: string
     technicalSummary: string

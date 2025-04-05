@@ -105,31 +105,47 @@ export class ProfileSummaryComponent implements OnInit {
   }
 
 
-  uploadImage(){
-    this.loader = true
-    let candidateId= localStorage.getItem('candidateId');
-    let fileName = this.getImage?.addedFiles[0]?.name;
-    let video = this.getImage?.addedFiles[0];
-    if(this.getImage?.addedFiles?.length > 0){
+  uploadImage() {
+    this.loader = true;
+    let candidateId = this.candidate.id;
+  
+    if (this.getImage?.addedFiles?.length > 0) {
+      let originalFile = this.getImage.addedFiles[0];
+      let originalName = originalFile.name;
+  
+      // Extract file extension
+      let fileExtension = originalName.substring(originalName.lastIndexOf('.'));
+      
+      // Generate random string or number
+      let uniqueSuffix = Date.now() + '-' + Math.floor(Math.random() * 10000);
+  
+      // Create new file name with unique suffix
+      let newFileName = originalName.replace(fileExtension, '') + '-' + uniqueSuffix + fileExtension;
+  
+      // Create a new File object with the new name
+      const newFile = new File([originalFile], newFileName, { type: originalFile.type });
+  
       const form = new FormData();
-      form.append('image', video);
-      this.signupService.uploadDp(form,candidateId,fileName).subscribe({
-        next:(res : any)=>{
+      form.append('image', newFile);
+      console.log(form);
+      
+      this.signupService.uploadDp(form, candidateId, newFileName).subscribe({
+        next: (res: any) => {
           console.log(res);
-          this.loader = false
+          this.loader = false;
         },
-        error:(err : any)=>{
+        error: (err: any) => {
           console.log(err);
-          this.loader = false
+          this.loader = false;
         }
       });
-    } 
-   
+    }
   }
+  
 
   uploadVideo(){
     
-    let candidateId= localStorage.getItem('candidateId');
+    let candidateId= this.candidate.id;
     let fileName = this.getVideo?.addedFiles[0]?.name;
     let video = this.getVideo?.addedFiles[0];
     if(this.getVideo?.addedFiles.length > 0){
@@ -222,9 +238,10 @@ export class ProfileSummaryComponent implements OnInit {
   }
 
   updateSummary(){
-    this.summaryPayload.candidateId = Number(this.candidate.id)
-    this.summaryPayload.experienceSummary = this.candidate.experienceSummary
-    this.signupService.updateCandidateSummary(this.summaryPayload, this.candidate.id).subscribe({
+    let id = localStorage.getItem('meklips.userId')
+    // this.summaryPayload.candidateId = Number(this.candidate.id)
+    // this.summaryPayload.experienceSummary = this.candidate.experienceSummary
+    this.signupService.updateCandidate(this.candidate,id).subscribe({
       next:(res:any)=>{
         console.log(res);
         
@@ -237,25 +254,41 @@ export class ProfileSummaryComponent implements OnInit {
   }
 
   getUserImage() {
-    if (this.candidate.dpId !== 0) {
-      this.profileService.getImage(this.candidate.dpId).subscribe({
-        next: (res: any) => {
-          console.log(res);
-          this.image = URL.createObjectURL(res);
-          console.log(this.image);
-          this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(this.image as string);
+    // if (this.candidate.dpId !== 0) {
+    //   this.profileService.getImage(this.candidate.dpId).subscribe({
+    //     next: (res: any) => {
+    //       console.log(res);
+    //       this.image = URL.createObjectURL(res);
+    //       console.log(this.image);
+    //       this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(this.image as string);
 
-          // Create a File object with the provided data
-          const mockFile = new File([res], 'profile-picture.jpg', { type: 'image/jpeg' });
+    //       // Create a File object with the provided data
+    //       const mockFile = new File([res], 'profile-picture.jpg', { type: 'image/jpeg' });
 
-          // Add the mock file to the imageFile array
-          this.imageFile.push(mockFile);
-        },
-        error: (err: any) => {
-          console.log(err);
-        }
-      });
-    }
+    //       // Add the mock file to the imageFile array
+    //       this.imageFile.push(mockFile);
+    //     },
+    //     error: (err: any) => {
+    //       console.log(err);
+    //     }
+    //   });
+    // }
+    this.imageUrl = ('https://api.meklips.com/media/user_images/' + this.candidate?.dpId);
+    // this.imageFile.push(this.imageUrl);
+
+    // this.fetchImageAsFile(this.imageUrl,this.candidate.dpId)
+  }
+
+  fetchImageAsFile(url: string, filename: string) {
+    fetch(url)
+      .then(res => res.blob())
+      .then(blob => {
+        const file = new File([blob], filename, { type: blob.type });
+        this.imageFile.push(file);
+        console.log(this.imageFile);
+        
+      })
+      .catch(err => console.error('Image prefill failed:', err));
   }
 
   getUSerVideo() {

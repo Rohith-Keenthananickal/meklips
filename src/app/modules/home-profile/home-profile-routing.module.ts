@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileVideoComponent } from './pages/profile-video/profile-video.component';
 import { CandidateProfileComponent } from './pages/profile/candidate-profile.component';
-import { ProfileNewUiComponent } from './pages/profile-new-ui/profile-new-ui.component';
 import { ProfileCardComponent } from './pages/profile-card/profile-card.component';
 
 const routes: Routes = [
@@ -15,10 +14,6 @@ const routes: Routes = [
   {
     path: 'card',
     component : ProfileCardComponent
-  },
-  {
-    path: 'ui',
-    component : ProfileNewUiComponent
   },
   {
     path:'video',

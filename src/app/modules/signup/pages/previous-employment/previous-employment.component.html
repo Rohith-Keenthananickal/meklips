@@ -203,7 +203,7 @@
                                                     <div class="col-4">
                                                         <label class="form-label ">Start Date</label>
                                                         <div class="input-icon mb-2">
-                                                            <input matInput [matDatepicker]="picker" (click)="openDatepicker()" class="form-control" (dateInput)="startDate('input', $event)" [(ngModel)]="workExperiences.startDate" placeholder="Select Start Date">
+                                                            <input matInput [matDatepicker]="picker" (click)="openDatepicker()" class="form-control" (dateInput)="startDate('input', $event)" [(ngModel)]="workExperiences.startDate" [max]="currentDate" placeholder="Select Start Date">
                                                             <span class="input-icon-addon">
                                                                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                                                                 <mat-datepicker #picker></mat-datepicker>
@@ -213,7 +213,7 @@
                                                     <div class="col-4">
                                                         <label class="form-label ">End Date</label>
                                                         <div class="input-icon mb-2">
-                                                            <input matInput [matDatepicker]="picker2" (click)="openDatepicker2()" class="form-control" (dateInput)="endDate('input', $event)" [(ngModel)]="workExperiences.endDate" [disabled]="workExperiences.currentJob" placeholder="Select End Date">
+                                                            <input matInput [matDatepicker]="picker2" (click)="openDatepicker2()" [max]="currentDate" class="form-control" (dateInput)="endDate('input', $event)" [(ngModel)]="workExperiences.endDate" [disabled]="workExperiences.currentJob" placeholder="Select End Date">
                                                             <span class="input-icon-addon">
                                                                 <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
                                                                 <mat-datepicker #picker2></mat-datepicker>
@@ -276,7 +276,8 @@
         
                             <div class="d-flex justify-content-end gap-3 mb-4" *ngIf="editable">
                                 <button class="btn" (click)="cancel()">Cancel</button>
-                                <button class="btn btn-azure" (click)="updateWorkExperiance()">Save</button>
+                                <button class="btn btn-azure" (click)="updateWorkExperiance()">Update</button>
+                                <button class="btn btn-azure" (click)="goToNextPage()">Next</button>
                                 
                             </div>
                         </div>

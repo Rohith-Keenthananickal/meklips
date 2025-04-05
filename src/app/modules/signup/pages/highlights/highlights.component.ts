@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ParamMap, Router, ActivatedRoute } from '@angular/router';
+import { ParamMap, Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { Candidate, CandidateHighlight } from '../../models/signup.models';
 import { Subscription } from 'rxjs';
 import { FormDataService } from '../../service/form-data.service';
+import { SignupService } from '../../service/signup.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-highlights',
   templateUrl: './highlights.component.html',
@@ -18,7 +20,9 @@ export class HighlightsComponent implements OnInit{
   public candidate = new Candidate();
   constructor(private router: Router,
     private activeRoute:ActivatedRoute,
-    private formDataService: FormDataService) {
+    private formDataService: FormDataService,
+    private signupService : SignupService,
+    private toastr : ToastrService) {
     // this.router.navigate(['/profile']);
   }
   ngOnInit(): void {
@@ -30,6 +34,44 @@ export class HighlightsComponent implements OnInit{
         console.log(this.editable);
         
       });
+  }
+
+  goToNextPage(){
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        edit:true,
+      }
+    }
+    this.router.navigate(['signup/profile-summary'],navigationExtras)
+  }
+
+  updateData(){
+    this.addHighlight()
+    this.updateFormData();
+    this.loader = true
+    console.log(this.candidate);
+    let id = localStorage.getItem('meklips.userId')
+    let payload = new Candidate();
+    let highLights : CandidateHighlight[];
+    highLights = this.candidateHighlightsList
+    payload.candidateHighlights = highLights
+    this.signupService.updateCandidate(payload,id).subscribe({
+      next:(res:any)=>{
+        console.log(res);
+        this.loader = false
+        this.toastr.success('Highlights Updated', 'Success', {
+          positionClass: 'toast-top-right',
+        });
+        this.router.navigate(['profile']);
+      },
+      error:(err : any)=>{
+        console.log(err);
+        this.loader = false
+        this.toastr.error('Error While Updating Highlights', 'Error', {
+          positionClass: 'toast-top-right',
+        });
+      }
+    })
   }
 
   back(){

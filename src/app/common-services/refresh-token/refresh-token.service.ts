@@ -14,25 +14,25 @@ export class RefreshTokenService {
 
   startTokenRefresh() {
     // Clear existing subscription (if any)
-    this.stopTokenRefresh();
+    // this.stopTokenRefresh();
     
-    if(this.authService.isAuthenticated()){
-        // Set up a new subscription to refresh the token every 50 minutes
-      this.refreshSubscription = interval(50 * 60 * 1000).pipe(
-        switchMap(() => this.authService.refreshToken())
-      ).subscribe(
-        () => console.log('Token refreshed successfully'),
-        error => {
-          console.error('Error refreshing token:', error);
-          this.authService.logout();
-          this.router.navigate(['login']);
+    // if(this.authService.isAuthenticated()){
+    //     // Set up a new subscription to refresh the token every 50 minutes
+    //   this.refreshSubscription = interval(50 * 60 * 1000).pipe(
+    //     switchMap(() => this.authService.refreshToken())
+    //   ).subscribe(
+    //     () => console.log('Token refreshed successfully'),
+    //     error => {
+    //       console.error('Error refreshing token:', error);
+    //       this.authService.logout();
+    //       this.router.navigate(['login']);
 
-        }
-      );
-    }
-    else{
-      this.stopTokenRefresh();
-    }
+    //     }
+    //   );
+    // }
+    // else{
+    //   this.stopTokenRefresh();
+    // }
     
   }
 

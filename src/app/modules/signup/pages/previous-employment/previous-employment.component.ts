@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, ParamMap, Router } from '@angular/router';
 import { FormDataService } from '../../service/form-data.service';
 import { Candidate, WorkExperience } from '../../models/signup.models';
 import {MatDatepicker, MatDatepickerInputEvent, MatDatepickerModule} from '@angular/material/datepicker';
@@ -27,6 +27,7 @@ export class PreviousEmploymentComponent implements OnInit {
   public loader : boolean
   private modalRef: NgbModalRef;
   public edit : boolean = false;
+  public currentDate : Date = new Date();
 
   constructor(private router:Router,
     private formDataService: FormDataService,
@@ -48,6 +49,15 @@ export class PreviousEmploymentComponent implements OnInit {
         console.log(this.editable);
         
       });
+  }
+
+  goToNextPage(){
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        edit:true,
+      }
+    }
+    this.router.navigate(['signup/highlights'],navigationExtras)
   }
 
   ngOnDestroy() {
@@ -192,63 +202,37 @@ export class PreviousEmploymentComponent implements OnInit {
   updateWorkExperiance(){
     this.saveToCard();
     this.loader = true
-    let payload = this.candidate.workExperiences;
-    let candidateId = localStorage.getItem('userId')
-    const filteredArray = payload.filter(obj => Object.keys(obj).length !== 0);
-    const storedFormData = JSON.parse(localStorage.getItem('formData'));
-    
-    filteredArray.forEach((item) => {
-      if (item.id) {
-        const matchingData = storedFormData.workExperiences.find((data) => data.id === item.id);
-  
-        if (!matchingData || !this.isEqual(matchingData, item)) {
-          let id = item.id;
-          let candidateId = item.candidateId;
-          this.signupService.updateWorkExperiance(item, id, candidateId).subscribe({
-            next: (res: any) => {
-              console.log(res);
-              this.loader = false
-
-              this.toastr.success('Work Experiance Updated Successfully', 'Success', {
-                positionClass: 'toast-top-right',
-              });
-            },
-            error: (err: any) => {
-              console.log(err);
-              this.loader = false
-              this.toastr.error('Error while Updating Work Experiance ', 'Error', {
-                positionClass: 'toast-top-right',
-              });
-            },
-          });
-        }
-      } else {
-        item.candidateId = Number(candidateId);
-        this.signupService.AddWorkExperiance(item).subscribe({
-          next: (res: any) => {
-            console.log(res);
-            this.loader = false
-
-            this.toastr.success('Work Experiance Added Successfully', 'Success', {
-              positionClass: 'toast-top-right',
-            });
-          },
-          error: (err: any) => {
-            console.log(err);
-            this.loader = false
-            this.toastr.error('Error while Adding Work Experiance ', 'Error', {
-              positionClass: 'toast-top-right',
-            });
-          },
+    let id = localStorage.getItem('meklips.userId')
+    let payload = new Candidate();
+    let workExperiences : WorkExperience[];
+    workExperiences = this.candidate.workExperiences
+    payload.workExperiences = workExperiences
+    this.signupService.updateCandidate(payload,id).subscribe({
+      next:(res:any)=>{
+        console.log(res);
+        this.loader = false
+        this.toastr.success('Highlights Updated', 'Success', {
+          positionClass: 'toast-top-right',
+        });
+        // this.router.navigate(['profile']);
+        setTimeout(()=>{
+          this.updateFormData();
+          this.router.navigate(['profile']);
+        },1000)
+      },
+      error:(err : any)=>{
+        console.log(err);
+        this.loader = false
+        this.toastr.error('Error While Updating Highlights', 'Error', {
+          positionClass: 'toast-top-right',
         });
       }
-    });
-    setTimeout(()=>{
-      this.updateFormData();
-      this.router.navigate(['profile']);
-    },1000)
     
-  }
+    }
+
+   
+    
+  )}
 
   isEqual(obj1: any, obj2: any): boolean {
     return JSON.stringify(obj1) === JSON.stringify(obj2);

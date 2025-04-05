@@ -13,7 +13,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class ProfileCardComponent implements OnInit {
   public candidateId : number;
   public candidate : Candidate;
-  public loader : boolean;
+  public loading : boolean;
   public selectedHighlight : number = 0;
   public imageUrl: string;
   constructor(private authService: AuthService,
@@ -26,6 +26,10 @@ export class ProfileCardComponent implements OnInit {
   ngOnInit() {
     this.candidateId = Number(localStorage.getItem('meklips.userId'));
     this.getCandidateInfo();
+  }
+
+  goToVideo(){
+    this.router.navigate(['/profile/video']);
   }
 
   goToPersonalDetails(){
@@ -51,6 +55,7 @@ export class ProfileCardComponent implements OnInit {
   }
 
   getCandidateInfo(){
+    this.loading = true;
     this.profileService.getCandidateById(this.candidateId).subscribe({
       next:(res : any)=>{
         console.log(res);
@@ -61,13 +66,13 @@ export class ProfileCardComponent implements OnInit {
         // localStorage.setItem('userId',res.id)
         localStorage.setItem('CandidateId',String(this.candidate?.currentAddress?.candidateId))
         this.imageUrl = ('https://api.meklips.com/media/user_images/' + this.candidate?.dpId);
-        this.loader = false
+        this.loading = false
         // this.getVideo();
         
       },
       error:(err : HttpErrorResponse)=>{
         console.log(err);
-        this.loader = false
+        this.loading = false
         if(err.status == 404){
           this.toastr.error('Please Complete Your Profile', 'Error', {
             positionClass: 'toast-top-right',
