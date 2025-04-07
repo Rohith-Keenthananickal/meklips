@@ -3,6 +3,7 @@ import { ProfileService } from '../../service/profile.service';
 import { Candidate } from 'src/app/modules/signup/models/signup.models';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { environment } from 'src/environment/environment';
 
 @Component({
   selector: 'app-profile-video',
@@ -38,7 +39,7 @@ export class ProfileVideoComponent implements OnInit{
     let localData = localStorage.getItem('formData');
     let parsedData = JSON.parse(localData)
     this.videoId = parsedData.videoId;
-    this.videoUrl = ('https://api.meklips.com/media/profile_videos/' + parsedData?.videoId);
+    this.videoUrl = (environment.url+'media/profile_videos/' + parsedData?.videoId);
     console.log(this.videoId);
     this.getVideo()
     

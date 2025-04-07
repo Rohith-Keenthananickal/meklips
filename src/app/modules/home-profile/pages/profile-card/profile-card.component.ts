@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NavigationExtras, Router } from '@angular/router';
 import { Candidate } from 'src/app/modules/signup/models/signup.models';
 import { HttpErrorResponse } from '@angular/common/http';
+import { environment } from 'src/environment/environment';
 @Component({
   selector: 'app-profile-card',
   templateUrl: './profile-card.component.html',
@@ -29,7 +30,15 @@ export class ProfileCardComponent implements OnInit {
   }
 
   goToVideo(){
-    this.router.navigate(['/profile/video']);
+    if(this.candidate.videoId){
+      this.router.navigate(['/profile/video']);
+    }
+    else{
+      // this.toastr.info("No Video Uploaded Yet")
+      this.toastr.info('No Video Uploaded Yet', '',{
+        positionClass: 'toast-top-right',
+      });
+    }
   }
 
   goToPersonalDetails(){
@@ -65,7 +74,7 @@ export class ProfileCardComponent implements OnInit {
         localStorage.setItem('formData',JSON.stringify(this.candidate));
         // localStorage.setItem('userId',res.id)
         localStorage.setItem('CandidateId',String(this.candidate?.currentAddress?.candidateId))
-        this.imageUrl = ('https://api.meklips.com/media/user_images/' + this.candidate?.dpId);
+        this.imageUrl = (environment.url+'media/user_images/' + this.candidate?.dpId);
         this.loading = false
         // this.getVideo();
         

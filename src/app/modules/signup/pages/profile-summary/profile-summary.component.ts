@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { ProfileService } from 'src/app/modules/home-profile/service/profile.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { environment } from 'src/environment/environment';
 
 @Component({
   selector: 'app-profile-summary',
@@ -29,7 +30,7 @@ export class ProfileSummaryComponent implements OnInit {
   public imageUrl
   image: string;
   video: string;
-  videoUrl: SafeUrl;
+  videoUrl: string;
   public summaryPayload = new CandidateSummaryPayload ()
 
   constructor(private router: Router,
@@ -38,7 +39,6 @@ export class ProfileSummaryComponent implements OnInit {
     private toastr: ToastrService,
     private activeRoute:ActivatedRoute,
     private profileService : ProfileService,
-    private sanitizer:DomSanitizer
     ) {}
 
   ngOnInit(): void {
@@ -105,9 +105,9 @@ export class ProfileSummaryComponent implements OnInit {
   }
 
 
-  uploadImage() {
+  uploadImage(id : any) {
     this.loader = true;
-    let candidateId = this.candidate.id;
+    let candidateId = this.candidate.id ? this.candidate.id : id;
   
     if (this.getImage?.addedFiles?.length > 0) {
       let originalFile = this.getImage.addedFiles[0];
@@ -133,6 +133,10 @@ export class ProfileSummaryComponent implements OnInit {
         next: (res: any) => {
           console.log(res);
           this.loader = false;
+          setTimeout(()=>{
+            this.loader = false;
+            this.router.navigate(['profile']);
+          },1000)
         },
         error: (err: any) => {
           console.log(err);
@@ -143,9 +147,9 @@ export class ProfileSummaryComponent implements OnInit {
   }
   
 
-  uploadVideo(){
+  uploadVideo(id : any){
     
-    let candidateId= this.candidate.id;
+    let candidateId= this.candidate.id ? this.candidate.id : id;
     let fileName = this.getVideo?.addedFiles[0]?.name;
     let video = this.getVideo?.addedFiles[0];
     if(this.getVideo?.addedFiles.length > 0){
@@ -156,7 +160,11 @@ export class ProfileSummaryComponent implements OnInit {
       this.signupService.uploadVideo(form,candidateId,fileName).subscribe({
         next:(res : any)=>{
           console.log(res);
-          this.videoLoader = false   
+          this.videoLoader = false;
+          setTimeout(()=>{
+            this.loader = false;
+            this.router.navigate(['profile']);
+          },1000)  
         },
         error:(err : any)=>{
           console.log(err);
@@ -213,8 +221,8 @@ export class ProfileSummaryComponent implements OnInit {
           positionClass: 'toast-top-right',
         });
         localStorage.setItem('candidateId',res.data.id);
-        this.uploadImage();
-        this.uploadVideo();
+        this.uploadImage(res.data.id);
+        this.uploadVideo(res.data.id);
         this.loader = false
         this.isDataSaved = true;
       },
@@ -244,6 +252,16 @@ export class ProfileSummaryComponent implements OnInit {
     this.signupService.updateCandidate(this.candidate,id).subscribe({
       next:(res:any)=>{
         console.log(res);
+        if(this.getImage?.addedFiles?.length > 0 || this.getVideo?.addedFiles.length > 0){
+          this.uploadImage(this.candidate.id);
+          this.uploadVideo(this.candidate.id);
+        }
+        else{
+          setTimeout(()=>{
+            this.loader = false;
+            this.router.navigate(['profile']);
+          },1000)
+        }
         
       },
       error:(err:any)=>{
@@ -254,29 +272,11 @@ export class ProfileSummaryComponent implements OnInit {
   }
 
   getUserImage() {
-    // if (this.candidate.dpId !== 0) {
-    //   this.profileService.getImage(this.candidate.dpId).subscribe({
-    //     next: (res: any) => {
-    //       console.log(res);
-    //       this.image = URL.createObjectURL(res);
-    //       console.log(this.image);
-    //       this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(this.image as string);
-
-    //       // Create a File object with the provided data
-    //       const mockFile = new File([res], 'profile-picture.jpg', { type: 'image/jpeg' });
-
-    //       // Add the mock file to the imageFile array
-    //       this.imageFile.push(mockFile);
-    //     },
-    //     error: (err: any) => {
-    //       console.log(err);
-    //     }
-    //   });
-    // }
-    this.imageUrl = ('https://api.meklips.com/media/user_images/' + this.candidate?.dpId);
-    // this.imageFile.push(this.imageUrl);
-
-    // this.fetchImageAsFile(this.imageUrl,this.candidate.dpId)
+    if(this.candidate.dpId){
+      this.imageUrl = (environment.url+'media/user_images/' + this.candidate?.dpId);
+      this.fetchImageAsFile(this.imageUrl,this.candidate.dpId)
+    }
+   
   }
 
   fetchImageAsFile(url: string, filename: string) {
@@ -284,6 +284,8 @@ export class ProfileSummaryComponent implements OnInit {
       .then(res => res.blob())
       .then(blob => {
         const file = new File([blob], filename, { type: blob.type });
+        console.log(file);
+        
         this.imageFile.push(file);
         console.log(this.imageFile);
         
@@ -291,25 +293,21 @@ export class ProfileSummaryComponent implements OnInit {
       .catch(err => console.error('Image prefill failed:', err));
   }
 
+  fetchVideoAsFile(url: string, filename: string) {
+    fetch(url)
+      .then(res => res.blob())
+      .then(blob => {
+        const file = new File([blob], filename, { type: blob.type });
+        this.videoFile.push(file);
+        
+      })
+      .catch(err => console.error('Image prefill failed:', err));
+  }
+
   getUSerVideo() {
     if(this.candidate?.videoId && this.candidate?.videoId !== 0){
-      this.profileService.getVideo(this.candidate?.videoId).subscribe({
-        next: (res: any) => {
-          console.log(res);
-          this.video = URL.createObjectURL(res);
-          console.log(this.video);
-          this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.video as string);
-
-          // Create a File object with the provided data
-          const mockVideoFile = new File([], 'profile-video.mp4', { type: 'video/mp4' });
-
-          // Add the mock video file to the videoFile array
-          this.videoFile.push(mockVideoFile);
-        },
-        error: (err: any) => {
-          console.error(err);
-        }
-      });
+      this.videoUrl = (environment.url+'media/profile_videos/' + this.candidate?.videoId);
+      this.fetchVideoAsFile(this.videoUrl,this.candidate.dpId)
     }
     
   }
@@ -318,14 +316,7 @@ export class ProfileSummaryComponent implements OnInit {
     try {
       this.loader = true;
       this.updateSummary();
-      await this.uploadImage();
-      await this.uploadVideo();
-  
-      // Assuming uploadImage and uploadVideo return promises, handle the completion here
-      setTimeout(()=>{
-        this.loader = false;
-        this.router.navigate(['profile']);
-      },2000)
+     
      
     } catch (error) {
       console.error('An error occurred during profile update:', error);
