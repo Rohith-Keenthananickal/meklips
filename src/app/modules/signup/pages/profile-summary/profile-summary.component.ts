@@ -46,10 +46,8 @@ export class ProfileSummaryComponent implements OnInit {
     console.log(this.loader);
     this.subscription = this.activeRoute.queryParams.subscribe(
       (params: ParamMap) => {
-        console.log('Query Params:', params);
         this.editable = params['edit'];
-        console.log('Editable:', this.editable);
-        console.log(typeof(this.editable));
+        console.log('testing this version works');
         
       if(this.editable == "true"){
         this.getUserImage();
