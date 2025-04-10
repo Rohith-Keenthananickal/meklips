@@ -21,6 +21,7 @@ export class PersonalDetailsComponent implements OnInit{
   subscription:Subscription;
   public editable : boolean
   public loader : boolean;
+  public currentDate : Date = new Date();
 
   constructor(private router:Router,
     private formDataService: FormDataService,
@@ -48,15 +49,18 @@ export class PersonalDetailsComponent implements OnInit{
   
   }
 
+  validate():boolean{
+    return !!(this.candidate.firstName && this.candidate.lastName && this.candidate.email)
+  }
+
   goToNextPage(){
     const navigationExtras: NavigationExtras = {
       queryParams: {
         edit:true,
       }
     }
-    this.router.navigate(['signup/previous-employment'],navigationExtras)
+    this.router.navigate(['signup/highlights'],navigationExtras)
   }
-
 
   openDatepicker() {
     this.datepicker.open();
@@ -98,7 +102,7 @@ export class PersonalDetailsComponent implements OnInit{
   }
 
   advancedView(){
-    this.router.navigate(['signup/previous-employment']);
+    this.router.navigate(['signup/highlights'])
   }
 
   validateData() {
@@ -119,6 +123,8 @@ export class PersonalDetailsComponent implements OnInit{
   }
 
   updateProfile(){
+    console.log(this.candidate);
+    
     this.loader = true
     console.log(this.candidate);
     let id = localStorage.getItem('meklips.userId')

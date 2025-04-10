@@ -25,6 +25,7 @@ export class Candidate {
     id : string;
     candidateHighlights: CandidateHighlight[];
     userId : any;
+    professionInfo : string;
   }
   
   export class CurrentAddress {

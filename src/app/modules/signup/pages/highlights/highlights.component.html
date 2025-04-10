@@ -20,7 +20,7 @@
                                   </div>
                                  
                                 </li>
-                                <li class="timeline-event">
+                                <!-- <li class="timeline-event">
                                     <div class="timeline-event-icon bg-yellow" style="border-radius: 50%;">
                                       <i class="ti ti-calendar fs-2 text-white"></i>
                                     </div>
@@ -29,7 +29,7 @@
                                     </div>
                                   
                                   </li>
-                                
+                                 -->
                                 <li class="timeline-event">
                                     <div class="timeline-event-icon bg-yellow" style="border-radius: 50%;">
                                         <i class="ti ti-highlight fs-2 text-white"></i>
@@ -96,7 +96,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="card">
+                                        <div class="card" *ngIf="candidateHighlightsList?.length < 3 ">
                                             <div class="card-body">
                                                 <div class="mb-3">
                                                     <label class="form-label required ">Highlight Title</label>

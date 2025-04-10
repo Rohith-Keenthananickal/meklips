@@ -16,13 +16,11 @@
           <div class="text mt-2 fs-4 fw-bold" style="color: #FEBE10;">
               {{candidate?.firstName}} {{candidate?.lastName}}
           </div>
-          <div *ngFor="let work of candidate?.workExperiences">
-              <div *ngIf="work.currentJob == true" class="text-white text-center fs-5 fw-bold">
-                  {{work?.designation}}
+          <div >
+              <div  class="text-white text-center fs-5 fw-bold">
+                {{candidate?.professionInfo}}
               </div>
-              <div class="text-white text-center fs-5" *ngIf="work.currentJob == true" >
-                  {{work?.companyName}}
-              </div>
+             
           </div>
           
       </div>
@@ -73,9 +71,9 @@
               <div class="text-white text-center d-flex flex-column justify-content-center align-items-center">
                 <img src="/assets/mKPlaynewe.gif" alt="share" class="cursor-pointer" width="120" (click)="goToVideo()">
               <span class="profile-name">{{candidate?.firstName}} {{candidate?.lastName}}</span>
-              <span *ngFor="let work of candidate?.workExperiences">
-                <span *ngIf="work.currentJob == true" class="profile-role text-center">
-                    {{work?.designation}} &#64; {{work?.companyName}} <br> {{work?.location}}
+              <span>
+                <span  class="profile-role text-center">
+                  {{candidate?.professionInfo}}
                 </span>
               </span>
 

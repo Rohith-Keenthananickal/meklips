@@ -70,9 +70,16 @@ export class ProfileSummaryComponent implements OnInit {
     // this.advancedView();
   }
 
-  advancedView() {
+  advancedView(){
     this.updateFormData();
-    this.bulkSubmit(); 
+    if(this.imageFile.length == 0){
+      this.toastr.error('Please Add Your Profile Picture', 'Error', {
+        positionClass: 'toast-top-right',
+      });
+    }
+    else{
+      this.bulkSubmit(); 
+    }
   }
 
   profileView(){

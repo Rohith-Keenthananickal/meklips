@@ -79,10 +79,16 @@ export class HighlightsComponent implements OnInit{
   }
 
   advancedView(){
-    // this.addWorkExperience();
     this.addHighlight();
     this.updateFormData();
-    this.router.navigate(['signup/profile-summary']);
+    if(this.candidateHighlightsList?.length == 0){
+      this.toastr.error('Please Add Atleast One Highlight', 'Error', {
+        positionClass: 'toast-top-right',
+      });
+    }
+    else{
+      this.router.navigate(['signup/profile-summary']);
+    }
   }
 
   updateFormData() {

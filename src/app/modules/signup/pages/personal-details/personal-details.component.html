@@ -1,136 +1,4 @@
-<!-- <div class="outer-layer">
-    <div class="inner-layer d-flex ">
-        <div class="side-progress">
-            <ul class="timeline">
-                <li class="timeline-event" >
-                  <div class="timeline-event-icon bg-yellow" style="border-radius: 50%;">
-                    <i class="ti ti-user fs-2 text-white"></i>
-                  </div>
-                  <div class="card timeline-event-card" style="height: 50px; visibility: hidden;">
-                    
-                  </div>
-                 
-                </li>
-                <li class="timeline-event">
-                  <div class="timeline-event-icon" style="border-radius: 50%;">
-                    <i class="ti ti-calendar fs-2"></i>
-                  </div>
-                  <div class="card timeline-event-card" style="height: 50px; visibility: hidden;">
-                    
-                  </div>
-                
-                </li>
-                <li class="timeline-event">
-                    <div class="timeline-event-icon" style="border-radius: 50%;">
-                        <i class="ti ti-file fs-2"></i>
-                    </div>
-                    <div class="card timeline-event-card" style="height: 50px; visibility: hidden;">
-                      
-                    </div>
-                  
-                </li>
-                <li class="timeline-event">
-                    <div class="timeline-event-icon" style="border-radius: 50%;">
-                        <i class="ti ti-list fs-2"></i>
-                    </div>
-                    <div class="card timeline-event-card" style="height: 50px; visibility: hidden;">
-                      
-                    </div>
-                  
-                </li>
-                <li class="timeline-event">
-                    <div class="timeline-event-icon" style="border-radius: 50%;">
-                        <i class="ti ti-check fs-2"></i>
-                    </div>
-                    <div class="card timeline-event-card" style="height: 50px; visibility: hidden;">
-                      
-                    </div>
-                  
-                </li>
 
-              </ul>
-              
-        </div>
-        
-        <div class="d-flex align-items-start justify-content-center w-100">
-            <div class="mt-4 " style="width: 65%; margin-left: 125px;">
-                <div class="text-center mb-2">
-                    <img src="./assets/Meklips-logo-final.png" width="100px" alt="logo">
-                </div>
-                
-                <div class="text-azure fs-3 fw-bold mb-4">
-                    Personal Details
-                </div>
-                <div class="row  mb-2 p-3 pb-0">
-                    <div class="col-4">
-                        <div class="mb-3">
-                            <label class="form-label ">First Name</label>
-                            <input type="text" class="form-control" [(ngModel)]="candidate.firstName" name="example-text-input" placeholder="Enter Your First Name" spellcheck="false" data-ms-editor="true">
-                        </div>
-                    </div>
-                    <div class="col-5">
-                        <div class="mb-3">
-                            <label class="form-label ">Last Name</label>
-                            <input type="text" class="form-control" [(ngModel)]="candidate.lastName" name="example-text-input" placeholder="Enter Your Last Name" spellcheck="false" data-ms-editor="true">
-                        </div>
-                    </div>
-                    <div class="col-5">
-                        <div class="mb-3">
-                            <label class="form-label ">Email Address</label>
-                            <input type="text" class="form-control" [(ngModel)]="candidate.email" name="example-text-input" placeholder="Enter Your First Name" spellcheck="false" data-ms-editor="true">
-                        </div>
-                    </div>
-                    <div class="col-5">
-                        <div class="mb-3">
-                            <label class="form-label ">Mobile Number</label>
-                            <input type="text" class="form-control" [(ngModel)]="candidate.mobile" name="example-text-input" placeholder="Enter Your First Name" spellcheck="false" data-ms-editor="true">
-                        </div>
-                    </div>
-                    <div class="col-5">
-                        <label class="form-label ">DOB</label>
-                        <div class="input-icon mb-2">
-                            <input matInput [matDatepicker]="picker" class="form-control" (dateInput)="dob('input', $event)" [(ngModel)]="candidate.dob"  placeholder="Select Date">
-                            <span class="input-icon-addon">
-                                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                                <mat-datepicker #picker></mat-datepicker>
-                            </span>
-                          </div>
-                        
-                    </div>
-                    <div class="col-5">
-                        <div class="mb-3">
-                            <label class="form-label ">Gender</label>
-                            <ng-select placeholder="Gender" [(ngModel)]="candidate.gender">
-                                <ng-option value="Male">Male</ng-option>
-                                <ng-option value="Female">Female</ng-option>
-                             </ng-select>
-                        </div>
-                    </div>
-                    <div class="col-11">
-                        <div class="mb-3">
-                            <label class="form-label ">Address/City/ST/Zip</label>
-                            <textarea class="form-control" name="example-textarea-input" rows="3" [(ngModel)]="candidate.streetAddress" placeholder="Enter Your Address" spellcheck="false" data-ms-editor="true"></textarea>
-                        </div>
-                    </div>
-                    
-                </div>
-        
-                <div class="d-flex justify-content-end gap-3" style="margin-right: 100px;" *ngIf="!editable">
-                    <button class="btn">Back</button>
-                    <button class="btn btn-azure" (click)="updateFormData()">Next</button>
-        
-                </div>
-
-                <div class="d-flex justify-content-end gap-3" style="margin-right: 100px;" *ngIf="editable">
-                    
-                    <button class="btn btn-azure" (click)="updateProfile()">Update</button>
-        
-                </div>
-            </div>
-            
-        </div>
-    </div>
-</div> -->
 
 
 <div class="loading-overlay" *ngIf="loader">
@@ -153,7 +21,7 @@
                                   </div>
                                  
                                 </li>
-                                <li class="timeline-event">
+                                <!-- <li class="timeline-event">
                                   <div class="timeline-event-icon" style="border-radius: 50%;">
                                     <i class="ti ti-calendar fs-2"></i>
                                   </div>
@@ -161,7 +29,7 @@
                                     
                                   </div>
                                 
-                                </li>
+                                </li> -->
                                 <li class="timeline-event">
                                     <div class="timeline-event-icon" style="border-radius: 50%;">
                                         <i class="ti ti-highlight fs-2"></i>
@@ -199,20 +67,20 @@
                                 <div class="row row-cards mb-2 p-3 pb-0">
                                     <div class="col-4">
                                         <div class="mb-3">
-                                            <label class="form-label ">First Name</label>
+                                            <label class="form-label required">First Name</label>
                                             <input type="text" class="form-control" [(ngModel)]="candidate.firstName" name="example-text-input" placeholder="Enter Your First Name" spellcheck="false" data-ms-editor="true">
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <div class="mb-3">
-                                            <label class="form-label ">Last Name</label>
+                                            <label class="form-label required">Last Name</label>
                                             <input type="text" class="form-control" [(ngModel)]="candidate.lastName" name="example-text-input" placeholder="Enter Your Last Name" spellcheck="false" data-ms-editor="true">
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <div class="mb-3">
-                                            <label class="form-label ">Email Address</label>
-                                            <input type="text" class="form-control" [(ngModel)]="candidate.email" name="example-text-input" placeholder="Enter Your First Name" spellcheck="false" data-ms-editor="true">
+                                            <label class="form-label required">Email Address</label>
+                                            <input type="text" class="form-control" disabled="true" [(ngModel)]="candidate.email" name="example-text-input" placeholder="Enter Your First Name" spellcheck="false" data-ms-editor="true">
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -224,7 +92,7 @@
                                     <div class="col-4">
                                         <label class="form-label ">DOB</label>
                                         <div class="input-icon mb-2">
-                                            <input matInput [matDatepicker]="picker" class="form-control" (click)="openDatepicker()" (dateInput)="dob('input', $event)" [(ngModel)]="candidate.dob"  placeholder="Select Date">
+                                            <input matInput [matDatepicker]="picker" class="form-control" [max]="currentDate" (click)="openDatepicker()" (dateInput)="dob('input', $event)" [(ngModel)]="candidate.dob"  placeholder="Select Date">
                                             <span class="input-icon-addon">
                                                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                                                 <mat-datepicker #picker></mat-datepicker>
@@ -241,10 +109,24 @@
                                              </ng-select>
                                         </div>
                                     </div>
-                                    <div class="col-10">
+                                    <div class="col-12">
                                         <div class="mb-3">
                                             <label class="form-label ">Address/City/ST/Zip</label>
-                                            <textarea class="form-control" maxlength="250" name="example-textarea-input" rows="4" [(ngModel)]="candidate.streetAddress" placeholder="Enter Your Address" spellcheck="false" data-ms-editor="true"></textarea>
+                                            <textarea class="form-control" maxlength="250" name="example-textarea-input" rows="2" [(ngModel)]="candidate.streetAddress" placeholder="Enter Your Address" spellcheck="false" data-ms-editor="true"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Profession</label>
+                                            <textarea class="form-control" maxlength="100" name="example-textarea-input" rows="2" [(ngModel)]="candidate.professionInfo" placeholder="Enter Your Profession (e.g. Software Engineer)" spellcheck="false" data-ms-editor="true"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Profile Summary</label>
+                                            <textarea class="form-control" maxlength="250" name="example-textarea-input" rows="2" [(ngModel)]="candidate.experienceSummary" placeholder="'I design and develop unique digital experiances that enhance peoples lives and makes the world a better place'" spellcheck="false" data-ms-editor="true"></textarea>
                                         </div>
                                     </div>
                                     
@@ -257,7 +139,7 @@
                         <div>
                             <div class="d-flex justify-content-end gap-3" style="margin-right: 50px; margin-bottom: 50px;" *ngIf="!editable">
                                 <button class="btn">Back</button>
-                                <button class="btn btn-azure" (click)="updateFormData()">Next</button>
+                                <button class="btn btn-azure" [disabled]="!validate()" (click)="updateFormData()">Next</button>
                     
                             </div>
                             <div class="d-flex justify-content-end gap-3" style="margin-right: 50px; margin-bottom: 50px;" *ngIf="editable">
