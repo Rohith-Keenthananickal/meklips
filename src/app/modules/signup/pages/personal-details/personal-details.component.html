@@ -111,8 +111,32 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="mb-3">
-                                            <label class="form-label ">Address/City/ST/Zip</label>
+                                            <label class="form-label ">Address One</label>
                                             <textarea class="form-control" maxlength="250" name="example-textarea-input" rows="2" [(ngModel)]="candidate.streetAddress" placeholder="Enter Your Address" spellcheck="false" data-ms-editor="true"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mb-3">
+                                            <label class="form-label ">Address Two</label>
+                                            <textarea class="form-control" maxlength="250" name="example-textarea-input" rows="2" [(ngModel)]="candidate.streetAddress2" placeholder="Enter Your Address" spellcheck="false" data-ms-editor="true"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="mb-3">
+                                            <label class="form-label">City</label>
+                                            <input type="text" class="form-control" [(ngModel)]="candidate.city" name="example-text-input" placeholder="Enter Your City" spellcheck="false" data-ms-editor="true">
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="mb-3">
+                                            <label class="form-label">State</label>
+                                            <input type="text" class="form-control" [(ngModel)]="candidate.state" name="example-text-input" placeholder="Enter Your State" spellcheck="false" data-ms-editor="true">
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="mb-3">
+                                            <label class="form-label">Zip Code</label>
+                                            <input type="text" class="form-control" [(ngModel)]="candidate.zipCode" name="example-text-input" placeholder="Enter Your Zip Code" spellcheck="false" data-ms-editor="true">
                                         </div>
                                     </div>
 

@@ -4,6 +4,8 @@ export class Signup {
 }
 
 export class Candidate {
+    id : string;
+    userId : any;
     firstName: string
     lastName: string
     email: string
@@ -20,11 +22,14 @@ export class Candidate {
     socialMediaLinks: SocialMediaLink[]
     workExperiences: WorkExperience[]
     candidateSkills: CandidateSkill[]
-    
-    streetAddress : string;
-    id : string;
     candidateHighlights: CandidateHighlight[];
-    userId : any;
+
+    streetAddress : string;
+    streetAddress2 : string;
+    city : string;
+    state : string;
+    country : string;
+    zipCode : string;
     professionInfo : string;
   }
   
