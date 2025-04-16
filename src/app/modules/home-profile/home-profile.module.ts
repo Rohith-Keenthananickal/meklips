@@ -9,13 +9,15 @@ import { CandidateProfileComponent } from './pages/profile/candidate-profile.com
 import { QRCodeModule } from 'angularx-qrcode';
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import { ProfileCardComponent } from './pages/profile-card/profile-card.component';
+import { VideoPlayerModalComponent } from './components/video-player-modal/video-player-modal.component';
 
 @NgModule({
   declarations: [
     ProfileComponent,
     ProfileVideoComponent,
     CandidateProfileComponent,
-    ProfileCardComponent
+    ProfileCardComponent,
+    VideoPlayerModalComponent
   ],
   imports: [
     CommonModule,

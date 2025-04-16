@@ -6,6 +6,8 @@ import { NavigationExtras, Router } from '@angular/router';
 import { Candidate } from 'src/app/modules/signup/models/signup.models';
 import { HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environment/environment';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { VideoPlayerModalComponent } from '../../components/video-player-modal/video-player-modal.component';
 @Component({
   selector: 'app-profile-card',
   templateUrl: './profile-card.component.html',
@@ -17,16 +19,28 @@ export class ProfileCardComponent implements OnInit {
   public loading : boolean;
   public selectedHighlight : number = 0;
   public imageUrl: string;
+  private modalRef: NgbModalRef;
+  
   constructor(private authService: AuthService,
     private profileService : ProfileService,
     private toastr: ToastrService,
-    private router:Router){
+    private router:Router,
+    private modalService: NgbModal){
 
   }
 
   ngOnInit() {
     this.candidateId = Number(localStorage.getItem('meklips.userId'));
     this.getCandidateInfo();
+  }
+
+  openModal(){
+    this.modalRef = this.modalService.open(VideoPlayerModalComponent, { size: 'lg', centered: true });
+      this.modalRef.componentInstance.videoId = this.candidate.videoId;
+      this.modalRef.result
+        .then((result) => {
+        })
+        .catch((reason) => {});
   }
 
   goToVideo(){

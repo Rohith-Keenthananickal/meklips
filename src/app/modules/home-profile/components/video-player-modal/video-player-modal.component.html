@@ -1,0 +1,7 @@
+<div id="main">
+    <video #videoPlayer style="height: 70vh; max-width: 286px; border-radius: 14px;" controls *ngIf="videoUrl">
+        <source [src]="videoUrl" type="video/mp4">
+        <source [src]="videoUrl" type="video/ogg">
+        Your browser does not support HTML video.
+    </video>
+</div>
