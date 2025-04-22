@@ -10,6 +10,8 @@ import { QRCodeModule } from 'angularx-qrcode';
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import { ProfileCardComponent } from './pages/profile-card/profile-card.component';
 import { VideoPlayerModalComponent } from './components/video-player-modal/video-player-modal.component';
+import { ProfilePreviewComponent } from './components/profile-preview/profile-preview.component';
+import { QrCodeModalComponent } from './components/qr-code-modal/qr-code-modal.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { VideoPlayerModalComponent } from './components/video-player-modal/video
     ProfileVideoComponent,
     CandidateProfileComponent,
     ProfileCardComponent,
-    VideoPlayerModalComponent
+    VideoPlayerModalComponent,
+    ProfilePreviewComponent,
+    QrCodeModalComponent
   ],
   imports: [
     CommonModule,
@@ -26,6 +30,7 @@ import { VideoPlayerModalComponent } from './components/video-player-modal/video
     QRCodeModule,
     ClipboardModule,
 
-  ]
+  ],
+  exports: [ProfilePreviewComponent]
 })
 export class HomeProfileModule { }

@@ -8,6 +8,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environment/environment';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { VideoPlayerModalComponent } from '../../components/video-player-modal/video-player-modal.component';
+import { QrCodeModalComponent } from '../../components/qr-code-modal/qr-code-modal.component';
 @Component({
   selector: 'app-profile-card',
   templateUrl: './profile-card.component.html',
@@ -20,6 +21,7 @@ export class ProfileCardComponent implements OnInit {
   public selectedHighlight : number = 0;
   public imageUrl: string;
   private modalRef: NgbModalRef;
+  private modalRef2: NgbModalRef;
   
   constructor(private authService: AuthService,
     private profileService : ProfileService,
@@ -34,15 +36,39 @@ export class ProfileCardComponent implements OnInit {
     this.getCandidateInfo();
   }
 
-  openModal(){
-    this.modalRef = this.modalService.open(VideoPlayerModalComponent, { size: 'lg', centered: true });
-      this.modalRef.componentInstance.videoId = this.candidate.videoId;
-      this.modalRef.result
-        .then((result) => {
-        })
-        .catch((reason) => {});
+  openQrCode(){
+    this.modalRef2 = this.modalService.open(QrCodeModalComponent, { size: 'sm', centered: true });
+    this.modalRef2.componentInstance.id = this.candidate.id;
+    this.modalRef2.result
+      .then((result) => {
+      })  
+      .catch((reason) => {});
   }
 
+  openModal(){
+    this.modalRef = this.modalService.open(VideoPlayerModalComponent, { size: 'sm', centered: true });
+    this.modalRef.componentInstance.videoId = this.candidate.videoId;
+    this.modalRef.result
+      .then((result) => {
+      })
+      .catch((reason) => {});
+  }
+
+  calculateAge(dateOfBirth: string): number {
+    const dob = new Date(dateOfBirth);
+    const today = new Date();
+  
+    let age = today.getFullYear() - dob.getFullYear();
+    const monthDiff = today.getMonth() - dob.getMonth();
+  
+    // If the birthday hasn't occurred yet this year, subtract one year
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+      age--;
+    }
+  
+    return age;
+  }
+  
   goToVideo(){
     if(this.candidate.videoId){
       this.router.navigate(['/profile/video']);

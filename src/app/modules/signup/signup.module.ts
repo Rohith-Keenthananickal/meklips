@@ -22,7 +22,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { UploaderModule } from "angular-uploader";
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { HighlightsComponent } from './pages/highlights/highlights.component';
-
+import { HomeProfileModule } from '../home-profile/home-profile.module';
 
 // import { ToastrModule } from 'ngx-toastr';
 
@@ -50,7 +50,8 @@ import { HighlightsComponent } from './pages/highlights/highlights.component';
     MatAutocompleteModule,
     NgSelectModule,
     UploaderModule,
-    MatTooltipModule
+    MatTooltipModule,
+    HomeProfileModule
 
   ]
 })

@@ -138,10 +138,15 @@ export class ProfileSummaryComponent implements OnInit {
         next: (res: any) => {
           console.log(res);
           this.loader = false;
-          setTimeout(()=>{
-            this.loader = false;
-            this.router.navigate(['profile']);
-          },1000)
+          if(this.getVideo?.addedFiles.length > 0){
+            this.uploadVideo(candidateId);
+          }
+          else{
+            setTimeout(()=>{
+              this.loader = false;
+              this.router.navigate(['profile']);
+            },1000)
+          }
         },
         error: (err: any) => {
           console.log(err);
@@ -221,13 +226,12 @@ export class ProfileSummaryComponent implements OnInit {
     this.candidatePayload.userId = localStorage.getItem('meklips.userId');
     this.signupService.candidateBulk(this.candidatePayload).subscribe({
       next:(res:any)=>{
-        console.log(res);
+        this.uploadImage(res.data.id);
         this.toastr.success('Candidate Profile Saved Successfully', 'Success', {
           positionClass: 'toast-top-right',
         });
         localStorage.setItem('candidateId',res.data.id);
-        this.uploadImage(res.data.id);
-        this.uploadVideo(res.data.id);
+
         this.loader = false
         this.isDataSaved = true;
       },
@@ -252,13 +256,13 @@ export class ProfileSummaryComponent implements OnInit {
 
   updateSummary(){
     let id = localStorage.getItem('meklips.userId')
-    // this.summaryPayload.candidateId = Number(this.candidate.id)
-    // this.summaryPayload.experienceSummary = this.candidate.experienceSummary
     this.signupService.updateCandidate(this.candidate,id).subscribe({
       next:(res:any)=>{
         console.log(res);
-        if(this.getImage?.addedFiles?.length > 0 || this.getVideo?.addedFiles.length > 0){
+        if(this.getImage?.addedFiles?.length > 0){
           this.uploadImage(this.candidate.id);
+        }
+        else if(this.getVideo?.addedFiles?.length > 0){
           this.uploadVideo(this.candidate.id);
         }
         else{

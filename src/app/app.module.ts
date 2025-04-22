@@ -34,8 +34,10 @@ import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap'
     NgbPaginationModule, 
     NgbAlertModule,
     ToastrModule.forRoot({
-      positionClass :'toast-bottom-right'
-    })
+      timeOut: 5000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    }),
   ],
   providers: [AuthService,DatePipe,RefreshTokenService,
     {

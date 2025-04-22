@@ -40,6 +40,10 @@ export class LoginComponent {
   //   )
   // }
 
+  goToForgotPassword(){
+    this.router.navigate(['login/forgot-password']);
+  }
+
   login() {
     this.loading = true;
     localStorage.setItem("meklips.email",this.user.email)
