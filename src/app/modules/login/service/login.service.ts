@@ -16,15 +16,15 @@ export class LoginService {
   }
 
   sentOTP(payload : {email : string}){
-    return this.http.post(`${environment.url}/api/users/forgot-password`, payload)
+    return this.http.post(`${environment.url}api/users/forgot-password`, payload)
   }
 
   validateOTP(payload : {email : string, otp : number}){
-    return this.http.post(`${environment.url}/api/users/validate-otp`, payload)
+    return this.http.post(`${environment.url}api/users/validate-otp`, payload)
   }
 
   updatePassword(payload : {email : string, new_password : string, otp : number}){
-    return this.http.post(`${environment.url}/api/users/reset-password`, payload)
+    return this.http.post(`${environment.url}api/users/reset-password`, payload)
   }
 
   
