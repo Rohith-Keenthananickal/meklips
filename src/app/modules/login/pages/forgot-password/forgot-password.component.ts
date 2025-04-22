@@ -39,10 +39,12 @@ export class ForgotPasswordComponent implements OnInit{
       next:(res)=>{
         this.toastr.success('OTP sent successfully');
         this.formType = 'OTP';
+        this.loading = false;
         this.setNavigatioExtras(this.formType);
       },
       error:(err)=>{
         console.log(err);
+        this.loading = false;
         this.toastr.error(err.error.error);
       }
     })
