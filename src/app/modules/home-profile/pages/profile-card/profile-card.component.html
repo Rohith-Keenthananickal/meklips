@@ -58,7 +58,7 @@
         <img src="/assets/volume.png" alt="" width="100">
       </div>
     </div>
-    <div style="max-width: 450px">
+    <div style="max-width: 450px; min-width: 300px;">
       <div class="card border-yellow border-3" style="height: calc(100vh - 38px);">
         <div class="card-body p-0 d-flex flex-column justify-content-between">
           <div>
@@ -89,11 +89,31 @@
             
             
           </div>
-          <div class="d-flex flex-column justify-content-between align-items-center bottom-part">
+          <div class="d-flex flex-column justify-content-between align-items-center bottom-part ">
             <span style="width: 95%;">
-              <ul class="nav nav-tabs nav-fill p-0 m-2 d-flex justify-content-center gap-2" data-bs-toggle="tabs" role="tablist">
-                <li class="nav-item" role="presentation" *ngFor="let highlight of candidate?.candidateHighlights; let i = index">
-                  <a href="#tabs-home-{{i}}" (click)="selectedHighlight = i" class="nav-link p-1 fw-600" [ngClass]="{'active': i === 0}" data-bs-toggle="tab" aria-selected="true" role="tab">{{highlight?.highlightKey}}</a>
+              <ul class="nav nav-tabs nav-fill p-0 m-2 justify-content-center gap-2 flex-nowrap" data-bs-toggle="tabs" role="tablist">
+                <li class="nav-item" role="presentation" *ngFor="let highlight of candidate?.candidateHighlights; let i = index" 
+                    [style.width]="'calc((100% - ' + ((candidate?.candidateHighlights?.length - 1) * 8) + 'px) / ' + candidate?.candidateHighlights?.length + ')'">
+                    <a
+                    href="#tabs-home-{{i}}"
+                    (click)="selectedHighlight = i"
+                    class="nav-link p-1 fw-600"
+                    [ngClass]="{'active': i === 0}"
+                    data-bs-toggle="tab"
+                    aria-selected="true"
+                    role="tab"
+                    style="
+                      white-space: nowrap;
+                      overflow: hidden;
+                      text-overflow: ellipsis;
+                      text-align: left;
+                      display: block;
+                      width: 100%;
+                    "
+                  >
+                    {{ highlight?.highlightKey }}
+                  </a>
+                  
                 </li>
               </ul>
               <span class="tab-content d-block mt-3">
