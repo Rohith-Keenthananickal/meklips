@@ -1,41 +1,65 @@
-<div class="card" style="height: calc(100vh - 38px);">
+<div class="card border-yellow border-3" style="height: calc(100vh - 38px);">
   <div class="card-body p-0 d-flex flex-column justify-content-between">
     <div>
-      <i class="ti ti-menu-2 fs-1 cursor-pointer text-white menu-icon" ></i>
-      <!-- <img src="/assets/qr-code-new.svg" alt="" class="qr-image text-white"> -->
+      <i class="ti ti-menu-2 cursor-pointer text-white menu-icon" ></i>
+      <i class="ti ti-qrcode qr-image text-white"></i>
       <img src="/assets/half_moon.svg" alt="" class="moon">
-      <span class="text at text-white fw-bold fs-1">&#64;</span>
-      <img [src]="imageUrl || '/assets/user-img.jpg'" alt="" style="width: 100%; height: 200px; object-fit: cover;">
+      <span class="text-white dob">
+        {{ candidate?.dob ? calculateAge(candidate?.dob) : ''}}
+      </span>
+      <span class="text at text-white fw-bold">&#64;</span>
+      <img [src]="imageUrl || '/assets/user-img.jpg'" alt="" style="width: 100%; height: 250px; object-fit: cover;">
       <div class="background-blue" style="height: 335px;">
         <div class="text-white text-center d-flex flex-column justify-content-center align-items-center">
           <img src="/assets/mKPlaynewe.gif" alt="share" class="cursor-pointer" width="120">
-        <span class="profile-name">{{candidate?.firstName}} {{candidate?.lastName}}</span>
+        <span class="profile-name" *ngIf="candidate?.firstName">{{candidate?.firstName}} {{candidate?.lastName}}</span>
+        <span class="profile-name" *ngIf="!candidate?.firstName">Your Name</span>
         <span>
           <span  class="profile-role text-center">
-            {{candidate?.professionInfo}}
+            {{candidate?.professionInfo || 'Header One'}}
           </span>
         </span>
 
 
         <span class="card-title fs-4 fw-bold px-4 pt-0 mt-2 clamp-text">
-          {{candidate?.experienceSummary}}
+          {{candidate?.experienceSummary || 'Header Two'}}
         </span>
       </div>
       
       
       
     </div>
-    <div class="d-flex flex-column justify-content-between align-items-center bottom-part">
+    <div class="d-flex flex-column justify-content-between align-items-center bottom-part ">
       <span style="width: 95%;">
-        <ul class="nav nav-tabs nav-fill p-0 m-2 d-flex justify-content-center gap-2" data-bs-toggle="tabs" role="tablist">
-          <li class="nav-item" role="presentation" *ngFor="let highlight of candidate?.candidateHighlights; let i = index">
-            <a href="#tabs-home-{{i}}" (click)="selectedHighlight = i" class="nav-link p-1 fw-500" [ngClass]="{'active': i === 0}" data-bs-toggle="tab" aria-selected="true" role="tab">{{highlight?.highlightKey}}</a>
+        <ul class="nav nav-tabs nav-fill p-0 m-2 justify-content-center gap-2 flex-nowrap" data-bs-toggle="tabs" role="tablist">
+          <li class="nav-item" role="presentation" *ngFor="let highlight of candidate?.candidateHighlights; let i = index" 
+              [style.width]="'calc((100% - ' + ((candidate?.candidateHighlights?.length - 1) * 8) + 'px) / ' + candidate?.candidateHighlights?.length + ')'">
+              <a
+              href="#tabs-home-{{i}}"
+              (click)="selectedHighlight = i"
+              class="nav-link p-1 fw-600"
+              [ngClass]="{'active': i === 0}"
+              data-bs-toggle="tab"
+              aria-selected="true"
+              role="tab"
+              style="
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                text-align: left;
+                display: block;
+                width: 100%;
+              "
+            >
+              {{ highlight?.highlightKey }}
+            </a>
+            
           </li>
         </ul>
-        <span class="tab-content d-block">
-          <span class="heighlight-content">
+        <span class="tab-content d-block mt-3">
+          <div class="heighlight-content px-3">
             {{candidate?.candidateHighlights[selectedHighlight]?.highlightValue}}
-          </span>
+          </div>
         </span>
       </span>
       

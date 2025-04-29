@@ -31,22 +31,37 @@
     left: 10px;
     top: 10px;
     cursor: pointer;
+    font-size: 36px;
+}
+
+.qr-image{
+    position: absolute;
+    left: 10px;
+    top: 52px;
+    cursor: pointer;
+    font-size: 36px;
 }
 
 .moon{
     position: absolute;
     right: 10px;
     top: 10px;
-    height: 25px;
-    width: 25px;
+    height: 35px;
+    width: 35px;
+}
+
+.dob{
+    position: absolute;
+    right: 15px;
+    top: 17px;
+    font-weight: 600;
 }
 
 .at{
     position: absolute;
-    right: 10px;
-    top: 40px;
-    height: 25px;
-    width: 25px;
+    right: 14px;
+    top: 47px;
+    font-size: 31px;
 }
 
 .border-yellow{
@@ -113,10 +128,10 @@
 }
 
 .heighlight-content{
-    font-weight: 500;
+    font-weight: 600;
 }
 
-.fw-500{
+.fw-600{
     font-weight: 500;
 }
 
@@ -127,3 +142,54 @@
     bottom: 121px;
 
 }
+
+
+  /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+  #main {
+    transition: margin-left .5s;
+    padding: 20px;
+  }
+  
+  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+  
+  #menu-btn{
+    position: absolute;
+    z-index: 99999;
+    top: 50px;
+    left: 50px;
+  }
+  
+  // #moon-div{
+  //   background-image: url('/assets/half_moon.svg'); width: 50px;
+  //   background-size: cover;
+  //   background-repeat: no-repeat;
+  // }
+
+.avatar {
+    --tblr-avatar-size: 7.5rem !important;
+}
+
+.bottom-logo{
+    position: relative;
+    bottom: 60px;
+}
+
+.clamp-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+    .menu-icon,
+    .qr-image,
+    .dob,
+    .at,
+    .moon {
+      filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.6));
+    }
