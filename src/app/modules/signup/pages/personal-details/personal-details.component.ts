@@ -50,7 +50,7 @@ export class PersonalDetailsComponent implements OnInit{
   }
 
   validate():boolean{
-    return !!(this.candidate.firstName && this.candidate.lastName && this.candidate.email)
+    return !!(this.candidate.firstName && this.candidate.lastName && this.candidate.email && this.candidate.dob)
   }
 
   goToNextPage(){

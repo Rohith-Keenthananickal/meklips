@@ -1,7 +1,8 @@
-<div class="modal-header border-0">
+<!-- <div class="modal-header border-0">
     <button type="button" class="btn-close" (click)="dismissModal()"></button>
-</div>
+</div> -->
 <div id="main">
+    <button type="button" class="btn-close" (click)="dismissModal()"></button>
     <video #videoPlayer style="height: 70vh; width: 100%; border-radius: 14px;" controls *ngIf="videoUrl">
         <source [src]="videoUrl" type="video/mp4">
         <source [src]="videoUrl" type="video/ogg">

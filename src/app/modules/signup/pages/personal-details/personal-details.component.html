@@ -4,7 +4,7 @@
 <div class="loading-overlay" *ngIf="loader">
     <div class="loading"></div>
 </div>
-<!-- <div class="outer-layer">
+<div class="outer-layer">
     <div class="inner-layer d-flex ">
         <div class="card">
             <div class="card-body p-0">
@@ -81,7 +81,7 @@
                                         </div>
                                     </div>
                                     <div class="col-4">
-                                        <label class="form-label ">DOB</label>
+                                        <label class="form-label required">DOB</label>
                                         <div class="input-icon mb-2">
                                             <input matInput [matDatepicker]="picker" class="form-control" [max]="currentDate" (click)="openDatepicker()" (dateInput)="dob('input', $event)" [(ngModel)]="candidate.dob"  placeholder="Select Date">
                                             <span class="input-icon-addon">
@@ -170,12 +170,12 @@
             
         </div>
     </div>
-</div> -->
+</div>
 
 
 
 
-<div class="outer-layer">
+<!-- <div class="outer-layer">
     <div class="inner-layer d-flex ">
         <div class="row row-cards">
             <div class="col-9">
@@ -348,4 +348,4 @@
             </div>
         </div>
     </div>
-</div> 
+</div>  -->
