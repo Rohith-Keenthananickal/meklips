@@ -16,6 +16,7 @@ export class SignupComponent {
   // public password : string;
   public cpassword : string;
   isPasswordValid: boolean = false;
+  public loading: boolean = false;
 
   public signUpPayload = new Signup();
 
@@ -49,16 +50,18 @@ export class SignupComponent {
   // }
 
   signup(){
+    this.loading = true;
     localStorage.clear();
     if(this.signUpPayload.password == this.cpassword){
       localStorage.setItem("meklips.email",this.signUpPayload.email)
       this.signupService.signup(this.signUpPayload).subscribe({
         next:(res: any)=>{
-          console.log(res);
+          this.loading = false;
           this.advancedView();
           this.login();
         },
         error:(err:any)=>{
+          this.loading = false;
           console.log(err);
           console.log(err.error.error);
           // const errorValues = Object.values(err.error.errors)[0];
@@ -73,8 +76,7 @@ export class SignupComponent {
       
     }
     else{
-      // this.toastr.error('Password and Conform Password should be Same'),{
-      //   positionClass: 'toast-top-right'}
+      this.loading = false;
       this.toastr.error('Password and Conform Password should be Same', 'Error', {
         positionClass: 'toast-top-right',
       });
@@ -83,15 +85,16 @@ export class SignupComponent {
   }
 
   login() {
+    this.loading = true;
     this.authService.login(this.signUpPayload).subscribe({
       next:(res)=>{
-        // Successful login, handle the response or navigate to a different page
-        console.log(res);
+        this.loading = false;
         let userId = res?.data?.user?.id
         localStorage.setItem("meklips.userId",userId)
         this.advancedView();
       },
       error:(err)=>{
+        this.loading = false;
         console.error('Login error:', err);
       }
     }
