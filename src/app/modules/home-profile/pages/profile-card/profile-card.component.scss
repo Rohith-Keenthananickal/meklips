@@ -7,10 +7,13 @@
     // border-radius: 15px;
     position: relative;
     bottom: 5rem;
-    div{
-        position: relative;
-        top: 1rem;
-    }
+    // div{
+    //     position: relative;
+    //     top: 1rem;
+    // }
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .background-blue { 
@@ -242,3 +245,13 @@
     .moon {
       filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.6));
     }
+
+@media screen and (max-width: 700px) {
+  .right-part,
+  .left-part {
+    display: none !important;
+  }
+  .main-container{
+    justify-content: center !important;
+  }
+}

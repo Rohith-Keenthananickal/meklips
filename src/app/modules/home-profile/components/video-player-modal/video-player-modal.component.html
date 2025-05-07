@@ -1,9 +1,6 @@
-<!-- <div class="modal-header border-0">
+<div id="main" style="display: flex; justify-content: center; align-items: center; height: 100%;">
     <button type="button" class="btn-close" (click)="dismissModal()"></button>
-</div> -->
-<div id="main">
-    <button type="button" class="btn-close" (click)="dismissModal()"></button>
-    <video #videoPlayer style="height: 70vh; width: 100%; border-radius: 14px;" controls *ngIf="videoUrl">
+    <video #videoPlayer style="height: 70vh; width: 70vh; border-radius: 14px; object-fit: contain;" controls *ngIf="videoUrl">
         <source [src]="videoUrl" type="video/mp4">
         <source [src]="videoUrl" type="video/ogg">
         Your browser does not support HTML video.

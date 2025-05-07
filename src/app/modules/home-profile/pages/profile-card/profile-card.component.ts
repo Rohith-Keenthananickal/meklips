@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/common-services/auth.service';
 import { ProfileService } from '../../service/profile.service';
 import { ToastrService } from 'ngx-toastr';
-import { NavigationExtras, Router } from '@angular/router';
+import { NavigationExtras, Router, ActivatedRoute } from '@angular/router';
 import { Candidate } from 'src/app/modules/signup/models/signup.models';
 import { HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environment/environment';
@@ -26,14 +26,21 @@ export class ProfileCardComponent implements OnInit {
   constructor(private authService: AuthService,
     private profileService : ProfileService,
     private toastr: ToastrService,
-    private router:Router,
+    private router: Router,
+    private route: ActivatedRoute,
     private modalService: NgbModal){
 
   }
 
   ngOnInit() {
-    this.candidateId = Number(localStorage.getItem('meklips.userId'));
-    this.getCandidateInfo();
+    this.route.params.subscribe(params => {
+      if (params['id']) {
+        this.candidateId = Number(params['id']);
+      } else {
+        this.candidateId = Number(localStorage.getItem('meklips.userId'));
+      }
+      this.getCandidateInfo();
+    });
   }
 
   openQrCode(){

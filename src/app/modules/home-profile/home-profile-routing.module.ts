@@ -25,7 +25,7 @@ const routes: Routes = [
   },
   {
     path:':id',
-    component: CandidateProfileComponent
+    component: ProfileCardComponent
   },
 
 ];
