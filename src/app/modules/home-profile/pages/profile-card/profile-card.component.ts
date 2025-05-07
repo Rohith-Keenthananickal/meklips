@@ -22,6 +22,7 @@ export class ProfileCardComponent implements OnInit {
   public imageUrl: string;
   private modalRef: NgbModalRef;
   private modalRef2: NgbModalRef;
+  public mailId : string;
   
   constructor(private authService: AuthService,
     private profileService : ProfileService,
@@ -41,6 +42,7 @@ export class ProfileCardComponent implements OnInit {
       }
       this.getCandidateInfo();
     });
+    this.mailId = localStorage.getItem('meklips.email');
   }
 
   openQrCode(){
@@ -146,6 +148,10 @@ export class ProfileCardComponent implements OnInit {
     })
   }
 
-
+  openMailClient() {
+    if (this.mailId) {
+      window.location.href = `mailto:${this.mailId}`;
+    }
+  }
 
 }

@@ -68,7 +68,7 @@
             <span class="text-white dob" *ngIf="candidate?.dob">
               {{calculateAge(candidate?.dob)}}
             </span>
-            <span class="text at text-white fw-bold">&#64;</span>
+            <span class="text at text-white fw-bold cursor-pointer" (click)="openMailClient()">&#64;</span>
             <img [src]="imageUrl || '/assets/user-img.jpg'" alt="" style="width: 100%; height: 40vh; object-fit: cover;">
             <div class="profile-content" style="height: 40vh;">
               <div class="text-white text-center d-flex flex-column justify-content-center align-items-center">

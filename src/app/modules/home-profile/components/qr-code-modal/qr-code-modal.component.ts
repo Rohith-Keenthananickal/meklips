@@ -9,7 +9,7 @@ import { environment } from 'src/environment/environment';
 })
 export class QrCodeModalComponent implements OnInit{
   ngOnInit(): void {
-    this.url = 'https://demo.meklips.com/profile/' + this.id;
+    this.url = 'http://localhost:4200/profile/candidate/' + this.id;
   }
   @Input() id: string;
   public url : string;

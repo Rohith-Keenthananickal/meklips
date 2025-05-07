@@ -12,6 +12,10 @@ const routes: Routes = [
     // component: ProfileComponent
   },
   {
+    path:'candidate/:id',
+    component: ProfileCardComponent
+  },
+  {
     path: 'card',
     component : ProfileCardComponent
   },
