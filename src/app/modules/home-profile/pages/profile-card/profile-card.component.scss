@@ -1,22 +1,22 @@
 .profile-content {
-    margin-top: -1.25rem;
-    padding-top: 2.5rem;
-    background: linear-gradient(to bottom, rgba(105, 255, 255, 0) 0%, rgba(105, 255, 255, 0) 7%, #001848 15%, #002f72 100%);
-    padding: 1.25rem;
-    color: #fff;
-    // border-radius: 15px;
-    position: relative;
-    bottom: 5rem;
-    // div{
-    //     position: relative;
-    //     top: 1rem;
-    // }
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  margin-top: -1.25rem;
+  padding-top: 2.5rem;
+  background: linear-gradient(to bottom, rgba(105, 255, 255, 0) 0%, rgba(105, 255, 255, 0) 7%, #001848 15%, #002f72 100%);
+  padding: 1.25rem;
+  color: #fff;
+  // border-radius: 15px;
+  position: relative;
+  bottom: 5rem;
+  // div{
+  //     position: relative;
+  //     top: 1rem;
+  // }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.background-blue { 
+.background-blue {
   background-image: url('../../../../../assets/background-blue.png');
   background-position: center;
   background-size: cover;
@@ -26,126 +26,128 @@
   z-index: 15;
 
   div {
-      position: relative;
-      top: 1.875rem;
+    position: relative;
+    top: 1.875rem;
   }
 }
 
 
-.menu-icon{
-    position: absolute;
-    left: 0.625rem;
-    top: 0.625rem;
-    cursor: pointer;
-    font-size: 2.25rem;
+.menu-icon {
+  position: absolute;
+  left: 0.625rem;
+  top: 0.625rem;
+  cursor: pointer;
+  font-size: 2.25rem;
 }
 
-.qr-image{
-    position: absolute;
-    left: 0.625rem;
-    top: 3.25rem;
-    cursor: pointer;
-    font-size: 2.25rem;
+.qr-image {
+  position: absolute;
+  left: 0.625rem;
+  top: 3.25rem;
+  cursor: pointer;
+  font-size: 2.25rem;
 }
 
-.moon{
-    position: absolute;
-    right: 0.625rem;
-    top: 0.625rem;
-    height: 2.1875rem;
-    width: 2.1875rem;
+.moon {
+  position: absolute;
+  right: 0.625rem;
+  top: 0.625rem;
+  height: 2.1875rem;
+  width: 2.1875rem;
 }
 
-.dob{
-    position: absolute;
-    right: 0.9375rem;
-    top: 1.0625rem;
-    font-weight: 600;
+.dob {
+  position: absolute;
+  right: 0.9375rem;
+  top: 1.0625rem;
+  font-weight: 600;
 }
 
-.at{
-    position: absolute;
-    right: 0.875rem;
-    top: 2.9375rem;
-    font-size: 1.9375rem;
+.at {
+  position: absolute;
+  right: 0.875rem;
+  top: 2.9375rem;
+  font-size: 1.9375rem;
 }
 
-.border-yellow{
-    border-color: #f1c40f !important;
+.border-yellow {
+  border-color: #f1c40f !important;
 }
 
-.apple-watch{
-    height: 30px;
-    width: 145px;
+.apple-watch {
+  height: 30px;
+  width: 145px;
 }
 
 .profile-name {
-    font-size: 20px;
-    font-weight:700;
-    margin-top: 10px;
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 10px;
 }
 
-  .profile-role {
-    font-size: 14px;
-    margin-top: 5px;
-    color: #ccc;
-  }
-  
-  .profile-description {
-    font-size: 14px;
-    // margin: 10px 0;
-  }
+.profile-role {
+  font-size: 14px;
+  margin-top: 5px;
+  color: #ccc;
+}
+
+.profile-description {
+  font-size: 14px;
+  // margin: 10px 0;
+}
 
 
-.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
-    background-color: var(--tblr-nav-tabs-link-active-bg);
-    color: #001848 !important;
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  background-color: var(--tblr-nav-tabs-link-active-bg);
+  color: #001848 !important;
 }
 
 .nav-tabs .nav-link {
-    background: #f1c40f;
-    color: white;
-    border: none;
+  background: #f1c40f;
+  color: white;
+  border: none;
 }
+
 // a.nav-link{
 //     fo
 // }
-.nav-link.active{
-    background-color: #FFF !important;
-    color: #001848 !important;
-    padding-bottom: 5px !important;
+.nav-link.active {
+  background-color: #FFF !important;
+  color: #001848 !important;
+  padding-bottom: 5px !important;
 }
 
-.nav-link{
-    background: #f1c40f !important;
-    color: white !important;
-    padding: 5px 12px 2px 12px !important;
-    border-top-right-radius: 25%;
-    border-radius: 10px 10px 0 0;
+.nav-link {
+  background: #f1c40f !important;
+  color: white !important;
+  padding: 5px 12px 2px 12px !important;
+  border-top-right-radius: 25%;
+  border-radius: 10px 10px 0 0;
 }
 
-.tab-content{
-    color: #001848 !important;
-    background: #FFF !important;
+.tab-content {
+  color: #001848 !important;
+  background: #FFF !important;
 }
 
-.nav-tabs{
-    --tblr-nav-tabs-border-color: none !important;
+.nav-tabs {
+  --tblr-nav-tabs-border-color: none !important;
 }
 
-.heighlight-content{
-    font-weight: 600;
+.heighlight-content {
+  font-weight: 600;
 }
 
-.fw-600{
-    font-weight: 500;
+.fw-600 {
+  font-weight: 500;
 }
 
-.bottom-part{
-    // height: 74%;
-    position: relative;
-    z-index: 20;
-    bottom: 7.3rem;
+.bottom-part {
+  // height: 74%;
+  position: relative;
+  z-index: 20;
+  bottom: 7.3rem;
 
 }
 
@@ -160,98 +162,119 @@
 
 /* The side navigation menu */
 .sidenav {
-    height: 100%; /* 100% Full-height */
-    width: 0; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 9999999; /* Stay on top */
-    top: 0; /* Stay at the top */
-    left: 0;
-    background-color: #6CA2FE; /* Black*/
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 60px; /* Place content 60px from the top */
-    transition: 0.5s ease; /* 0.5 second transition effect to slide in the sidenav */
-  }
-  
-  /* The navigation menu links */
-  .sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-  }
-  
-  /* When you mouse over the navigation links, change their color */
-  .sidenav a:hover {
-    color: #f1f1f1;
-  }
-  
-  /* Position and style the close button (top right corner) */
-  .sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-  }
-  
-  /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-  #main {
-    transition: margin-left .5s;
-    padding: 20px;
-  }
-  
-  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-  @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
-  }
-  
-  #menu-btn{
-    position: absolute;
-    z-index: 99999;
-    top: 50px;
-    left: 50px;
-  }
-  
-  // #moon-div{
-  //   background-image: url('/assets/half_moon.svg'); width: 50px;
-  //   background-size: cover;
-  //   background-repeat: no-repeat;
-  // }
-
-.avatar {
-    --tblr-avatar-size: 7.5rem !important;
+  height: 100%;
+  /* 100% Full-height */
+  width: 0;
+  /* 0 width - change this with JavaScript */
+  position: fixed;
+  /* Stay in place */
+  z-index: 9999999;
+  /* Stay on top */
+  top: 0;
+  /* Stay at the top */
+  left: 0;
+  background-color: #6CA2FE;
+  /* Black*/
+  overflow-x: hidden;
+  /* Disable horizontal scroll */
+  padding-top: 60px;
+  /* Place content 60px from the top */
+  transition: 0.5s ease;
+  /* 0.5 second transition effect to slide in the sidenav */
 }
 
-.bottom-logo{
-    position: relative;
-    bottom: 3.75rem;
+/* The navigation menu links */
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  transition: margin-left .5s;
+  padding: 20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+
+  .sidenav a {
+    font-size: 18px;
+  }
+}
+
+#menu-btn {
+  position: absolute;
+  z-index: 99999;
+  top: 50px;
+  left: 50px;
+}
+
+// #moon-div{
+//   background-image: url('/assets/half_moon.svg'); width: 50px;
+//   background-size: cover;
+//   background-repeat: no-repeat;
+// }
+
+.avatar {
+  --tblr-avatar-size: 7.5rem !important;
+}
+
+.bottom-logo {
+  position: relative;
+  bottom: 3.75rem;
 }
 
 .clamp-text {
-    display: -webkit-box;
-    -webkit-line-clamp: 3; /* number of lines to show */
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  /* number of lines to show */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
-    .menu-icon,
-    .qr-image,
-    .dob,
-    .at,
-    .moon {
-      filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.6));
-    }
+.menu-icon,
+.qr-image,
+.dob,
+.at,
+.moon {
+  filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.6));
+}
+
+.main-container {
+  overflow: hidden;
+}
 
 @media screen and (max-width: 700px) {
+
   .right-part,
   .left-part {
     display: none !important;
   }
-  .main-container{
+
+  .main-container {
     justify-content: center !important;
   }
 }
