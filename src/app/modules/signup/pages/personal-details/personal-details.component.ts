@@ -78,6 +78,15 @@ export class PersonalDetailsComponent implements OnInit{
     this.candidate = localData
   }
 
+  allowOnlyNumbers(event: KeyboardEvent): void {
+    const allowedKeys = ['Backspace', 'ArrowLeft', 'ArrowRight', 'Tab', 'Delete'];
+    
+    // Allow control keys and digits only
+    if (!allowedKeys.includes(event.key) && (isNaN(Number(event.key)) || event.key === ' ')) {
+      event.preventDefault();
+    }
+  }
+
   updateFormData() {
     
     this.formDataService.updateFormData(this.candidate);

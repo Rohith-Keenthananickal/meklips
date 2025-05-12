@@ -77,7 +77,7 @@
                                     <div class="col-4">
                                         <div class="mb-3">
                                             <label class="form-label ">Mobile Number</label>
-                                            <input type="number" class="form-control" [(ngModel)]="candidate.mobile" name="example-text-input" placeholder="Enter Your First Name" spellcheck="false" data-ms-editor="true">
+                                            <input type="number" class="form-control" (keypress)="allowOnlyNumbers($event)" [(ngModel)]="candidate.mobile" name="example-text-input" placeholder="Enter Your First Name" spellcheck="false" data-ms-editor="true" min="0">
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -153,7 +153,6 @@
                         </div>
                         <div>
                             <div class="d-flex justify-content-end gap-3" style="margin-right: 50px; margin-bottom: 50px;" *ngIf="!editable">
-                                <button class="btn">Back</button>
                                 <button class="btn btn-azure" [disabled]="!validate()" (click)="updateFormData()">Next</button>
                     
                             </div>
