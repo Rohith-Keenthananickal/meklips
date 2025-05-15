@@ -45,7 +45,7 @@
                               
                         </div>
                     </div>
-                    <div class="d-flex justify-content-between flex-column">
+                    <div class="main-container ">
                         <div id="main" class="d-flex align-items-start justify-content-center w-100">
                             <div class="mt-2">
                                 <div class="text-center mb-2">
@@ -56,31 +56,31 @@
                                     Personal Details
                                 </div>
                                 <div class="row row-cards mb-2 p-3 pb-0">
-                                    <div class="col-4">
+                                    <div class="col-12 col-sm-12 col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label required">First Name</label>
                                             <input type="text" class="form-control" [(ngModel)]="candidate.firstName" name="example-text-input" placeholder="Enter Your First Name" spellcheck="false" data-ms-editor="true">
                                         </div>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-12 col-sm-6 col">
                                         <div class="mb-3">
                                             <label class="form-label required">Last Name</label>
                                             <input type="text" class="form-control" [(ngModel)]="candidate.lastName" name="example-text-input" placeholder="Enter Your Last Name" spellcheck="false" data-ms-editor="true">
                                         </div>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-12 col-sm-6 col">
                                         <div class="mb-3">
                                             <label class="form-label required">Email Address</label>
                                             <input type="text" class="form-control" disabled="true" [(ngModel)]="candidate.email" name="example-text-input" placeholder="Enter Your First Name" spellcheck="false" data-ms-editor="true">
                                         </div>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-12 col-sm-6 col">
                                         <div class="mb-3">
                                             <label class="form-label ">Mobile Number</label>
                                             <input type="number" class="form-control" (keypress)="allowOnlyNumbers($event)" [(ngModel)]="candidate.mobile" name="example-text-input" placeholder="Enter Your First Name" spellcheck="false" data-ms-editor="true" min="0">
                                         </div>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-12 col-sm-6 col">
                                         <label class="form-label required">DOB</label>
                                         <div class="input-icon mb-2">
                                             <input matInput [matDatepicker]="picker" class="form-control" [max]="currentDate" (click)="openDatepicker()" (dateInput)="dob('input', $event)" [(ngModel)]="candidate.dob"  placeholder="Select Date">
@@ -91,7 +91,7 @@
                                           </div>
                                         
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-12 col-sm-6 col">
                                         <div class="mb-3">
                                             <label class="form-label ">Gender</label>
                                             <ng-select placeholder="Gender" [(ngModel)]="candidate.gender">
@@ -112,19 +112,19 @@
                                             <textarea class="form-control" maxlength="250" name="example-textarea-input" rows="2" [(ngModel)]="candidate.streetAddress2" placeholder="Enter Your Address" spellcheck="false" data-ms-editor="true"></textarea>
                                         </div>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-12 col-sm-6 col">
                                         <div class="mb-3">
                                             <label class="form-label">City</label>
                                             <input type="text" class="form-control" [(ngModel)]="candidate.city" name="example-text-input" placeholder="Enter Your City" spellcheck="false" data-ms-editor="true">
                                         </div>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-12 col-sm-6 col">
                                         <div class="mb-3">
                                             <label class="form-label">State</label>
                                             <input type="text" class="form-control" [(ngModel)]="candidate.state" name="example-text-input" placeholder="Enter Your State" spellcheck="false" data-ms-editor="true">
                                         </div>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-12 col-sm-6 col">
                                         <div class="mb-3">
                                             <label class="form-label">Zip Code</label>
                                             <input type="text" class="form-control" [(ngModel)]="candidate.zipCode" name="example-text-input" placeholder="Enter Your Zip Code" spellcheck="false" data-ms-editor="true">
@@ -156,7 +156,7 @@
                                 <button class="btn btn-azure" [disabled]="!validate()" (click)="updateFormData()">Next</button>
                     
                             </div>
-                            <div class="d-flex justify-content-end gap-3" style="margin-right: 50px; margin-bottom: 50px;" *ngIf="editable">
+                            <div class="d-sm-flex justify-content-end gap-3 button-container" style="margin-right: 50px; margin-bottom: 50px;" *ngIf="editable">
                                 <button class="btn" (click)="cancel()">Cancel</button>
                                 <button class="btn btn-azure" (click)="updateProfile()">Update</button>
                                 <button class="btn btn-azure" (click)="goToNextPage()">Next</button>
@@ -228,31 +228,31 @@
                                             Personal Details
                                         </div>
                                         <div class="row row-cards mb-2 p-3 pb-0">
-                                            <div class="col-4">
+                                            <div class="col-12 col-sm-6 col">
                                                 <div class="mb-3">
                                                     <label class="form-label required">First Name</label>
                                                     <input type="text" class="form-control" [(ngModel)]="candidate.firstName" name="example-text-input" placeholder="Enter Your First Name" spellcheck="false" data-ms-editor="true">
                                                 </div>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-12 col-sm-6 col">
                                                 <div class="mb-3">
                                                     <label class="form-label required">Last Name</label>
                                                     <input type="text" class="form-control" [(ngModel)]="candidate.lastName" name="example-text-input" placeholder="Enter Your Last Name" spellcheck="false" data-ms-editor="true">
                                                 </div>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-12 col-sm-6 col">
                                                 <div class="mb-3">
                                                     <label class="form-label required">Email Address</label>
                                                     <input type="text" class="form-control" disabled="true" [(ngModel)]="candidate.email" name="example-text-input" placeholder="Enter Your First Name" spellcheck="false" data-ms-editor="true">
                                                 </div>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-12 col-sm-6 col">
                                                 <div class="mb-3">
                                                     <label class="form-label ">Mobile Number</label>
                                                     <input type="number" class="form-control" [(ngModel)]="candidate.mobile" name="example-text-input" placeholder="Enter Your First Name" spellcheck="false" data-ms-editor="true">
                                                 </div>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-12 col-sm-6 col">
                                                 <label class="form-label ">DOB</label>
                                                 <div class="input-icon mb-2">
                                                     <input matInput [matDatepicker]="picker" class="form-control" [max]="currentDate" (click)="openDatepicker()" (dateInput)="dob('input', $event)" [(ngModel)]="candidate.dob"  placeholder="Select Date">
@@ -263,7 +263,7 @@
                                                   </div>
                                                 
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-12 col-sm-6 col">
                                                 <div class="mb-3">
                                                     <label class="form-label ">Gender</label>
                                                     <ng-select placeholder="Gender" [(ngModel)]="candidate.gender">
@@ -284,19 +284,19 @@
                                                     <textarea class="form-control" maxlength="250" name="example-textarea-input" rows="2" [(ngModel)]="candidate.streetAddress2" placeholder="Enter Your Address" spellcheck="false" data-ms-editor="true"></textarea>
                                                 </div>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-12 col-sm-6 col">
                                                 <div class="mb-3">
                                                     <label class="form-label">City</label>
                                                     <input type="text" class="form-control" [(ngModel)]="candidate.city" name="example-text-input" placeholder="Enter Your City" spellcheck="false" data-ms-editor="true">
                                                 </div>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-12 col-sm-6 col">
                                                 <div class="mb-3">
                                                     <label class="form-label">State</label>
                                                     <input type="text" class="form-control" [(ngModel)]="candidate.state" name="example-text-input" placeholder="Enter Your State" spellcheck="false" data-ms-editor="true">
                                                 </div>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-12 col-sm-6 col">
                                                 <div class="mb-3">
                                                     <label class="form-label">Zip Code</label>
                                                     <input type="text" class="form-control" [(ngModel)]="candidate.zipCode" name="example-text-input" placeholder="Enter Your Zip Code" spellcheck="false" data-ms-editor="true">

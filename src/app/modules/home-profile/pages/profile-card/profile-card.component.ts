@@ -23,6 +23,7 @@ export class ProfileCardComponent implements OnInit {
   private modalRef: NgbModalRef;
   private modalRef2: NgbModalRef;
   public mailId : string;
+  public hasParams : boolean = false;
   
   constructor(private authService: AuthService,
     private profileService : ProfileService,
@@ -36,8 +37,12 @@ export class ProfileCardComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       if (params['id']) {
+        this.hasParams = true;
         this.candidateId = Number(params['id']);
+        console.log(this.hasParams);
+        
       } else {
+        this.hasParams = false;
         this.candidateId = Number(localStorage.getItem('meklips.userId'));
       }
       this.getCandidateInfo();
@@ -100,7 +105,9 @@ export class ProfileCardComponent implements OnInit {
   }
 
   openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
+    if(!this.hasParams){
+      document.getElementById("mySidenav").style.width = "250px";
+    }
   }
 
   logout(){
