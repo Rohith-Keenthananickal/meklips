@@ -18,6 +18,7 @@ export class HighlightsComponent implements OnInit{
   public candidateId = localStorage.getItem('candidateId');
   subscription:Subscription;
   public candidate = new Candidate();
+  public selectedHighlightIndex : number;
   constructor(private router: Router,
     private activeRoute:ActivatedRoute,
     private formDataService: FormDataService,
@@ -110,13 +111,16 @@ export class HighlightsComponent implements OnInit{
 
   addHighlight(){
     if((this.candidateHighlights.highlightKey && this.candidateHighlights.highlightValue) &&this.candidateHighlightsList?.length < 3){
-      this.candidateHighlightsList.push(this.candidateHighlights);
+      this.candidateHighlightsList.splice(this.selectedHighlightIndex, 0, this.candidateHighlights);
+      // this.candidateHighlightsList.push(this.candidateHighlights);
       this.candidateHighlights = new CandidateHighlight();
+      console.log(this.candidateHighlightsList);
     }
   }
 
   editHighlight(index: number){
     this.candidateHighlights = this.candidateHighlightsList[index];
+    this.selectedHighlightIndex = index;
     this.candidateHighlightsList.splice(index, 1);
   }
 

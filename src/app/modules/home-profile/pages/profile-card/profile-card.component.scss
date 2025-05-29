@@ -58,7 +58,7 @@
 
 .dob {
   position: absolute;
-  right: 0.9375rem;
+  right: 1rem;
   top: 1.0625rem;
   font-weight: 600;
 }
@@ -85,11 +85,11 @@
   margin-top: 10px;
 }
 
-.profile-role {
-  font-size: 14px;
-  margin-top: 5px;
-  color: #ccc;
-}
+// .profile-role {
+//   font-size: 14px;
+//   margin-top: 5px;
+//   color: #ccc;
+// }
 
 .profile-description {
   font-size: 14px;
@@ -100,13 +100,18 @@
 .nav-tabs .nav-item.show .nav-link,
 .nav-tabs .nav-link.active {
   background-color: var(--tblr-nav-tabs-link-active-bg);
-  color: #001848 !important;
+  color: #021552 !important;
+  font-weight: 800;
+  font-size: 15px;  
 }
 
 .nav-tabs .nav-link {
   background: #f1c40f;
   color: white;
   border: none;
+  font-size: 15px;
+  font-weight: 800;
+
 }
 
 // a.nav-link{
@@ -136,7 +141,9 @@
 }
 
 .heighlight-content {
-  font-weight: 600;
+  color: #021552;
+	font-weight: 700;
+  font-size: 15px;
 }
 
 .fw-600 {

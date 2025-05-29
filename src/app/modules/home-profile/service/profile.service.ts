@@ -41,4 +41,8 @@ export class ProfileService {
     return this.http.get(`${environment.url}/candidates/video/${id}`)
   }
 
+  likeCandidate(id: number){
+    return this.http.patch(`${environment.url}api/candidates/${id}/like`,{})
+  }
+
 }

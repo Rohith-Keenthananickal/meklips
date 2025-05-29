@@ -50,6 +50,17 @@ export class ProfileCardComponent implements OnInit {
     this.mailId = localStorage.getItem('meklips.email');
   }
 
+  likeCandidate(){
+    this.candidate.likes = this.candidate.likes + 1;
+    this.profileService.likeCandidate(this.candidateId).subscribe({
+      next:(res : any)=>{
+      },
+      error:(err : HttpErrorResponse)=>{
+        console.log(err);
+      }
+    })
+  }
+
   openQrCode(){
     this.modalRef2 = this.modalService.open(QrCodeModalComponent, { size: 'sm', centered: true });
     this.modalRef2.componentInstance.id = this.candidate.id;

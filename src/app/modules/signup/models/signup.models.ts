@@ -16,6 +16,7 @@ export class Candidate {
     gender: string
     dpId : any;
     videoId : number;
+    likes : number;
     experienceSummary: string
     technicalSummary: string
     educationalDegrees: EducationalDegree[]

@@ -52,36 +52,39 @@
         <img src="/assets/me-logo.png" alt="" width="100">
       </div>
       <div class="text-center">
-        <img src="/assets/apple-watch.png" alt="" class="apple-watch">
+        <img src="/assets/no-me.gif" alt="" class="no-me" width="300"> 
       </div>
       <div>
         <img src="/assets/volume.png" alt="" width="100">
       </div>
     </div>
-    <div style="max-width: 450px; min-width: 300px;">
+    <div style="max-width: 500px; min-width: 300px;">
       <div class="card border-yellow border-3" style="height: calc(100vh - 2rem);">
         <div class="card-body p-0 d-flex flex-column justify-content-between">
           <div>
             <i class="ti ti-menu-2 cursor-pointer text-white menu-icon" (click)="openNav()"></i>
             <i class="ti ti-qrcode qr-image text-white" (click)="openQrCode()"></i>
-            <img src="/assets/half_moon.svg" alt="" *ngIf="candidate?.dob" class="moon">
-            <span class="text-white dob" *ngIf="candidate?.dob">
-              {{calculateAge(candidate?.dob)}}
-            </span>
+            <div (click)="likeCandidate()" class="cursor-pointer">
+              <img src="/assets/half_moon.svg" alt="" *ngIf="candidate?.dob" class="moon">
+              <span class="text-white dob" *ngIf="candidate?.dob">
+                <!-- {{calculateAge(candidate?.dob)}} -->
+               {{candidate?.likes}}
+              </span>
+            </div>
             <span class="text at text-white fw-bold cursor-pointer" (click)="openMailClient()">&#64;</span>
-            <img [src]="imageUrl || '/assets/user-img.jpg'" alt="" style="width: 100%; height: 55vh; object-fit: cover;">
+            <img [src]="imageUrl || '/assets/user-img.jpg'" alt="" style="width: 100%; height: 52vh; object-fit: cover;">
             <div class="profile-content" style="height: 33vh;">
               <div class="text-white text-center d-flex flex-column justify-content-center align-items-center">
                 <img src="/assets/mKPlaynewe.gif" alt="share" class="cursor-pointer" width="120" (click)="openModal()">
               <span class="profile-name">{{candidate?.firstName}} {{candidate?.lastName}}</span>
               <span>
-                <span  class="profile-role text-center">
+                <span  class="profile-role text-center muted-semi-bold">
                   {{candidate?.professionInfo}}
                 </span>
               </span>
 
 
-              <span class="card-title fs-4 fw-bold px-4 pt-0 mt-2 clamp-text">
+              <span class="white-semi-bold px-4 pt-0 mt-2 clamp-text">
                 {{candidate?.experienceSummary}}
               </span>
             </div>
@@ -139,7 +142,7 @@
     </div>
     <div style="width: 33%;" class="right-part">
       <div class="h-100 d-flex flex-column justify-content-center align-items-center">
-        <img src="/assets/watch-img.jpeg" alt="" style="width: 40%;">
+        <img src="/assets/mK-logo.png" alt="" style="width: 50%;">
       </div>
     </div>
   </div>
