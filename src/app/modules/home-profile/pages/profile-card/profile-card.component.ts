@@ -52,7 +52,7 @@ export class ProfileCardComponent implements OnInit {
 
   likeCandidate(){
     this.candidate.likes = this.candidate.likes + 1;
-    this.profileService.likeCandidate(this.candidateId).subscribe({
+    this.profileService.likeCandidate(Number(this.candidate.id)).subscribe({
       next:(res : any)=>{
       },
       error:(err : HttpErrorResponse)=>{
@@ -62,8 +62,9 @@ export class ProfileCardComponent implements OnInit {
   }
 
   openQrCode(){
+    console.log(localStorage.getItem('meklips.userId'));
     this.modalRef2 = this.modalService.open(QrCodeModalComponent, { size: 'sm', centered: true });
-    this.modalRef2.componentInstance.id = this.candidate.id;
+    this.modalRef2.componentInstance.id = localStorage.getItem('meklips.userId');
     this.modalRef2.result
       .then((result) => {
       })  
