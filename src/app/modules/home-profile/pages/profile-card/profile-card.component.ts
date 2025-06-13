@@ -51,14 +51,17 @@ export class ProfileCardComponent implements OnInit {
   }
 
   likeCandidate(){
-    this.candidate.likes = this.candidate.likes + 1;
-    this.profileService.likeCandidate(Number(this.candidate.id)).subscribe({
-      next:(res : any)=>{
-      },
-      error:(err : HttpErrorResponse)=>{
-        console.log(err);
-      }
-    })
+    if(this.hasParams){
+      this.candidate.likes = this.candidate.likes + 1;
+      this.profileService.likeCandidate(Number(this.candidate.id)).subscribe({
+        next:(res : any)=>{
+        },
+        error:(err : HttpErrorResponse)=>{
+          console.log(err);
+        }
+      })
+    }
+    
   }
 
   openQrCode(){

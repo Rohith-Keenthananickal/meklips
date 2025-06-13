@@ -14,6 +14,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 33vh;
 }
 
 .background-blue {
@@ -37,13 +38,13 @@
   left: 0.625rem;
   top: 0.625rem;
   cursor: pointer;
-  font-size: 2.25rem;
+  font-size: 2.3rem;
 }
 
 .qr-image {
   position: absolute;
-  left: 0.625rem;
-  top: 3.25rem;
+  left: 0.9rem;
+  top: 3.7rem;
   cursor: pointer;
   font-size: 2.25rem;
 }
@@ -52,8 +53,8 @@
   position: absolute;
   right: 0.625rem;
   top: 0.625rem;
-  height: 2.1875rem;
-  width: 2.1875rem;
+  height: 2.3rem;
+  width: 2.3rem;
 }
 
 .dob {
@@ -274,6 +275,14 @@
   overflow: hidden;
 }
 
+.left-part {
+  width: 33%;
+}
+
+.right-part {
+  width: 33%;
+}
+
 @media screen and (max-width: 700px) {
 
   .right-part,
@@ -283,5 +292,16 @@
 
   .main-container {
     justify-content: center !important;
+    padding: 0 !important;
+    width: 100% !important;
   }
+
+  #profile-card {
+    border: none !important;
+  }
+
+  .profile-content{
+    height: 36vh;
+  }
+
 }
