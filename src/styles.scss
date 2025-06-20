@@ -1,4 +1,3 @@
-
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import 'ngx-toastr/toastr';
 // @import "~@ng-select/ng-select/themes/material.theme.css";
@@ -84,4 +83,26 @@ body { margin: 0;  font-family: "Inter", sans-serif; }
 .bold-blue{
 	color: #021552;
 	font-weight: 700;
+}
+
+.video-modal-no-bg .modal-content {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto !important;
+  min-width: unset !important;
+  max-width: unset !important;
+}
+
+.video-modal-no-bg .modal-dialog {
+  max-width: unset !important;
+  width: auto !important;
+  margin: 0 auto !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

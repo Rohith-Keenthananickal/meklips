@@ -75,7 +75,7 @@ export class ProfileCardComponent implements OnInit {
   }
 
   openModal(){
-    this.modalRef = this.modalService.open(VideoPlayerModalComponent, { size: 'sm', centered: true });
+    this.modalRef = this.modalService.open(VideoPlayerModalComponent, { centered: true, windowClass: 'video-modal-no-bg' });
     this.modalRef.componentInstance.videoId = this.candidate.videoId;
     this.modalRef.result
       .then((result) => {
