@@ -1,12 +1,13 @@
 .profile-content {
   margin-top: -1.25rem;
   padding-top: 2.5rem;
-  background: linear-gradient(to bottom, rgba(105, 255, 255, 0) 0%, rgba(105, 255, 255, 0) 7%, #001848 15%, #002f72 100%);
+  background: linear-gradient(to top, #001848 0%, #002f72 40%, rgba(105, 255, 255, 0) 100%);
+  // background: linear-gradient(to bottom, rgba(105, 255, 255, 0) 0%, rgba(105, 255, 255, 0) 7%, #001848 15%, #002f72 100%);
   padding: 1.25rem;
   color: #fff;
   // border-radius: 15px;
   position: relative;
-  bottom: 5rem;
+  bottom: 12.5rem;
   // div{
   //     position: relative;
   //     top: 1rem;
@@ -14,7 +15,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 33vh;
+  height: 39vh;
+}
+
+.blue-background {
+  background: linear-gradient(to top, #001848 0%, #002f72 40%, rgba(105, 255, 255, 0) 100%);
 }
 
 .background-blue {
@@ -155,7 +160,7 @@
   // height: 74%;
   position: relative;
   z-index: 20;
-  bottom: 7.3rem;
+  bottom: 14.9rem;
 
 }
 
@@ -251,7 +256,7 @@
 
 .bottom-logo {
   position: relative;
-  bottom: 4.75rem;
+  bottom: 5.75rem;
 }
 
 .clamp-text {

@@ -62,74 +62,70 @@
       <div class="card border-yellow border-3" style="height: calc(100vh - 1rem);">
         <div class="card-body p-0 d-flex flex-column justify-content-between">
           <div>
-            <i class="ti ti-menu-2 cursor-pointer text-white menu-icon" (click)="openNav()"></i>
-            <!-- <i class="ti ti-qrcode qr-image text-white" (click)="openQrCode()"></i> -->
-             <img src="/assets/QR.svg" alt="" width="30" class="cursor-pointer qr-image" (click)="openQrCode()">
-            <div (click)="likeCandidate()" class="cursor-pointer">
-              <img src="/assets/half_moon.svg" alt="" *ngIf="candidate?.dob" class="moon">
-              <span class="text-white dob" *ngIf="candidate?.dob">
-                <!-- {{calculateAge(candidate?.dob)}} -->
-               {{candidate?.likes}}
-              </span>
+            <div>
+              <i class="ti ti-menu-2 cursor-pointer text-white menu-icon" (click)="openNav()"></i>
+              <!-- <i class="ti ti-qrcode qr-image text-white" (click)="openQrCode()"></i> -->
+              <img src="/assets/QR.svg" alt="" width="30" class="cursor-pointer qr-image" (click)="openQrCode()">
+              <div (click)="likeCandidate()" class="cursor-pointer">
+                <img src="/assets/half_moon.svg" alt="" *ngIf="candidate?.dob" class="moon">
+                <span class="text-white dob" *ngIf="candidate?.dob">
+                  <!-- {{calculateAge(candidate?.dob)}} -->
+                  {{candidate?.likes}}
+                </span>
+              </div>
+              <span class="text at text-white fw-bold cursor-pointer" (click)="openMailClient()">&#64;</span>
+              <img [src]="imageUrl || '/assets/user-img.jpg'" alt="" style="width: 100%; height: 51vh; object-fit: cover;">
+              <div class="profile-content">
+                <div class="text-white text-center d-flex flex-column justify-content-center align-items-center">
+                  <img src="/assets/mKPlaynewe.gif" alt="share" class="cursor-pointer" width="120" (click)="openModal()">
+                  <span class="profile-name">{{candidate?.firstName}} {{candidate?.lastName}}</span>
+                  <span>
+                    <span class="profile-role text-center muted-semi-bold">
+                      {{candidate?.professionInfo}}
+                    </span>
+                  </span>
+            
+            
+                  <span class="white-semi-bold px-4 pt-0 mt-2 clamp-text">
+                    {{candidate?.experienceSummary}}
+                  </span>
+                </div>
+            
+            
+            
+              </div>
             </div>
-            <span class="text at text-white fw-bold cursor-pointer" (click)="openMailClient()">&#64;</span>
-            <img [src]="imageUrl || '/assets/user-img.jpg'" alt="" style="width: 100%; height: 51vh; object-fit: cover;">
-            <div class="profile-content">
-              <div class="text-white text-center d-flex flex-column justify-content-center align-items-center">
-                <img src="/assets/mKPlaynewe.gif" alt="share" class="cursor-pointer" width="120" (click)="openModal()">
-              <span class="profile-name">{{candidate?.firstName}} {{candidate?.lastName}}</span>
-              <span>
-                <span  class="profile-role text-center muted-semi-bold">
-                  {{candidate?.professionInfo}}
+            
+            <div class="d-flex flex-column justify-content-between align-items-center bottom-part ">
+              <span style="width: 95%;">
+                <ul class="nav nav-tabs nav-fill p-0 m-2 justify-content-center gap-2 flex-nowrap" data-bs-toggle="tabs"
+                  role="tablist">
+                  <li class="nav-item" role="presentation" *ngFor="let highlight of candidate?.candidateHighlights; let i = index"
+                    [style.width]="'calc((100% - ' + ((candidate?.candidateHighlights?.length - 1) * 8) + 'px) / ' + candidate?.candidateHighlights?.length + ')'">
+                    <a href="#tabs-home-{{i}}" (click)="selectedHighlight = i" class="nav-link p-1 fw-600 text-center"
+                      [ngClass]="{'active': i === 0}" data-bs-toggle="tab" aria-selected="true" role="tab" style="
+                                white-space: nowrap;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                text-align: left;
+                                display: block;
+                                width: 100%;
+                              ">
+                      {{ highlight?.highlightKey }}
+                    </a>
+          
+                  </li>
+                </ul>
+                <span class="tab-content d-block mt-3">
+                  <div class="heighlight-content px-3">
+                    {{candidate?.candidateHighlights[selectedHighlight]?.highlightValue}}
+                  </div>
                 </span>
               </span>
-
-
-              <span class="white-semi-bold px-4 pt-0 mt-2 clamp-text">
-                {{candidate?.experienceSummary}}
-              </span>
+          
+          
+          
             </div>
-            
-            
-            
-          </div>
-          <div class="d-flex flex-column justify-content-between align-items-center bottom-part ">
-            <span style="width: 95%;">
-              <ul class="nav nav-tabs nav-fill p-0 m-2 justify-content-center gap-2 flex-nowrap" data-bs-toggle="tabs" role="tablist">
-                <li class="nav-item" role="presentation" *ngFor="let highlight of candidate?.candidateHighlights; let i = index" 
-                    [style.width]="'calc((100% - ' + ((candidate?.candidateHighlights?.length - 1) * 8) + 'px) / ' + candidate?.candidateHighlights?.length + ')'">
-                    <a
-                    href="#tabs-home-{{i}}"
-                    (click)="selectedHighlight = i"
-                    class="nav-link p-1 fw-600 text-center"
-                    [ngClass]="{'active': i === 0}"
-                    data-bs-toggle="tab"
-                    aria-selected="true"
-                    role="tab"
-                    style="
-                      white-space: nowrap;
-                      overflow: hidden;
-                      text-overflow: ellipsis;
-                      text-align: left;
-                      display: block;
-                      width: 100%;
-                    "
-                  >
-                    {{ highlight?.highlightKey }}
-                  </a>
-                  
-                </li>
-              </ul>
-              <span class="tab-content d-block mt-3">
-                <div class="heighlight-content px-3">
-                  {{candidate?.candidateHighlights[selectedHighlight]?.highlightValue}}
-                </div>
-              </span>
-            </span>
-            
-
-            
-          </div>
           </div>
           
           
