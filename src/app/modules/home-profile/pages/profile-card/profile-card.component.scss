@@ -7,7 +7,7 @@
   color: #fff;
   // border-radius: 15px;
   position: relative;
-  bottom: 12.5rem;
+  bottom: 18.5rem;
   // div{
   //     position: relative;
   //     top: 1rem;
@@ -15,7 +15,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 39vh;
+  height: 59vh;
 }
 
 .blue-background {
@@ -126,7 +126,7 @@
 .nav-link.active {
   background-color: #FFF !important;
   color: #001848 !important;
-  padding-bottom: 5px !important;
+  padding-bottom: 6px !important;
 }
 
 .nav-link {
@@ -160,7 +160,7 @@
   // height: 74%;
   position: relative;
   z-index: 20;
-  bottom: 14.9rem;
+  bottom: 21.0rem;
 
 }
 
@@ -288,6 +288,11 @@
   width: 33%;
 }
 
+.bottom-logo{
+  position: relative;
+  bottom: 16.5rem;
+}
+
 @media screen and (max-width: 700px) {
 
   .right-part,
@@ -306,7 +311,8 @@
   }
 
   .profile-content{
-    height: 36vh;
+    // height: 36vh;
   }
+
 
 }

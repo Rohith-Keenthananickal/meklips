@@ -127,5 +127,12 @@ export class HighlightsComponent implements OnInit{
   deleteHighlight(index: number){
     this.candidateHighlightsList.splice(index, 1);
   }
+
+  clearHighlight(index: number){
+    if (this.candidateHighlightsList[index]) {
+      this.candidateHighlightsList[index].highlightKey = '';
+      this.candidateHighlightsList[index].highlightValue = '';
+    }
+  }
   
 }

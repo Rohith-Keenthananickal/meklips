@@ -57,7 +57,7 @@
                         <div id="main" class="d-flex align-items-start justify-content-center w-100">
                             <div class="mt-4 w-100" >
                                 <div class="text-center mb-3">
-                                    <img src="./assets/Meklips-logo-final.png" width="150px" alt="logo">
+                                    <img src="./assets/mK-logo.png" width="150px" alt="logo">
                                 </div>
                                 
                                 <div class="text-azure fs-3 fw-bold mb-3">
@@ -66,55 +66,29 @@
                                 <div class="overflow-auto" style="height: calc(100vh - 40vh);">
                                     <div class="m-3">
                                         <div class="row row-cards mb-3">
-                                            <div class="col-6"  *ngFor="let highlight of candidateHighlightsList; let i = index">
-                                                <div class="card" >
+                                            <div class="col-6" *ngFor="let i of [0,1,2]; let index = index">
+                                                <div class="card">
                                                     <div class="card-body">
-                                                        <div class="d-flex justify-content-between">
-                                                            <div class="card-title text-azure mb-3">
-                                                                Highlight - {{i+1}}
-                                                            </div>
-                                                            <!-- <div class="card-title text-azure mb-3" >
-                                                                Highlight Description
-                                                            </div> -->
-                                                            <div class="d-flex gap-2">
-                                                                <i class="ti ti-edit fs-2 text-azure cursor-pointer" mat-raised-button matTooltip="Edit" matTooltipPosition="above" (click)="editHighlight(i)"></i>
-                                                                <i class="ti ti-trash fs-2 text-azure cursor-pointer" mat-raised-button matTooltip="Delete" matTooltipPosition="above" (click)="deleteHighlight(i)"></i>
-                                                            </div>
+                                                        <div class="card-title text-azure mb-3">
+                                                            Highlight - {{index + 1}}
                                                         </div>
-                                                        
-                                                        <div class="text fw-bold mb-1">
-                                                            {{highlight.highlightKey}}
+                                                        <div class="mb-3">
+                                                            <label class="form-label required">Highlight Title</label>
+                                                            <input type="text" class="form-control" name="highlight-title-{{index}}" placeholder="Enter Title" [(ngModel)]="candidateHighlightsList[index].highlightKey">
                                                         </div>
-                                                        <div class="d-flex gap-3 align-items-center">
-                                                            <div class="text">
-                                                                {{highlight.highlightValue}}
-                                                            </div>
-                                                            
+                                                        <div class="mb-3">
+                                                            <label class="form-label required">Highlight Description</label>
+                                                            <textarea class="form-control" name="highlight-description-{{index}}" placeholder="Enter Description" [(ngModel)]="candidateHighlightsList[index].highlightValue"></textarea>
                                                         </div>
-                                                        
+                                                        <div class="d-flex justify-content-end">
+                                                            <i class="ti ti-trash fs-2 text-secondary cursor-pointer" 
+                                                               mat-raised-button 
+                                                               matTooltip="Clear Highlight" 
+                                                               matTooltipPosition="above" 
+                                                               (click)="clearHighlight(index)"></i>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="card" *ngIf="candidateHighlightsList?.length < 3 ">
-                                            <div class="card-body">
-                                                <div class="mb-3">
-                                                    <label class="form-label required ">Highlight Title</label>
-                                                    <input type="text" class="form-control" name="example-text-input" placeholder="Enter Title" [(ngModel)]="candidateHighlights.highlightKey">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label required ">Highlight Description</label>
-                                                    <textarea class="form-control" name="example-text-input" placeholder="Enter Description" [(ngModel)]="candidateHighlights.highlightValue"></textarea>
-                                                </div>
-                                                <div class="d-flex justify-content-end">
-                                                    <button class="btn btn-outline-azure mt-3" style="width: 200px;" (click)="addHighlight()" *ngIf="candidateHighlightsList?.length < 3">
-                                                        <i class="ti ti-plus fs-2"></i>
-                                                        <span class="ms-2">
-                                                            Add More Highlight
-                                                        </span>
-                                                    </button>
-                                                </div>
-                                                
                                             </div>
                                         </div>
                                     </div>
