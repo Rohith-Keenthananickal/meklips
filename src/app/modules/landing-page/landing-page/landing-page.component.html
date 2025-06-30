@@ -1,84 +1,17 @@
-<div class="outer-layer">
-    <div class="inner-layer">
-        <div class="main">
-            <div class="d-flex justify-content-center">
-                <div style="width: 200px;">
-                    <img src="/assets/Meklips-logo-final.png" alt="logo">
-                </div>
-            </div>
-            <div class="d-flex gap-4 justify-content-evenly mt-3">
-                <div>
-                    <div class="text-center d-block"  >
-                        <img class="img" src="/assets/Employee.png" alt="employee" style="width: 200px;">
-                    </div>
-                    <div class="text-blue text-center mt-3 fw-bold">
-                        Employee
-                    </div>
-                    <div class="text-blue text-center mt-3 fw-bold">
-                       Let's Get Started
-                    </div>
-
-                    <div class="d-flex justify-content-between align-items-center w-100 gap-4 mt-3">
-                        <div class="d-flex flex-column align-items-center justify-content-center">
-                            <div class="text mb-2 fs-5">
-                                Sign in to continue
-                            </div>
-                            <button class="btn btn-primary" (click)="advancedView('signup')">
-                                Signup
-                            </button>
-                        </div>
-                        <div class="d-flex flex-column align-items-center justify-content-center">
-                            <div class="text mb-2 fs-5">
-                                If you already have account
-                            </div>
-                            <button class="btn btn-primary" (click)="advancedView('login')">
-                                Log in
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <!-- <div class="vr" style="height: 200px; margin-top: 10%;">
-            
-                </div> -->
-                <!-- <div>
-                    <div class="text-center d-block"  >
-                        <img class="img" src="/assets/Employer.png" alt="employee" style="width: 200px;">
-                    </div>
-                    <div class="text-blue text-center mt-3 fw-bold">
-                        Employer
-                    </div>
-                    <div class="text-blue text-center mt-3 fw-bold">
-                       Let's Get Started
-                    </div>
-
-                    <div class="d-flex justify-content-between align-items-center w-100 gap-4 mt-3">
-                        <div class="d-flex flex-column align-items-center justify-content-center">
-                            <div class="text mb-2 fs-5">
-                                Sign in to continue
-                            </div>
-                            <button class="btn btn-primary disabled" >
-                                Signup
-                            </button>
-                        </div>
-                        <div class="d-flex flex-column align-items-center justify-content-center">
-                            <div class="text mb-2 fs-5">
-                                If you already have account
-                            </div>
-                            <button class="btn btn-primary disabled">
-                                Log in
-                            </button>
-                        </div>
-                    </div>
-                </div> -->
-            </div>
-            <div class="text-center mt-5 fs-5">
-                <span class="text">
-                    By signing in, you accept our <span class="text-blue cursor-pointer">Terms and Conditions</span>
-                </span>
-            </div>
-        </div>
-        
+<div class="outer-layer d-flex flex-column justify-content-between align-items-center min-vh-100" style="background: #fff;">
+  <div></div> <!-- Spacer for vertical centering -->
+  <div class="d-flex flex-column align-items-center w-100 justify-content-center" style="flex: 1; margin-bottom: 135px;">
+    <div class=" mt-5" style="margin-bottom: 7rem;">
+      <img src="/assets/me-logo.png" alt="logo" style="width: 200px; display: block; margin: 0 auto;" />
     </div>
 
+    <div class="d-flex flex-column align-items-center w-100" style="max-width: 300px;">
+      <button class="btn mb-3 text-white" style="background: #FFD600; font-weight: bold; font-size: 1.2rem; border-radius: 6px;" (click)="advancedView('login')">log in</button>
+      <a class="text-muted mt-1 fs-2 cursor-pointer text-decoration-underline" (click)="advancedView('signup')">sign up</a>
+    </div>
+  </div>
+  <div class="w-100 d-flex flex-column align-items-center mb-3">
+    <img src="/assets/mK-logo.png" alt="meklips logo" style="width: 120px;" />
+  </div>
 </div>
 
