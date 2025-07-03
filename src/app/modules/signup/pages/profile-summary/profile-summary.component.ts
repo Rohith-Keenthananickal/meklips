@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { SignupService } from '../../service/signup.service';
 import { Candidate, CandidateSummaryPayload } from '../../models/signup.models';
 import { FormDataService } from '../../service/form-data.service';
@@ -39,6 +40,7 @@ export class ProfileSummaryComponent implements OnInit {
     private toastr: ToastrService,
     private activeRoute:ActivatedRoute,
     private profileService : ProfileService,
+    private location: Location,
     ) {}
 
   ngOnInit(): void {
@@ -83,7 +85,19 @@ export class ProfileSummaryComponent implements OnInit {
   }
 
   profileView(){
-    this.router.navigate(['/profile']);
+    // Navigate to profile and prevent going back to this page
+    this.navigateToProfileAndPreventBack();
+  }
+
+  /**
+   * Helper method to navigate to profile page and prevent going back to this page
+   */
+  private navigateToProfileAndPreventBack() {
+    // First, replace the current URL in history with the profile page
+    this.location.replaceState('/profile');
+    
+    // Then navigate to ensure the route is properly loaded
+    this.router.navigate(['/profile'], { replaceUrl: true });
   }
 
   imageSelect(event: any) {
@@ -144,7 +158,7 @@ export class ProfileSummaryComponent implements OnInit {
           else{
             setTimeout(()=>{
               this.loader = false;
-              this.router.navigate(['profile']);
+              this.navigateToProfileAndPreventBack();
             },1000)
           }
         },
@@ -173,7 +187,7 @@ export class ProfileSummaryComponent implements OnInit {
           this.videoLoader = false;
           setTimeout(()=>{
             this.loader = false;
-            this.router.navigate(['profile']);
+            this.navigateToProfileAndPreventBack();
           },1000)  
         },
         error:(err : any)=>{
@@ -251,7 +265,7 @@ export class ProfileSummaryComponent implements OnInit {
   }
 
   cancel(){
-    this.router.navigate(['profile']);
+    this.navigateToProfileAndPreventBack();
   }
 
   updateSummary(){
@@ -268,7 +282,7 @@ export class ProfileSummaryComponent implements OnInit {
         else{
           setTimeout(()=>{
             this.loader = false;
-            this.router.navigate(['profile']);
+            this.navigateToProfileAndPreventBack();
           },1000)
         }
         

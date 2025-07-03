@@ -53,9 +53,10 @@ export class HighlightsComponent implements OnInit{
     console.log(this.candidate);
     let id = localStorage.getItem('meklips.userId')
     let payload = new Candidate();
-    let highLights : CandidateHighlight[];
-    highLights = this.candidateHighlightsList
-    payload.candidateHighlights = highLights
+    
+    // Use helper method to get valid highlights
+    payload.candidateHighlights = this.getValidHighlights();
+    
     this.signupService.updateCandidate(payload,id).subscribe({
       next:(res:any)=>{
         console.log(res);
@@ -82,7 +83,11 @@ export class HighlightsComponent implements OnInit{
   advancedView(){
     this.addHighlight();
     this.updateFormData();
-    if(this.candidateHighlightsList?.length < 2){
+    
+    // Use helper method to count valid highlights
+    const validHighlightsCount = this.getValidHighlights().length;
+    
+    if(validHighlightsCount < 2){
       this.toastr.error('Please Add Atleast Two Highlight', 'Error', {
         positionClass: 'toast-top-right',
       });
@@ -93,12 +98,8 @@ export class HighlightsComponent implements OnInit{
   }
 
   updateFormData() {
-    // Only save highlights that have both key and value filled
-    const validHighlights = this.candidateHighlightsList.filter(highlight => 
-      highlight.highlightKey && highlight.highlightValue && 
-      highlight.highlightKey.trim() !== '' && highlight.highlightValue.trim() !== ''
-    );
-    this.candidate.candidateHighlights = validHighlights;
+    // Use helper method to get valid highlights
+    this.candidate.candidateHighlights = this.getValidHighlights();
     this.formDataService.updateFormData(this.candidate);
   }
 
@@ -112,10 +113,13 @@ export class HighlightsComponent implements OnInit{
     this.candidate.candidateHighlights = this.candidate.candidateHighlights || [];
     this.candidateHighlightsList = this.candidate.candidateHighlights;
     
-    // Filter out empty highlights and only keep those with both key and value
+    // Get valid highlights from the loaded data
     const validHighlights = this.candidateHighlightsList.filter(highlight => 
-      highlight.highlightKey && highlight.highlightValue && 
-      highlight.highlightKey.trim() !== '' && highlight.highlightValue.trim() !== ''
+      highlight && 
+      highlight.highlightKey && 
+      highlight.highlightValue && 
+      highlight.highlightKey.trim() !== '' && 
+      highlight.highlightValue.trim() !== ''
     );
     
     // Initialize with 3 empty cards, but populate with existing valid data
@@ -160,6 +164,19 @@ export class HighlightsComponent implements OnInit{
     }
   }
 
+  /**
+   * Helper method to filter out null, undefined, or empty highlights
+   * @returns Array of valid highlights
+   */
+  private getValidHighlights(): CandidateHighlight[] {
+    return this.candidateHighlightsList.filter(highlight => 
+      highlight && 
+      highlight.highlightKey && 
+      highlight.highlightValue && 
+      highlight.highlightKey.trim() !== '' && 
+      highlight.highlightValue.trim() !== ''
+    );
+  }
 
   
 }

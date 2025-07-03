@@ -27,6 +27,23 @@ export class SignupComponent {
 
   }
 
+  validateEmail(): boolean {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    
+    if (!this.signUpPayload.email) {
+      this.toastr.error('Email is required', 'Validation Error', {
+        positionClass: 'toast-top-right',
+      });
+      return false;
+    } else if (!emailRegex.test(this.signUpPayload.email)) {
+      this.toastr.error('Please enter a valid email address', 'Validation Error', {
+        positionClass: 'toast-top-right',
+      });
+      return false;
+    }
+    return true;
+  }
+
   validatePassword(): void {
     const minLength = 8;
     const hasNumber = /\d/.test(this.signUpPayload.password);
@@ -50,38 +67,50 @@ export class SignupComponent {
   // }
 
   signup(){
-    this.loading = true;
-    localStorage.clear();
-    if(this.signUpPayload.password == this.cpassword){
-      localStorage.setItem("meklips.email",this.signUpPayload.email)
-      this.signupService.signup(this.signUpPayload).subscribe({
-        next:(res: any)=>{
-          this.loading = false;
-          this.advancedView();
-          this.login();
-        },
-        error:(err:any)=>{
-          this.loading = false;
-          console.log(err);
-          console.log(err.error.error);
-          // const errorValues = Object.values(err.error.errors)[0];
-          // const errorMessage = errorValues[0];
-          // console.log(errorMessage);
-        
-          this.toastr.error(err.error.error, 'Error', {
-            positionClass: 'toast-top-right',
-          });
-        }
-      })
-      
-    }
-    else{
-      this.loading = false;
-      this.toastr.error('Password and Conform Password should be Same', 'Error', {
-        positionClass: 'toast-top-right',
-      });
+    // Validate email first
+    if (!this.validateEmail()) {
+      return;
     }
 
+    // Validate password
+    this.validatePassword();
+    if (!this.isPasswordValid) {
+      this.toastr.error('Please enter a valid password', 'Validation Error', {
+        positionClass: 'toast-top-right',
+      });
+      return;
+    }
+
+    // Validate password confirmation
+    if (this.signUpPayload.password !== this.cpassword) {
+      this.toastr.error('Password and Confirm Password should be Same', 'Validation Error', {
+        positionClass: 'toast-top-right',
+      });
+      return;
+    }
+
+    this.loading = true;
+    localStorage.clear();
+    localStorage.setItem("meklips.email",this.signUpPayload.email)
+    this.signupService.signup(this.signUpPayload).subscribe({
+      next:(res: any)=>{
+        this.loading = false;
+        this.advancedView();
+        this.login();
+      },
+      error:(err:any)=>{
+        this.loading = false;
+        console.log(err);
+        console.log(err.error.error);
+        // const errorValues = Object.values(err.error.errors)[0];
+        // const errorMessage = errorValues[0];
+        // console.log(errorMessage);
+      
+        this.toastr.error(err.error.error, 'Error', {
+          positionClass: 'toast-top-right',
+        });
+      }
+    })
   }
 
   login() {

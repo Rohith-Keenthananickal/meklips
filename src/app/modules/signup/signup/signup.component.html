@@ -16,17 +16,36 @@
                         Sign up using your email address
                     </div>
                     <div class="mb-3 mt-3">
-                        <input type="email" class="form-control" [(ngModel)]="signUpPayload.email" name="example-text-input" placeholder="Email Id" spellcheck="false" data-ms-editor="true">
+                        <input 
+                            type="email" 
+                            class="form-control" 
+                            [(ngModel)]="signUpPayload.email" 
+                            name="example-text-input" 
+                            placeholder="Email Id" 
+                            spellcheck="false" 
+                            data-ms-editor="true">
                     </div>
                     <div class="mb-3">
                         <label class="form-label required text-left">Password</label>
-                        <input class="form-control" [(ngModel)]="signUpPayload.password" type="password">
+                        <input 
+                            class="form-control" 
+                            [(ngModel)]="signUpPayload.password" 
+                            type="password"
+                            (input)="validatePassword()">
                     </div>
                     <div class="mb-3">
                         <label class="form-label required text-left">Re-enter Password</label>
-                        <input class="form-control" [(ngModel)]="cpassword" type="password">
+                        <input 
+                            class="form-control" 
+                            [(ngModel)]="cpassword" 
+                            type="password">
                     </div>
-                    <button class="btn dark-blue-bg text-white w-100 border-none" (click)="signup()">Register</button>
+                    <button 
+                        class="btn dark-blue-bg text-white w-100 border-none" 
+                        [disabled]="loading"
+                        (click)="signup()">
+                        Register
+                    </button>
                 </div>
                 <div class="mt-4">
                     <img src="./assets/mK-logo.png" alt="logo" width="200px">

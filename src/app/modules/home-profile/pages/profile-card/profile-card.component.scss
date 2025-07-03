@@ -44,6 +44,7 @@
   top: 0.625rem;
   cursor: pointer;
   font-size: 2.3rem;
+  z-index: 9999;
 }
 
 .qr-image {
@@ -52,6 +53,7 @@
   top: 3.7rem;
   cursor: pointer;
   font-size: 2.25rem;
+  z-index: 9999;
 }
 
 .moon {
@@ -60,6 +62,7 @@
   top: 0.625rem;
   height: 2.3rem;
   width: 2.3rem;
+  z-index: 9999;
 }
 
 .dob {
@@ -67,6 +70,7 @@
   right: 1rem;
   top: 1.0625rem;
   font-weight: 600;
+  z-index: 9999;
 }
 
 .at {
@@ -74,6 +78,7 @@
   right: 0.875rem;
   top: 2.9375rem;
   font-size: 1.9375rem;
+  z-index: 9999;
 }
 
 .border-yellow {
@@ -274,6 +279,7 @@
 .at,
 .moon {
   filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.6));
+
 }
 
 .main-container {

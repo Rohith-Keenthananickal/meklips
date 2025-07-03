@@ -17,7 +17,14 @@
                         Login with email address and passord
                     </div>
                     <div class="mb-3 mt-3">
-                        <input type="email" class="form-control" name="example-text-input" placeholder="Email Id" [(ngModel)]="user.email" spellcheck="false" data-ms-editor="true">
+                        <input 
+                            type="email" 
+                            class="form-control" 
+                            name="example-text-input" 
+                            placeholder="Email Id" 
+                            [(ngModel)]="user.email" 
+                            spellcheck="false" 
+                            data-ms-editor="true">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Password
@@ -25,10 +32,18 @@
                                 <a class="cursor-pointer" (click)="goToForgotPassword()"> Forgot password</a>
                               </span>
                         </label>
-                        <input class="form-control" type="password" [(ngModel)]="user.password">
+                        <input 
+                            class="form-control" 
+                            type="password" 
+                            [(ngModel)]="user.password">
                     </div>
                     
-                    <button class="btn dark-blue-bg text-white w-100" (click)="login()">Login</button>
+                    <button 
+                        class="btn dark-blue-bg text-white w-100" 
+                        [disabled]="loading"
+                        (click)="login()">
+                        Login
+                    </button>
                 </div>
                 <div class="mt-4">
                     <img src="./assets/mK-logo.png" alt="logo" width="200px">
