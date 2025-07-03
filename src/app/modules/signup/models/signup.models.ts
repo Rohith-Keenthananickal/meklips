@@ -32,6 +32,7 @@ export class Candidate {
     country : string;
     zipCode : string;
     professionInfo : string;
+    uuid : string;
   }
   
   export class CurrentAddress {

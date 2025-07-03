@@ -103,6 +103,6 @@ export class SignupComponent {
 
   advancedView(){
     
-    this.router.navigate(['signup/password-update']);
+    this.router.navigate(['signup/personal-details']);
   }
 }

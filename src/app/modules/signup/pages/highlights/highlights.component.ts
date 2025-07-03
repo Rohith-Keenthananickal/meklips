@@ -93,9 +93,13 @@ export class HighlightsComponent implements OnInit{
   }
 
   updateFormData() {
-    this.candidate.candidateHighlights = this.candidateHighlightsList;
+    // Only save highlights that have both key and value filled
+    const validHighlights = this.candidateHighlightsList.filter(highlight => 
+      highlight.highlightKey && highlight.highlightValue && 
+      highlight.highlightKey.trim() !== '' && highlight.highlightValue.trim() !== ''
+    );
+    this.candidate.candidateHighlights = validHighlights;
     this.formDataService.updateFormData(this.candidate);
-
   }
 
   cancel(){
@@ -107,25 +111,46 @@ export class HighlightsComponent implements OnInit{
     this.candidate = localData
     this.candidate.candidateHighlights = this.candidate.candidateHighlights || [];
     this.candidateHighlightsList = this.candidate.candidateHighlights;
+    
+    // Filter out empty highlights and only keep those with both key and value
+    const validHighlights = this.candidateHighlightsList.filter(highlight => 
+      highlight.highlightKey && highlight.highlightValue && 
+      highlight.highlightKey.trim() !== '' && highlight.highlightValue.trim() !== ''
+    );
+    
+    // Initialize with 3 empty cards, but populate with existing valid data
+    this.candidateHighlightsList = [];
+    for (let i = 0; i < 3; i++) {
+      if (validHighlights[i]) {
+        this.candidateHighlightsList[i] = validHighlights[i];
+      } else {
+        this.candidateHighlightsList[i] = new CandidateHighlight();
+      }
+    }
   }
 
   addHighlight(){
-    if((this.candidateHighlights.highlightKey && this.candidateHighlights.highlightValue) &&this.candidateHighlightsList?.length < 3){
-      this.candidateHighlightsList.splice(this.selectedHighlightIndex, 0, this.candidateHighlights);
-      // this.candidateHighlightsList.push(this.candidateHighlights);
+    if((this.candidateHighlights.highlightKey && this.candidateHighlights.highlightValue)){
+      if (this.selectedHighlightIndex !== undefined) {
+        // Update existing highlight at the selected index
+        this.candidateHighlightsList[this.selectedHighlightIndex] = { ...this.candidateHighlights };
+      }
       this.candidateHighlights = new CandidateHighlight();
+      this.selectedHighlightIndex = undefined;
       console.log(this.candidateHighlightsList);
     }
   }
 
   editHighlight(index: number){
-    this.candidateHighlights = this.candidateHighlightsList[index];
+    this.candidateHighlights = { ...this.candidateHighlightsList[index] };
     this.selectedHighlightIndex = index;
-    this.candidateHighlightsList.splice(index, 1);
+    // Clear the current position but keep the array structure intact
+    this.candidateHighlightsList[index] = new CandidateHighlight();
   }
 
   deleteHighlight(index: number){
-    this.candidateHighlightsList.splice(index, 1);
+    // Clear the highlight at the specific index instead of removing it
+    this.candidateHighlightsList[index] = new CandidateHighlight();
   }
 
   clearHighlight(index: number){
@@ -134,5 +159,7 @@ export class HighlightsComponent implements OnInit{
       this.candidateHighlightsList[index].highlightValue = '';
     }
   }
+
+
   
 }

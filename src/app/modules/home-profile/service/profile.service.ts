@@ -45,4 +45,8 @@ export class ProfileService {
     return this.http.patch(`${environment.url}api/candidates/${id}/like`,{})
   }
 
+  getCandidateByUuid(uuid: string){
+    return this.http.get(`${environment.url}api/candidates/uuid/${uuid}`)
+  }
+
 }

@@ -12,7 +12,7 @@ const routes: Routes = [
     // component: ProfileComponent
   },
   {
-    path:'candidate/:id',
+    path:'candidate/:uuid',
     component: ProfileCardComponent
   },
   {

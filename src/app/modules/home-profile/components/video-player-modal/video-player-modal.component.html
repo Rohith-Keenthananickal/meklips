@@ -1,5 +1,7 @@
 <div id="main" style="display: flex; justify-content: center; align-items: center; height: 100%;">
-    <button type="button" class="btn-close" (click)="dismissModal()"></button>
+    <button type="button" class="btn-close" (click)="dismissModal()" style="background: #FFD700 !important; border-radius: 50%; width: 40px; height: 40px; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; position: absolute; top: 20px; left: 20px; z-index: 1000; opacity: 1 !important; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
+        <i class="ti ti-arrow-back-up" style="color: white !important; font-size: 18px; opacity: 1 !important;"></i>
+    </button>
     <video #videoPlayer 
            style="border-radius: 14px; object-fit: contain; max-height: 90vh; max-width: 90vw;"
            controls *ngIf="videoUrl">

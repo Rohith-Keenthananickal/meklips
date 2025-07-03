@@ -16,6 +16,7 @@ export class QrCodeModalComponent implements OnInit{
   constructor(private activeModal: NgbActiveModal){}
 
   ngOnInit(): void {
+    console.log(this.id);
     this.url = 'https://demo.meklips.com/profile/candidate/' + this.id;
   }
 

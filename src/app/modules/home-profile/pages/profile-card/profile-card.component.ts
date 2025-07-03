@@ -24,6 +24,7 @@ export class ProfileCardComponent implements OnInit {
   private modalRef2: NgbModalRef;
   public mailId : string;
   public hasParams : boolean = false;
+  public uuid : string;
   
   constructor(private authService: AuthService,
     private profileService : ProfileService,
@@ -36,18 +37,31 @@ export class ProfileCardComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      if (params['id']) {
+      if (params['uuid']) {
         this.hasParams = true;
-        this.candidateId = Number(params['id']);
+        this.uuid = params['uuid'];
         console.log(this.hasParams);
-        
+        this.getCandidateByUuid();
       } else {
         this.hasParams = false;
         this.candidateId = Number(localStorage.getItem('meklips.userId'));
+        this.getCandidateInfo();
       }
-      this.getCandidateInfo();
+
     });
     this.mailId = localStorage.getItem('meklips.email');
+  }
+
+  getCandidateByUuid(){
+    this.profileService.getCandidateByUuid(this.uuid).subscribe({
+      next:(res : any)=>{
+        this.candidate = res.data;
+        this.candidateId = Number(this.candidate.id);
+      },
+      error:(err : HttpErrorResponse)=>{
+        console.log(err);
+      }
+    })
   }
 
   likeCandidate(){
@@ -65,9 +79,9 @@ export class ProfileCardComponent implements OnInit {
   }
 
   openQrCode(){
-    console.log(localStorage.getItem('meklips.userId'));
+
     this.modalRef2 = this.modalService.open(QrCodeModalComponent, { size: 'sm', centered: true });
-    this.modalRef2.componentInstance.id = localStorage.getItem('meklips.userId');
+    this.modalRef2.componentInstance.id = this.candidate.uuid;
     this.modalRef2.result
       .then((result) => {
       })  
