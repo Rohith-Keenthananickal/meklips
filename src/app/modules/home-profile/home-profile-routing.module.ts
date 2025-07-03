@@ -4,8 +4,17 @@ import { ProfileComponent } from './profile/profile.component';
 import { ProfileVideoComponent } from './pages/profile-video/profile-video.component';
 import { CandidateProfileComponent } from './pages/profile/candidate-profile.component';
 import { ProfileCardComponent } from './pages/profile-card/profile-card.component';
+import { CandidateNotFoundComponent } from './pages/candidate-not-found/candidate-not-found.component';
 
 const routes: Routes = [
+  {
+    path: 'not-found',
+    component: CandidateNotFoundComponent
+  },
+  // {
+  //   path: '**',
+  //   redirectTo: 'not-found'
+  // },
   {
     path: '',
     component:ProfileCardComponent
@@ -31,6 +40,7 @@ const routes: Routes = [
     path:':id',
     component: ProfileCardComponent
   },
+  
 
 ];
 

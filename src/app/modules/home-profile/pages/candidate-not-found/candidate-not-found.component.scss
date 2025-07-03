@@ -1,0 +1,234 @@
+// Import existing styles from profile card
+.border-yellow {
+  border-color: #f1c40f !important;
+}
+
+// Main container styles
+#not-found-card {
+//   background: linear-gradient(135deg, #001848 0%, #002f72 100%);
+  min-height: 100vh;
+  border-radius: 0;
+}
+
+.main-container {
+//   background: linear-gradient(135deg, #001848 0%, #002f72 100%);
+}
+
+.left-part {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.right-part {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+// Not found container styles
+.not-found-container {
+  background: linear-gradient(to bottom, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.not-found-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+// Error icon styles
+.error-icon {
+  font-size: 5rem;
+  color: #dc3545;
+  margin-bottom: 2rem;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+// Error title styles
+.error-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #001848;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+// Error message styles
+.error-message {
+  font-size: 1.2rem;
+  color: #6c757d;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  max-width: 400px;
+}
+
+// Error details styles
+.error-details {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  max-width: 400px;
+}
+
+.uuid-text {
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  color: #495057;
+  margin: 0;
+  word-break: break-all;
+}
+
+// Error suggestions styles
+.error-suggestions {
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  max-width: 400px;
+}
+
+.error-suggestions p {
+  font-weight: 600;
+  color: #856404;
+  margin-bottom: 1rem;
+  margin-top: 0;
+}
+
+.error-suggestions ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.error-suggestions li {
+  color: #856404;
+  padding: 0.5rem 0;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.error-suggestions li:before {
+  content: "•";
+  color: #f1c40f;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  font-size: 1.2rem;
+}
+
+// Action buttons styles
+.action-buttons {
+  padding: 2rem;
+  background: linear-gradient(to top, #f8f9fa 0%, #ffffff 100%);
+  border-top: 1px solid #e9ecef;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #001848 0%, #002f72 100%);
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 24, 72, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 24, 72, 0.4);
+  background: linear-gradient(135deg, #002f72 0%, #001848 100%);
+}
+
+.btn-outline-primary {
+  border: 2px solid #001848;
+  color: #001848;
+  background: transparent;
+  border-radius: 10px;
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+  background: #001848;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 24, 72, 0.3);
+}
+
+// Bottom logo styles
+.bottom-logo {
+//   background: #001848;
+  padding: 1rem;
+//   border-top: 3px solid #f1c40f;
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .left-part,
+  .right-part {
+    display: none !important;
+  }
+  
+  .not-found-content {
+    padding: 2rem 1rem;
+  }
+  
+  .error-title {
+    font-size: 2rem;
+  }
+  
+  .error-message {
+    font-size: 1rem;
+  }
+  
+  .action-buttons {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .error-title {
+    font-size: 1.8rem;
+  }
+  
+  .error-icon {
+    font-size: 4rem;
+  }
+  
+  .btn-primary,
+  .btn-outline-primary {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
+  }
+} 

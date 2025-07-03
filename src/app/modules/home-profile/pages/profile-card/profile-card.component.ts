@@ -55,11 +55,21 @@ export class ProfileCardComponent implements OnInit {
   getCandidateByUuid(){
     this.profileService.getCandidateByUuid(this.uuid).subscribe({
       next:(res : any)=>{
+        console.log(res);
         this.candidate = res.data;
-        this.candidateId = Number(this.candidate.id);
+        this.candidate.candidateSkills = this.candidate.candidateSkills.slice().sort((a, b) => b.skillLevel - a.skillLevel);
+        // this.getImage();
+        localStorage.setItem('formData',JSON.stringify(this.candidate));
+        // localStorage.setItem('userId',res.id)
+        localStorage.setItem('CandidateId',String(this.candidate?.currentAddress?.candidateId))
+        this.imageUrl = (environment.url+'media/user_images/' + this.candidate?.dpId);
+        this.loading = false
       },
       error:(err : HttpErrorResponse)=>{
         console.log(err);
+        if(err.status == 404){
+          this.router.navigate(['/profile/not-found'], { queryParams: { uuid: this.uuid } });
+        }
       }
     })
   }

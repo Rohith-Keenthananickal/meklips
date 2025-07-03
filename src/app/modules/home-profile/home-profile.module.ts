@@ -9,6 +9,7 @@ import { CandidateProfileComponent } from './pages/profile/candidate-profile.com
 import { QRCodeModule } from 'angularx-qrcode';
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import { ProfileCardComponent } from './pages/profile-card/profile-card.component';
+import { CandidateNotFoundComponent } from './pages/candidate-not-found/candidate-not-found.component';
 import { VideoPlayerModalComponent } from './components/video-player-modal/video-player-modal.component';
 import { ProfilePreviewComponent } from './components/profile-preview/profile-preview.component';
 import { QrCodeModalComponent } from './components/qr-code-modal/qr-code-modal.component';
@@ -19,6 +20,7 @@ import { QrCodeModalComponent } from './components/qr-code-modal/qr-code-modal.c
     ProfileVideoComponent,
     CandidateProfileComponent,
     ProfileCardComponent,
+    CandidateNotFoundComponent,
     VideoPlayerModalComponent,
     ProfilePreviewComponent,
     QrCodeModalComponent
