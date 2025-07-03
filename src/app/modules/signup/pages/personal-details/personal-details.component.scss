@@ -75,3 +75,7 @@ textarea{
   }
 
 
+.btn.disabled, .btn:disabled{
+    background-color: #002f72 !important;
+	color: #FFF;
+}
