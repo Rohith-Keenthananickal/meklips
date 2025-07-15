@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="94.375" height="82.667" viewBox="0 0 94.375 82.667">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_1110" data-name="Rectangle 1110" width="94.375" height="82.667" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_1109" data-name="Rectangle 1109" width="29.298" height="29.307" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Play_button" data-name="Play button" transform="translate(0)">
+    <g id="Group_560" data-name="Group 560" transform="translate(0)" clip-path="url(#clip-path)">
+      <path id="Path_1258" data-name="Path 1258" d="M23.344,92.1A35.566,35.566,0,0,1,.556,52.461c2.887-14.583,13.888-27.712,22.62-28.239a44.256,44.256,0,0,0,.169,67.873" transform="translate(0 -16.914)" fill="#5989c7"/>
+      <path id="Path_1259" data-name="Path 1259" d="M121.474,41.333A41.333,41.333,0,1,1,80.14,0a41.381,41.381,0,0,1,41.333,41.333" transform="translate(-27.099)" fill="#5988c7"/>
+      <g id="Group_559" data-name="Group 559" transform="translate(38.393 26.68)" style="isolation: isolate">
+        <g id="Group_558" data-name="Group 558">
+          <g id="Group_557" data-name="Group 557" clip-path="url(#clip-path-2)">
+            <path id="Path_1260" data-name="Path 1260" d="M127.253,114.1V92.069a3.635,3.635,0,0,1,5.26-3.251l22.029,11.014a3.635,3.635,0,0,1,0,6.5l-22.029,11.014a3.635,3.635,0,0,1-5.26-3.251" transform="translate(-127.253 -88.43)" fill="#fff"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
