@@ -1,5 +1,14 @@
-<div class="loading-overlay" *ngIf="loading">
-  <div class="loading"></div>
+<!-- Professional Loader -->
+<div class="professional-loader" [ngClass]="{'hidden': pageFullyLoaded}">
+  <img src="/assets/mK-logo.png" alt="Meklips Logo" class="loader-logo">
+  <div class="loader-spinner"></div>
+  <div class="loader-text">Loading your profile</div>
+  <div class="loader-subtitle">Please wait while we prepare everything for you</div>
+  <div class="loading-dots">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 </div>
 
 <div id="mySidenav" class="sidenav">
@@ -74,7 +83,11 @@
                 </span>
               </div>
               <span class="text at text-white fw-bold cursor-pointer" (click)="openMailClient()">&#64;</span>
-              <img [src]="imageUrl || '/assets/user-img.jpg'" alt="" style="width: 100%; height: 51vh; object-fit: cover;">
+              <img [src]="imageUrl" 
+                   alt="" 
+                   style="width: 100%; height: 51vh; object-fit: cover;"
+                   (load)="onImageLoad()"
+                   (error)="onImageError()">
               <div class="profile-content">
                 <div class="text-white text-center d-flex flex-column justify-content-center align-items-center" 
                 style="position: relative; top: 50px;">

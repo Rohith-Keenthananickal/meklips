@@ -20,6 +20,8 @@ export class ProfileCardComponent implements OnInit {
   public loading : boolean;
   public selectedHighlight : number = 0;
   public imageUrl: string;
+  public imageLoading: boolean = true;
+  public pageFullyLoaded: boolean = false;
   private modalRef: NgbModalRef;
   private modalRef2: NgbModalRef;
   public mailId : string;
@@ -63,7 +65,9 @@ export class ProfileCardComponent implements OnInit {
         // localStorage.setItem('userId',res.id)
         localStorage.setItem('CandidateId',String(this.candidate?.currentAddress?.candidateId))
         this.imageUrl = (environment.url+'media/user_images/' + this.candidate?.dpId);
-        this.loading = false
+        this.imageLoading = true;
+        this.loading = false;
+        this.checkPageFullyLoaded();
       },
       error:(err : HttpErrorResponse)=>{
         console.log(err);
@@ -170,7 +174,9 @@ export class ProfileCardComponent implements OnInit {
         // localStorage.setItem('userId',res.id)
         localStorage.setItem('CandidateId',String(this.candidate?.currentAddress?.candidateId))
         this.imageUrl = (environment.url+'media/user_images/' + this.candidate?.dpId);
-        this.loading = false
+        this.imageLoading = true;
+        this.loading = false;
+        this.checkPageFullyLoaded();
         // this.getVideo();
         
       },
@@ -197,6 +203,25 @@ export class ProfileCardComponent implements OnInit {
   openMailClient() {
     if (this.mailId) {
       window.location.href = `mailto:${this.mailId}`;
+    }
+  }
+
+  onImageLoad() {
+    this.imageLoading = false;
+    this.checkPageFullyLoaded();
+  }
+
+  onImageError() {
+    this.imageLoading = false;
+    this.checkPageFullyLoaded();
+  }
+
+  checkPageFullyLoaded() {
+    // Only hide loader when both data loading and image loading are complete
+    if (!this.loading && !this.imageLoading) {
+      setTimeout(() => {
+        this.pageFullyLoaded = true;
+      }, 500); // Small delay for smooth transition
     }
   }
 
