@@ -7,39 +7,15 @@ import { ProfileCardComponent } from './pages/profile-card/profile-card.componen
 import { CandidateNotFoundComponent } from './pages/candidate-not-found/candidate-not-found.component';
 
 const routes: Routes = [
-  {
-    path: 'not-found',
-    component: CandidateNotFoundComponent
-  },
-  {
-    path: '',
-    component:ProfileCardComponent
-    // component: ProfileComponent
-  },
-  {
-    path:'candidate/:uuid',
-    component: ProfileCardComponent
-  },
-  {
-    path:':uuid',
-    component: ProfileCardComponent
-  },
-  {
-    path: 'card',
-    component : ProfileCardComponent
-  },
-  {
-    path:'video',
-    component: ProfileVideoComponent
-  },
-  {
-    path:':id/video',
-    component: ProfileVideoComponent
-  },
-
-  
-
+  { path: '', component: ProfileCardComponent },
+  { path: 'not-found', component: CandidateNotFoundComponent },
+  { path: 'card', component: ProfileCardComponent },
+  { path: 'video', component: ProfileVideoComponent },
+  { path: 'candidate/:uuid', component: ProfileCardComponent },
+  { path: ':id/video', component: ProfileVideoComponent },
+  { path: ':uuid', component: ProfileCardComponent },
 ];
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
