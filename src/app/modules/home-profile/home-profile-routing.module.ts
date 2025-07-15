@@ -11,10 +11,6 @@ const routes: Routes = [
     path: 'not-found',
     component: CandidateNotFoundComponent
   },
-  // {
-  //   path: '**',
-  //   redirectTo: 'not-found'
-  // },
   {
     path: '',
     component:ProfileCardComponent
@@ -22,6 +18,10 @@ const routes: Routes = [
   },
   {
     path:'candidate/:uuid',
+    component: ProfileCardComponent
+  },
+  {
+    path:':uuid',
     component: ProfileCardComponent
   },
   {
@@ -36,10 +36,7 @@ const routes: Routes = [
     path:':id/video',
     component: ProfileVideoComponent
   },
-  {
-    path:':id',
-    component: ProfileCardComponent
-  },
+
   
 
 ];
