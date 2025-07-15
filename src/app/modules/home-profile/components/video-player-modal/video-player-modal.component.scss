@@ -2,6 +2,16 @@
     --tblr-btn-close-focus-shadow: none !important;
 }
 
+.btn-close-fullscreen {
+    --tblr-btn-close-focus-shadow: none !important;
+    transition: all 0.3s ease;
+}
+
+.btn-close-fullscreen:hover {
+    background: rgba(0,0,0,0.9) !important;
+    transform: scale(1.1);
+}
+
 :host ::ng-deep .modal-dialog {
   display: flex;
   align-items: center;
