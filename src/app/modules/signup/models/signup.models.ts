@@ -3,9 +3,15 @@ export class Signup {
     password: string
 }
 
+export class User{
+    email : string;
+    id : number;
+}
+
 export class Candidate {
     id : string;
     userId : any;
+    user : User;
     firstName: string
     lastName: string
     email: string

@@ -27,6 +27,7 @@ export class ProfileCardComponent implements OnInit {
   public mailId : string;
   public hasParams : boolean = false;
   public uuid : string;
+  public isLiked : boolean = false;
   
   constructor(private authService: AuthService,
     private profileService : ProfileService,
@@ -42,6 +43,7 @@ export class ProfileCardComponent implements OnInit {
       if (params['uuid']) {
         this.hasParams = true;
         this.uuid = params['uuid'];
+        localStorage.removeItem('formData');
         console.log(this.hasParams);
         this.getCandidateByUuid();
       } else {
@@ -51,6 +53,7 @@ export class ProfileCardComponent implements OnInit {
       }
 
     });
+    this.isLiked = localStorage.getItem('meklips.isLiked') == 'true';
     this.mailId = localStorage.getItem('meklips.email');
   }
 
@@ -64,6 +67,7 @@ export class ProfileCardComponent implements OnInit {
         localStorage.setItem('formData',JSON.stringify(this.candidate));
         // localStorage.setItem('userId',res.id)
         localStorage.setItem('CandidateId',String(this.candidate?.currentAddress?.candidateId))
+        this.mailId = this.candidate?.user?.email;
         this.imageUrl = (environment.url+'media/user_images/' + this.candidate?.dpId);
         this.imageLoading = true;
         this.loading = false;
@@ -78,9 +82,14 @@ export class ProfileCardComponent implements OnInit {
     })
   }
 
+  checkIsLiked() : boolean{
+    return localStorage.getItem('meklips.isLiked') == 'true';
+  }
+
   likeCandidate(){
-    if(this.hasParams){
+    if(this.hasParams && !this.checkIsLiked()){
       this.candidate.likes = this.candidate.likes + 1;
+      localStorage.setItem('meklips.isLiked', 'true');
       this.profileService.likeCandidate(Number(this.candidate.id)).subscribe({
         next:(res : any)=>{
         },
