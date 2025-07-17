@@ -53,7 +53,6 @@ export class ProfileCardComponent implements OnInit {
       }
 
     });
-    this.isLiked = localStorage.getItem('meklips.isLiked') == 'true';
     this.mailId = localStorage.getItem('meklips.email');
   }
 
@@ -71,6 +70,7 @@ export class ProfileCardComponent implements OnInit {
         this.imageUrl = (environment.url+'media/user_images/' + this.candidate?.dpId);
         this.imageLoading = true;
         this.loading = false;
+        this.updateIsLikedStatus();
         this.checkPageFullyLoaded();
       },
       error:(err : HttpErrorResponse)=>{
@@ -83,13 +83,49 @@ export class ProfileCardComponent implements OnInit {
   }
 
   checkIsLiked() : boolean{
-    return localStorage.getItem('meklips.isLiked') == 'true';
+    const likedUsers = this.getLikedUsers();
+    return likedUsers.includes(String(this.candidate?.id));
   }
+
+  getLikedUsers(): string[] {
+    const likedUsersStr = localStorage.getItem('meklips.likedUsers');
+    if (likedUsersStr) {
+      try {
+        return JSON.parse(likedUsersStr);
+      } catch (error) {
+        console.error('Error parsing liked users from localStorage:', error);
+        return [];
+      }
+    }
+    return [];
+  }
+
+  setLikedUsers(likedUsers: string[]): void {
+    localStorage.setItem('meklips.likedUsers', JSON.stringify(likedUsers));
+  }
+
+  updateIsLikedStatus(): void {
+    this.isLiked = this.checkIsLiked();
+  }
+
+  getLikedCount(): number {
+    return this.getLikedUsers().length;
+  }
+
+  
 
   likeCandidate(){
     if(this.hasParams && !this.checkIsLiked()){
       this.candidate.likes = this.candidate.likes + 1;
-      localStorage.setItem('meklips.isLiked', 'true');
+      
+      // Get existing liked users array and add current user ID
+      const likedUsers = this.getLikedUsers();
+      if (!likedUsers.includes(String(this.candidate.id))) {
+        likedUsers.push(String(this.candidate.id));
+        this.setLikedUsers(likedUsers);
+        this.updateIsLikedStatus();
+      }
+      
       this.profileService.likeCandidate(Number(this.candidate.id)).subscribe({
         next:(res : any)=>{
         },
@@ -185,6 +221,7 @@ export class ProfileCardComponent implements OnInit {
         this.imageUrl = (environment.url+'media/user_images/' + this.candidate?.dpId);
         this.imageLoading = true;
         this.loading = false;
+        this.updateIsLikedStatus();
         this.checkPageFullyLoaded();
         // this.getVideo();
         
