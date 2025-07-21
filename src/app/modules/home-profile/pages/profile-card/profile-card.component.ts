@@ -218,6 +218,7 @@ export class ProfileCardComponent implements OnInit {
         localStorage.setItem('formData',JSON.stringify(this.candidate));
         // localStorage.setItem('userId',res.id)
         localStorage.setItem('CandidateId',String(this.candidate?.currentAddress?.candidateId))
+        this.mailId = this.candidate?.user?.email;
         this.imageUrl = (environment.url+'media/user_images/' + this.candidate?.dpId);
         this.imageLoading = true;
         this.loading = false;
