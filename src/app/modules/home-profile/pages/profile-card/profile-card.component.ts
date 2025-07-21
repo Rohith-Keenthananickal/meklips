@@ -101,6 +101,7 @@ export class ProfileCardComponent implements OnInit {
   }
 
   setLikedUsers(likedUsers: string[]): void {
+    console.log(likedUsers);
     localStorage.setItem('meklips.likedUsers', JSON.stringify(likedUsers));
   }
 
@@ -122,6 +123,7 @@ export class ProfileCardComponent implements OnInit {
       const likedUsers = this.getLikedUsers();
       if (!likedUsers.includes(String(this.candidate.id))) {
         likedUsers.push(String(this.candidate.id));
+        console.log(likedUsers);
         this.setLikedUsers(likedUsers);
         this.updateIsLikedStatus();
       }
