@@ -45,9 +45,7 @@ export class ProfileCardComponent implements OnInit {
         this.uuid = params['uuid'];
         localStorage.removeItem('formData');
         console.log(this.hasParams);
-        // this.getCandidateByUuid();
-        this.candidateId = Number(this.uuid);
-        this.getCandidateInfo();
+        this.getCandidateByUuid();
       } else {
         this.hasParams = false;
         this.candidateId = Number(localStorage.getItem('meklips.userId'));
