@@ -274,4 +274,48 @@ export class ProfileCardComponent implements OnInit {
     }
   }
 
+  shareProfile() {
+    const shareUrl = `https://demo.meklips.com/profile/${this.uuid}`;
+    
+    // Use the modern Clipboard API if available
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(shareUrl).then(() => {
+        this.toastr.success('Profile URL copied to clipboard!', '', {
+          positionClass: 'toast-top-right',
+        });
+      }).catch(err => {
+        console.error('Failed to copy: ', err);
+        this.fallbackCopyToClipboard(shareUrl);
+      });
+    } else {
+      // Fallback for older browsers or non-secure contexts
+      this.fallbackCopyToClipboard(shareUrl);
+    }
+  }
+
+  private fallbackCopyToClipboard(text: string) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    textArea.style.top = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    try {
+      document.execCommand('copy');
+      this.toastr.success('Profile URL copied to clipboard!', 'Success', {
+        positionClass: 'toast-top-right',
+      });
+    } catch (err) {
+      console.error('Fallback: Oops, unable to copy', err);
+      this.toastr.error('Failed to copy URL to clipboard', 'Error', {
+        positionClass: 'toast-top-right',
+      });
+    }
+    
+    document.body.removeChild(textArea);
+  }
+
 }
