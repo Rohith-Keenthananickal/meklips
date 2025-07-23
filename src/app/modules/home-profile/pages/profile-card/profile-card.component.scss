@@ -7,7 +7,7 @@
   color: #fff;
   // border-radius: 15px;
   position: relative;
-  bottom: 19.5rem;
+  bottom: 18rem;
   // div{
   //     position: relative;
   //     top: 1rem;
@@ -15,7 +15,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 60dvh;
+  min-height: 53dvh;
   max-height: 60dvh;
   overflow: hidden;
 }
@@ -176,7 +176,7 @@
   // height: 74%;
   position: relative;
   z-index: 20;
-  bottom: 21.8rem;
+  bottom: 20.5rem;
   overflow: hidden;
   max-height: 30dvh;
 }
@@ -303,6 +303,8 @@
 .share-section {
   display: flex;
   align-items: center;
+  position: relative;
+    right: 57px;
 }
 
 .share-circle {
