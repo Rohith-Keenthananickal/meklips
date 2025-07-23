@@ -112,33 +112,35 @@
             
             <div class="d-flex flex-column justify-content-between align-items-center bottom-part ">
               <span style="width: 100%;">
-                <ul class="nav nav-tabs nav-fill p-0 m-2 justify-content-center gap-2 flex-nowrap" data-bs-toggle="tabs"
-                  role="tablist">
+                <ul class="nav nav-tabs nav-fill p-0 m-2 justify-content-center gap-2 flex-nowrap" data-bs-toggle="tab"
+                  role="tablist" [attr.style]="selectedHighlight === 0 ? 'margin-left: 0px;' : selectedHighlight === 2 ? 'margin-right: 0px;' : ''">
                   <li class="nav-item" role="presentation" *ngFor="let highlight of candidate?.candidateHighlights; let i = index"
-                    [style.width]="'calc((100% - ' + ((candidate?.candidateHighlights?.length - 1) * 8) + 'px) / ' + candidate?.candidateHighlights?.length + ')'">
-                    <a href="#tabs-home-{{i}}" (click)="selectedHighlight = i" class="nav-link p-1 fw-600 text-center"
-                      [ngClass]="{'active': i === 0}" data-bs-toggle="tab" aria-selected="true" role="tab" style="
-                                white-space: nowrap;
-                                overflow: hidden;
-                                text-overflow: ellipsis;
-                                text-align: left;
-                                display: block;
-                                width: 100%;
-                              ">
+                    [ngStyle]="{
+                  width: 'calc((100% - ' + ((candidate?.candidateHighlights?.length - 1) * 8) + 'px) / ' + candidate?.candidateHighlights?.length + ')'
+                }">
+                    <a href="#tabs-home-{{ i }}" (click)="selectedHighlight = i" class="nav-link p-1 fw-600 text-center"
+                      [ngClass]="{ active: selectedHighlight === i }" data-bs-toggle="tab" aria-selected="true" role="tab" style="
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    text-align: left;
+                    display: block;
+                    width: 100%;
+                  ">
                       {{ highlight?.highlightKey }}
                     </a>
-          
                   </li>
                 </ul>
+            
                 <span class="tab-content d-block mt-3">
                   <div class="heighlight-content px-3">
                     {{candidate?.candidateHighlights[selectedHighlight]?.highlightValue}}
                   </div>
                 </span>
               </span>
-          
-          
-          
+            
+            
+            
             </div>
           </div>
           

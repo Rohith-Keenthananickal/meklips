@@ -28,6 +28,7 @@ export class ProfileCardComponent implements OnInit {
   public hasParams : boolean = false;
   public uuid : string;
   public isLiked : boolean = false;
+
   
   constructor(private authService: AuthService,
     private profileService : ProfileService,
