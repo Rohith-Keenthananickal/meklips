@@ -1,6 +1,6 @@
 {
   "name": "meklips",
-  "version": "0.0.26",
+  "version": "0.0.26=7",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

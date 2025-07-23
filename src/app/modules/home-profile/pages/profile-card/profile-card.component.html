@@ -113,7 +113,7 @@
             <div class="d-flex flex-column justify-content-between align-items-center bottom-part ">
               <span style="width: 100%;">
                 <ul class="nav nav-tabs nav-fill p-0 m-2 justify-content-center gap-2 flex-nowrap" data-bs-toggle="tab"
-                  role="tablist" [attr.style]="selectedHighlight === 0 ? 'margin-left: 0px;' : selectedHighlight === 2 ? 'margin-right: 0px;' : ''">
+                  role="tablist" [attr.style]="selectedHighlight === 0 ? 'margin-left: 0px !important;' : selectedHighlight === 2 ? 'margin-right: 0px !important;' : ''">
                   <li class="nav-item" role="presentation" *ngFor="let highlight of candidate?.candidateHighlights; let i = index"
                     [ngStyle]="{
                   width: 'calc((100% - ' + ((candidate?.candidateHighlights?.length - 1) * 8) + 'px) / ' + candidate?.candidateHighlights?.length + ')'
