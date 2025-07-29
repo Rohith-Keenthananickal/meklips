@@ -71,7 +71,7 @@
       <div class="card border-yellow">
         <div class="card-body p-0 d-flex flex-column justify-content-between">
           <div>
-            <div>
+            <div class="profile-background">
               <i class="ti ti-menu-2 cursor-pointer text-white menu-icon" (click)="openNav()"></i>
               <!-- <i class="ti ti-qrcode qr-image text-white" (click)="openQrCode()"></i> -->
               <img src="/assets/QR.svg" alt="" width="30" class="cursor-pointer qr-image" (click)="openQrCode()">
@@ -91,7 +91,7 @@
               <div class="profile-content">
                 <div class="text-white text-center d-flex flex-column justify-content-center align-items-center" 
                 style="position: relative; top: 38px;">
-                  <img src="/assets/mKPlaynewe.gif" alt="share" class="cursor-pointer" width="150" (click)="openModal()">
+                  <img src="/assets/mKPlaynewe.gif" alt="share" class="cursor-pointer" width="135" (click)="openModal()">
                   <span class="profile-name">{{candidate?.firstName}} {{candidate?.lastName}}</span>
                   <span>
                     <span class="profile-role text-center muted-semi-bold">
@@ -151,7 +151,8 @@
             <div class="logo-section">
               <img src="/assets/mK-logo.png" width="140" alt="meKlips Logo" class="meklips-logo">
               <div class="share-circle ms-2" (click)="shareProfile()">
-                <i class="ti ti-share text-white"></i>
+                <!-- <i class="ti ti-share text-white"></i> -->
+                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 512 512"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path fill="#ffffff" d="M384 192c53 0 96-43 96-96s-43-96-96-96-96 43-96 96c0 5.4 .5 10.8 1.3 16L159.6 184.1c-16.9-15-39.2-24.1-63.6-24.1-53 0-96 43-96 96s43 96 96 96c24.4 0 46.6-9.1 63.6-24.1L289.3 400c-.9 5.2-1.3 10.5-1.3 16 0 53 43 96 96 96s96-43 96-96-43-96-96-96c-24.4 0-46.6 9.1-63.6 24.1L190.7 272c.9-5.2 1.3-10.5 1.3-16s-.5-10.8-1.3-16l129.7-72.1c16.9 15 39.2 24.1 63.6 24.1z"/></svg>
               </div>
             </div>
 
